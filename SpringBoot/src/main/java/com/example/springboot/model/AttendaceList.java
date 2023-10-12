@@ -1,4 +1,4 @@
 package com.example.springboot.model;
 
-public class AttendaceList {
+public record AttendaceList() {
 }

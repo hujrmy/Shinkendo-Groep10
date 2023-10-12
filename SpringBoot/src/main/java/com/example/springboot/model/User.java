@@ -1,8 +1,9 @@
 package com.example.springboot.model;
 
-public class User {
-    private int rights;
-    private String name;
-    private Dojo dojo;
-    private String rank;
+public record User(
+        int rights,
+        String name,
+        Dojo dojo,
+        String rank
+) {
 }

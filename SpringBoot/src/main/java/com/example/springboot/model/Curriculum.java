@@ -1,7 +1,7 @@
 package com.example.springboot.model;
 
-public class Curriculum {
-    private String name;
-    private String description;
-
+public record Curriculum(
+        String name,
+        String description
+) {
 }

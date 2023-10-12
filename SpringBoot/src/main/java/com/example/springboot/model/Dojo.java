@@ -1,6 +1,7 @@
 package com.example.springboot.model;
 
-public class Dojo {
-    private String name;
-    private String place;
+public record Dojo(
+        String name,
+        String place
+) {
 }
