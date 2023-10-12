@@ -4,6 +4,6 @@ import java.time.LocalDate;
 
 public record Lesson(
         LocalDate date,
-        Excerise exercise
+        Exercise exercise
 ) {
 }
