@@ -1,5 +1,5 @@
 package com.example.springboot.model;
 
-public class Exerciselogs {
+public class ExerciseLogs {
     private Lesson lesson;
 }
