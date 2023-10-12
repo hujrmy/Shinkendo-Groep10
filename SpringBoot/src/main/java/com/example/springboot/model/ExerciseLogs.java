@@ -1,7 +1,9 @@
 package com.example.springboot.model;
 
-public record ExerciseLogs(
-        Lesson lesson
+import jakarta.persistence.Entity;
 
-) {
+//@Entity
+public class ExerciseLogs {
+    Lesson lesson;
+
 }

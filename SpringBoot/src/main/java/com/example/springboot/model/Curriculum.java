@@ -1,7 +1,9 @@
 package com.example.springboot.model;
 
-public record Curriculum(
-        String name,
-        String description
-) {
+import jakarta.persistence.Entity;
+
+//@Entity
+public class Curriculum {
+    String name;
+    String description;
 }

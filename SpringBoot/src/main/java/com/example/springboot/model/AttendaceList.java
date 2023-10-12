@@ -1,4 +1,8 @@
 package com.example.springboot.model;
 
-public record AttendaceList() {
+
+import jakarta.persistence.Entity;
+
+//@Entity
+public class AttendaceList {
 }
