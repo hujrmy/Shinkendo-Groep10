@@ -1,7 +1,7 @@
 package com.example.springboot.model;
 
 public record User(
-        int rights,
+        Rights rights,
         String name,
         Dojo dojo,
         Rank rank
