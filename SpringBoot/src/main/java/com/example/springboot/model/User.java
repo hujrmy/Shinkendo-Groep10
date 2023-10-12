@@ -1,9 +1,11 @@
 package com.example.springboot.model;
 
-public record User(
-        Rights rights,
-        String name,
-        Dojo dojo,
-        Rank rank
-) {
+import jakarta.persistence.Entity;
+
+//@Entity
+public class User {
+    Rights rights;
+    String name;
+    Dojo dojo;
+    Rank ran;
 }

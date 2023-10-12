@@ -1,6 +1,8 @@
 package com.example.springboot.model;
 
-public record Note(
-        String description
-) {
+import jakarta.persistence.Entity;
+
+//@Entity
+public class Note {
+    String description;
 }

@@ -1,7 +1,10 @@
 package com.example.springboot.model;
 
-public record Dojo(
-        String name,
-        String place
-) {
+import jakarta.persistence.Entity;
+
+//@Entity
+
+public class Dojo {
+    String name;
+    String place;
 }
