@@ -11,7 +11,7 @@ public class ConnectionToPostGreSQL {
         Statement stmt = null;
         try {
             Class.forName("org.postgresql.Driver");
-            c = DriverManager.getConnection("jdbc:postgresql://192.168.2.14:5432/postgres",
+            c = DriverManager.getConnection("jdbc:postgresql://195.240.222.250:5432/postgres",
                     "postgres", "postgres");
             System.out.println("Opened database successfully");
 
