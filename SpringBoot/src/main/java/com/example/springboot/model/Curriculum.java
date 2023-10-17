@@ -4,8 +4,8 @@ package com.example.springboot.model;
 //
 //@Entity
 public class Curriculum {
-    String name;
-    String description;
+    private String name;
+    private String description;
 
     public Curriculum(String name, String description) {
         this.name = name;

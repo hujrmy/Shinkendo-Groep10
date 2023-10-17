@@ -4,7 +4,7 @@ import jakarta.persistence.Entity;
 
 //@Entity
 public class Note {
-    String description;
+    private String description;
 
     public Note(String description) {
         this.description = description;

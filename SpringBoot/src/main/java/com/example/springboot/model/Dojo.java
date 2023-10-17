@@ -5,8 +5,8 @@ import jakarta.persistence.Entity;
 //@Entity
 
 public class Dojo {
-    String name;
-    String place;
+    private String name;
+    private String place;
 
     public Dojo(String name, String place) {
         this.name = name;

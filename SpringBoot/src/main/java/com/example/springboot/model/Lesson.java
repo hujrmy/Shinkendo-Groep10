@@ -6,8 +6,8 @@ import java.time.LocalDate;
 
 //@Entity
 public class Lesson {
-    LocalDate date;
-    Exercise exercise;
+    private LocalDate date;
+    private Exercise exercise;
 
     public Lesson(LocalDate date, Exercise exercise) {
         this.date = date;
