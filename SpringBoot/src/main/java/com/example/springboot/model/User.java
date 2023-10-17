@@ -4,8 +4,8 @@ import jakarta.persistence.Entity;
 
 //@Entity
 public class User {
-    Rights rights;
-    String name;
-    Dojo dojo;
-    Rank ran;
+    private Rights rights;
+    private String name;
+    private Dojo dojo;
+    private Rank rank;
 }

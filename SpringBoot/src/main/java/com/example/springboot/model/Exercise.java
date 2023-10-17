@@ -5,8 +5,8 @@ import jakarta.persistence.Entity;
 //@Entity
 
 public class Exercise {
-    String name;
-    Note note;
-    String media;
-    int exerciseCount;
+    private String name;
+    private Note note;
+    private String media;
+    private int exerciseCount;
 }

@@ -4,5 +4,5 @@ import jakarta.persistence.Entity;
 
 //@Entity
 public class Note {
-    String description;
+    private String description;
 }
