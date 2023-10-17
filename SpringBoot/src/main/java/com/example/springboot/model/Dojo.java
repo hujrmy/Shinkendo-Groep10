@@ -43,4 +43,28 @@ public class Dojo {
     public void setPlace(String place) {
         this.place = place;
     }
+
+    @Override
+    public String toString() {
+        return "Dojo{" +
+                "ID=" + ID +
+                ", name='" + name + '\'' +
+                ", place='" + place + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Dojo dojo = (Dojo) o;
+
+        return ID == dojo.ID;
+    }
+
+    @Override
+    public int hashCode() {
+        return (int) (ID ^ (ID >>> 32));
+    }
 }

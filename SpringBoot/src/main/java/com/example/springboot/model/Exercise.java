@@ -65,4 +65,30 @@ public class Exercise {
     public void setExerciseCount(int exerciseCount) {
         this.exerciseCount = exerciseCount;
     }
+
+    @Override
+    public String toString() {
+        return "Exercise{" +
+                "ID=" + ID +
+                ", name='" + name + '\'' +
+                ", note=" + note +
+                ", media='" + media + '\'' +
+                ", exerciseCount=" + exerciseCount +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Exercise exercise = (Exercise) o;
+
+        return ID == exercise.ID;
+    }
+
+    @Override
+    public int hashCode() {
+        return (int) (ID ^ (ID >>> 32));
+    }
 }

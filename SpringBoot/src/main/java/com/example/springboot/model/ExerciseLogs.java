@@ -35,4 +35,27 @@ public class ExerciseLogs {
     public void setLesson(Lesson lesson) {
         this.lesson = lesson;
     }
+
+    @Override
+    public String toString() {
+        return "ExerciseLogs{" +
+                "ID=" + ID +
+                ", lesson=" + lesson +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ExerciseLogs that = (ExerciseLogs) o;
+
+        return ID == that.ID;
+    }
+
+    @Override
+    public int hashCode() {
+        return (int) (ID ^ (ID >>> 32));
+    }
 }

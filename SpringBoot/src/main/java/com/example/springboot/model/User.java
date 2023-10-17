@@ -65,4 +65,30 @@ public class User {
     public void setRank(Rank rank) {
         this.rank = rank;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "ID=" + ID +
+                ", rights=" + rights +
+                ", name='" + name + '\'' +
+                ", dojo=" + dojo +
+                ", rank=" + rank +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        return ID == user.ID;
+    }
+
+    @Override
+    public int hashCode() {
+        return (int) (ID ^ (ID >>> 32));
+    }
 }
