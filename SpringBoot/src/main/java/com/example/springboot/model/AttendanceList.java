@@ -4,7 +4,7 @@ package com.example.springboot.model;
 import jakarta.persistence.*;
 
 @Entity
-public class AttendaceList {
+public class AttendanceList {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long ID;
@@ -12,11 +12,11 @@ public class AttendaceList {
     @ManyToOne
     private User user;
 
-    public AttendaceList(User user) {
+    public AttendanceList(User user) {
         this.user = user;
     }
 
-    public AttendaceList() {
+    public AttendanceList() {
 
     }
 
@@ -48,7 +48,7 @@ public class AttendaceList {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        AttendaceList that = (AttendaceList) o;
+        AttendanceList that = (AttendanceList) o;
 
         return ID == that.ID;
     }
