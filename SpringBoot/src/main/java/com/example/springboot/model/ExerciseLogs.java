@@ -1,13 +1,31 @@
 package com.example.springboot.model;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 
-//@Entity
+@Entity
 public class ExerciseLogs {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long ID;
+
+    @ManyToOne
     private Lesson lesson;
 
     public ExerciseLogs(Lesson lesson) {
         this.lesson = lesson;
+    }
+
+    public ExerciseLogs() {
+
+    }
+
+    public long getID() {
+        return ID;
+    }
+
+    public void setID(long ID) {
+        this.ID = ID;
     }
 
     public Lesson getLesson() {

@@ -1,17 +1,35 @@
 package com.example.springboot.model;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
-//@Entity
+@Entity
 public class Lesson {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long ID;
     private LocalDate date;
+
+    @ManyToOne
     private Exercise exercise;
 
     public Lesson(LocalDate date, Exercise exercise) {
         this.date = date;
         this.exercise = exercise;
+    }
+
+    public Lesson() {
+
+    }
+
+    public long getID() {
+        return ID;
+    }
+
+    public void setID(long ID) {
+        this.ID = ID;
     }
 
     public LocalDate getDate() {

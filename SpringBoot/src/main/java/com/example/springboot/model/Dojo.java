@@ -1,16 +1,31 @@
 package com.example.springboot.model;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 
-//@Entity
-
+@Entity
 public class Dojo {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long ID;
     private String name;
     private String place;
 
     public Dojo(String name, String place) {
         this.name = name;
         this.place = place;
+    }
+
+    public Dojo() {
+
+    }
+
+    public long getID() {
+        return ID;
+    }
+
+    public void setID(long ID) {
+        this.ID = ID;
     }
 
     public String getName() {

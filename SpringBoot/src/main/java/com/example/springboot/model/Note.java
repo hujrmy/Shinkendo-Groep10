@@ -1,13 +1,29 @@
 package com.example.springboot.model;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 
-//@Entity
+@Entity
 public class Note {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long ID;
     private String description;
 
     public Note(String description) {
         this.description = description;
+    }
+
+    public Note() {
+
+    }
+
+    public long getID() {
+        return ID;
+    }
+
+    public void setID(long ID) {
+        this.ID = ID;
     }
 
     public String getDescription() {

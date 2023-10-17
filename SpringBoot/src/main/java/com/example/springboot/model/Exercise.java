@@ -1,11 +1,16 @@
 package com.example.springboot.model;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 
-//@Entity
-
+@Entity
 public class Exercise {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long ID;
     private String name;
+
+    @ManyToOne
     private Note note;
     private String media;
     private int exerciseCount;
@@ -15,6 +20,18 @@ public class Exercise {
         this.note = note;
         this.media = media;
         this.exerciseCount = exerciseCount;
+    }
+
+    public Exercise() {
+
+    }
+
+    public long getID() {
+        return ID;
+    }
+
+    public void setID(long ID) {
+        this.ID = ID;
     }
 
     public String getName() {

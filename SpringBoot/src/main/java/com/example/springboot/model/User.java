@@ -1,19 +1,37 @@
 package com.example.springboot.model;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 
-//@Entity
+@Entity
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long ID;
     private Rights rights;
     private String name;
-    private Dojo dojo;
-    private Rank ran;
 
-    public User(Rights rights, String name, Dojo dojo, Rank ran) {
+    @ManyToOne
+    private Dojo dojo;
+
+    private Rank rank;
+
+    public User(Rights rights, String name, Dojo dojo, Rank rank) {
         this.rights = rights;
         this.name = name;
         this.dojo = dojo;
-        this.ran = ran;
+        this.rank = rank;
+    }
+
+    public User() {
+
+    }
+
+    public long getID() {
+        return ID;
+    }
+
+    public void setID(long ID) {
+        this.ID = ID;
     }
 
     public Rights getRights() {
@@ -40,11 +58,11 @@ public class User {
         this.dojo = dojo;
     }
 
-    public Rank getRan() {
-        return ran;
+    public Rank getRank() {
+        return rank;
     }
 
-    public void setRan(Rank ran) {
-        this.ran = ran;
+    public void setRank(Rank rank) {
+        this.rank = rank;
     }
 }
