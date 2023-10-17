@@ -3,7 +3,7 @@ package com.example.springboot.model;
 import jakarta.persistence.*;
 
 @Entity
-public class User {
+public class Username {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long ID;
@@ -15,14 +15,14 @@ public class User {
 
     private Rank rank;
 
-    public User(Rights rights, String name, Dojo dojo, Rank rank) {
+    public Username(Rights rights, String name, Dojo dojo, Rank rank) {
         this.rights = rights;
         this.name = name;
         this.dojo = dojo;
         this.rank = rank;
     }
 
-    public User() {
+    public Username() {
 
     }
 
@@ -68,7 +68,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "Username{" +
                 "ID=" + ID +
                 ", rights=" + rights +
                 ", name='" + name + '\'' +
@@ -82,9 +82,9 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        User user = (User) o;
+        Username username = (Username) o;
 
-        return ID == user.ID;
+        return ID == username.ID;
     }
 
     @Override

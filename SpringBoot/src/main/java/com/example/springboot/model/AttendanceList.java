@@ -10,10 +10,10 @@ public class AttendanceList {
     private long ID;
 
     @ManyToOne
-    private User user;
+    private Username username;
 
-    public AttendanceList(User user) {
-        this.user = user;
+    public AttendanceList(Username username) {
+        this.username = username;
     }
 
     public AttendanceList() {
@@ -28,18 +28,18 @@ public class AttendanceList {
         this.ID = ID;
     }
 
-    public User getUser() {
-        return user;
+    public Username getUser() {
+        return username;
     }
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(Username username) {
+        this.username = username;
     }
 
     @Override
     public String toString() {
         return "AttendaceList{" +
                 "ID=" + ID +
-                ", user=" + user +
+                ", user=" + username +
                 '}';
     }
 
