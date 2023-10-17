@@ -19,7 +19,7 @@ public class RankController {
         return rankRepo.save(rank);
     }
 
-    @GetMapping("/getExerciseLogs")
+    @GetMapping("/getRank")
     public Iterable<Rank> getRank() {
         return rankRepo.findAll();
     }
