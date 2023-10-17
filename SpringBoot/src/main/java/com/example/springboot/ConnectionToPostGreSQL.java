@@ -9,7 +9,7 @@ public class ConnectionToPostGreSQL {
         try {
             Class.forName("org.postgresql.Driver");
             c = DriverManager.getConnection("jdbc:postgresql://195.240.222.250:5432/postgres",
-                    "postgres", "postgres");
+                    "postgres", "jeDikkeMoeder");
             System.out.println("Opened database successfully");
 
             stmt = c.createStatement();
