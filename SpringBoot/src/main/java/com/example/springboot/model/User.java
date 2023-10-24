@@ -3,10 +3,13 @@ package com.example.springboot.model;
 import jakarta.persistence.*;
 
 @Entity
-public class Username {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long ID;
+
+    private String username;
+    private String password;
     private Rights rights;
     private String name;
 
@@ -15,15 +18,31 @@ public class Username {
 
     private Rank rank;
 
-    public Username(Rights rights, String name, Dojo dojo, Rank rank) {
+    public User(Rights rights, String name, Dojo dojo, Rank rank) {
         this.rights = rights;
         this.name = name;
         this.dojo = dojo;
         this.rank = rank;
     }
 
-    public Username() {
+    public User() {
 
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public long getID() {
@@ -82,7 +101,7 @@ public class Username {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Username username = (Username) o;
+        User username = (User) o;
 
         return ID == username.ID;
     }

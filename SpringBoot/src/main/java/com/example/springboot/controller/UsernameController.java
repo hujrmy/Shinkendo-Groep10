@@ -1,6 +1,6 @@
 package com.example.springboot.controller;
 
-import com.example.springboot.model.Username;
+import com.example.springboot.model.User;
 import com.example.springboot.repository.UsernameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -10,13 +10,13 @@ public class UsernameController {
     @Autowired
     UsernameRepository UsernameRepo;
 
-    @PostMapping("/saveUsername")
-    public Username saveUsername (@RequestBody Username save) {
+    @PostMapping("/saveUser")
+    public User saveUsername (@RequestBody User save) {
         return UsernameRepo.save(save);
     }
 
-    @GetMapping("/getUsername")
-    public Iterable<Username> getUsername() {
+    @GetMapping("/getUser")
+    public Iterable<User> getUsername() {
         return UsernameRepo.findAll();
     }
 }
