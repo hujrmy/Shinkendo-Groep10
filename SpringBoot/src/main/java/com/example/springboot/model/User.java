@@ -98,19 +98,4 @@ public class User {
                 ", password=" + password +
                 '}';
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        User username = (User) o;
-
-        return ID == username.ID;
-    }
-
-    @Override
-    public int hashCode() {
-        return (int) (ID ^ (ID >>> 32));
-    }
 }
