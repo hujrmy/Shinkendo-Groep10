@@ -57,18 +57,4 @@ public class Lesson {
                 '}';
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Lesson lesson = (Lesson) o;
-
-        return ID == lesson.ID;
-    }
-
-    @Override
-    public int hashCode() {
-        return (int) (ID ^ (ID >>> 32));
-    }
 }

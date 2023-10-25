@@ -77,18 +77,4 @@ public class Exercise {
                 '}';
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Exercise exercise = (Exercise) o;
-
-        return ID == exercise.ID;
-    }
-
-    @Override
-    public int hashCode() {
-        return (int) (ID ^ (ID >>> 32));
-    }
 }

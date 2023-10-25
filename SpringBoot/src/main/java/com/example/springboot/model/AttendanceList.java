@@ -31,6 +31,7 @@ public class AttendanceList {
     public User getUser() {
         return user;
     }
+
     public void setUser(User username) {
         this.user = username;
     }
@@ -42,21 +43,5 @@ public class AttendanceList {
                 ", user=" + user +
                 '}';
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        AttendanceList that = (AttendanceList) o;
-
-        return ID == that.ID;
-    }
-
-    @Override
-    public int hashCode() {
-        return (int) (ID ^ (ID >>> 32));
-    }
-
 
 }

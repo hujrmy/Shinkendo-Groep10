@@ -54,18 +54,4 @@ public class Curriculum {
                 '}';
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Curriculum that = (Curriculum) o;
-
-        return ID == that.ID;
-    }
-
-    @Override
-    public int hashCode() {
-        return (int) (ID ^ (ID >>> 32));
-    }
 }
