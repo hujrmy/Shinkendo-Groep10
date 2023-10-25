@@ -3,6 +3,7 @@ package com.example.springboot.model;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "dojo")
 public class Dojo {
 
     @Id
@@ -12,6 +13,12 @@ public class Dojo {
     private String place;
 
     public Dojo(String name, String place) {
+        this.name = name;
+        this.place = place;
+    }
+
+    public Dojo(long ID, String name, String place) {
+        this.ID = ID;
         this.name = name;
         this.place = place;
     }

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("api/dojo")
 public class DojoController {
+
     private final DojoDao dojoDao;
 
     @Autowired

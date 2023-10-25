@@ -23,8 +23,4 @@ public class DojoDao {
         ArrayList<Dojo> allDojo = (ArrayList<Dojo>) this.dojoRepository.findAll();
         return allDojo;
     }
-
-
-
-
 }
