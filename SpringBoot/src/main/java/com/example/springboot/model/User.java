@@ -3,6 +3,7 @@ package com.example.springboot.model;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "username")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -93,6 +94,8 @@ public class User {
                 ", name='" + name + '\'' +
                 ", dojo=" + dojo +
                 ", rank=" + rank +
+                ", username=" + username +
+                ", password=" + password +
                 '}';
     }
 
