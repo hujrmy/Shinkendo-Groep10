@@ -1,9 +1,7 @@
 package com.example.springboot.dao;
 
 import com.example.springboot.model.AttendanceList;
-import com.example.springboot.model.Dojo;
 import com.example.springboot.repository.AttendanceListRepository;
-import com.example.springboot.repository.DojoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

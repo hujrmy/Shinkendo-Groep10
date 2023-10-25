@@ -1,11 +1,8 @@
 package com.example.springboot.controller;
 
 import com.example.springboot.dao.CurriculumDao;
-import com.example.springboot.dao.NoteDao;
-import com.example.springboot.model.*;
-import com.example.springboot.repository.AttendanceListRepository;
-import com.example.springboot.repository.CurriculumRepository;
-import com.example.springboot.repository.ExerciseRepository;
+import com.example.springboot.model.ApiResponse;
+import com.example.springboot.model.Curriculum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

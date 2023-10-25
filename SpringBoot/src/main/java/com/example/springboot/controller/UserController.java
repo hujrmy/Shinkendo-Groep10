@@ -1,46 +1,52 @@
 package com.example.springboot.controller;
 
+import com.example.springboot.dao.UserDao;
+import com.example.springboot.model.ApiResponse;
 import com.example.springboot.model.User;
-import com.example.springboot.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
+    private final UserDao userDao;
     @Autowired
-    UserRepository userRepository;
-
-    @PostMapping("/saveUser")
-    public User saveUsername (@RequestBody User save) {
-        return userRepository.save(save);
+    public UserController(UserDao userDao) {
+        this.userDao = userDao;
     }
 
-    @GetMapping("/getUser")
-    public Iterable<User> getUsername() {
-        return userRepository.findAll();
+    @RequestMapping(method = RequestMethod.GET)
+    @ResponseBody
+    public ApiResponse getAllUsers(){
+        return new ApiResponse(HttpStatus.ACCEPTED, this.userDao.getAllUsers());
     }
 
-    @PostMapping("/validate")
-    public ResponseEntity<String> validateUser(@RequestBody Map<String, String> request) {
-        String username = request.get("username");
-        String password = request.get("password");
-        System.out.println("Username: " + username + " Password: " + password);
-
-
-        User user = userRepository.findByUsername(username);
-//        System.out.println(user.getPassword());
-
-        if (user != null && password.equals(user.getPassword())) {
-            return new ResponseEntity<>("Valid credentials", HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>("Invalid credentials", HttpStatus.UNAUTHORIZED);
-        }
+    @RequestMapping(value ="", method = RequestMethod.POST)
+    @ResponseBody
+    public ApiResponse addUsers(@RequestBody User newDao){
+        User comment = this.userDao.addUsers(newDao);
+        return new ApiResponse(HttpStatus.ACCEPTED, comment);
     }
+
+
+
+//    @PostMapping("/validate")
+//    public ResponseEntity<String> validateUser(@RequestBody Map<String, String> request) {
+//        String username = request.get("username");
+//        String password = request.get("password");
+//        System.out.println("Username: " + username + " Password: " + password);
+//
+//
+//        User user = userRepository.findByUsername(username);
+////        System.out.println(user.getPassword());
+//
+//        if (user != null && password.equals(user.getPassword())) {
+//            return new ResponseEntity<>("Valid credentials", HttpStatus.OK);
+//        } else {
+//            return new ResponseEntity<>("Invalid credentials", HttpStatus.UNAUTHORIZED);
+//        }
+//    }
 
 
     /* //hier kan je waardes mee in de console printen, niet nodig maar kan later handig zijn om dingen te testen

@@ -3,7 +3,6 @@ package com.example.springboot.controller;
 import com.example.springboot.dao.DojoDao;
 import com.example.springboot.model.ApiResponse;
 import com.example.springboot.model.Dojo;
-import com.example.springboot.repository.DojoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
