@@ -43,5 +43,4 @@ public class AttendanceList {
                 ", user=" + user +
                 '}';
     }
-
 }
