@@ -1,28 +1,39 @@
 package com.example.springboot.controller;
 
 
+import com.example.springboot.dao.AttendanceListDao;
+import com.example.springboot.model.ApiResponse;
 import com.example.springboot.model.AttendanceList;
+import com.example.springboot.model.Dojo;
 import com.example.springboot.repository.AttendanceListRepository;
 import com.example.springboot.repository.ExerciseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("api/attendancelist")
 public class AttendanceListController {
 
+    private final AttendanceListDao attendanceListDao;
+
     @Autowired
-    AttendanceListRepository attendanceListRepo;
-
-    @PostMapping("/saveAttendanceList")
-    public AttendanceList saveAttendanceList (@RequestBody AttendanceList attendanceList) {
-        return attendanceListRepo.save(attendanceList);
+    public AttendanceListController(AttendanceListDao attendanceListDao) {
+        this.attendanceListDao = attendanceListDao;
     }
 
-    @GetMapping("/getAttendanceList")
-    public Iterable<AttendanceList> getAttendanceList() {
-        return attendanceListRepo.findAll();
+    @RequestMapping(method = RequestMethod.GET)
+    @ResponseBody
+    public ApiResponse getAllAttendance(){
+        return new ApiResponse(HttpStatus.ACCEPTED, this.attendanceListDao.getAllAttendance());
     }
+
+    @RequestMapping(value ="", method = RequestMethod.POST)
+    @ResponseBody
+    public ApiResponse addAttendance(@RequestBody AttendanceList newDao){
+        AttendanceList comment = this.attendanceListDao.addAttendance(newDao);
+        return new ApiResponse(HttpStatus.ACCEPTED, comment);
+    }
+
+
 }

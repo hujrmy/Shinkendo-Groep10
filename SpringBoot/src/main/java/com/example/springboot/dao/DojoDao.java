@@ -14,12 +14,12 @@ public class DojoDao {
     private DojoRepository dojoRepository;
 
 
-    public Dojo save(Dojo newDojo) {
+    public Dojo addDojo(Dojo newDojo) {
         Dojo dojo = this.dojoRepository.save(newDojo);
         return dojo;
     }
 
-    public ArrayList<Dojo> all(){
+    public ArrayList<Dojo> getAllDojo(){
         ArrayList<Dojo> allDojo = (ArrayList<Dojo>) this.dojoRepository.findAll();
         return allDojo;
     }

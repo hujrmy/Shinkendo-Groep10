@@ -4,6 +4,7 @@ package com.example.springboot.model;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name="attendence_list")
 public class AttendanceList {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
