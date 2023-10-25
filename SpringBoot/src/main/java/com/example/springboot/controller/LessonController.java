@@ -1,22 +1,37 @@
 package com.example.springboot.controller;
 
+import com.example.springboot.dao.LessonDao;
+import com.example.springboot.dao.NoteDao;
+import com.example.springboot.model.ApiResponse;
 import com.example.springboot.model.Lesson;
+import com.example.springboot.model.Note;
 import com.example.springboot.repository.LessonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("api/lesson")
 public class LessonController {
+    private final LessonDao lessonDao;
+
     @Autowired
-    LessonRepository lessonRepo;
-
-    @PostMapping("/saveLesson")
-    public Lesson saveLesson (@RequestBody Lesson lesson) {
-        return lessonRepo.save(lesson);
+    public LessonController(LessonDao lessonDao) {
+        this.lessonDao = lessonDao;
     }
 
-    @GetMapping("/getLesson")
-    public Iterable<Lesson> getLesson() {
-        return lessonRepo.findAll();
+    @RequestMapping(method = RequestMethod.GET)
+    @ResponseBody
+    public ApiResponse getAllLessons(){
+        return new ApiResponse(HttpStatus.ACCEPTED, this.lessonDao.getAllLessons());
     }
+
+    @RequestMapping(value ="", method = RequestMethod.POST)
+    @ResponseBody
+    public ApiResponse addLesson(@RequestBody Lesson newDao){
+        Lesson comment = this.lessonDao.addLesson(newDao);
+        return new ApiResponse(HttpStatus.ACCEPTED, comment);
+    }
+
+
 }
