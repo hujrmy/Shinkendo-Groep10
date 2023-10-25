@@ -4,6 +4,7 @@ package com.example.springboot.model;
 import jakarta.persistence.*;
 
 @Entity
+@Table (name="curriculum")
 public class Curriculum {
 
     @Id

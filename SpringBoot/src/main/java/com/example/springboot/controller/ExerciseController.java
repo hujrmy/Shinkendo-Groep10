@@ -1,27 +1,37 @@
 package com.example.springboot.controller;
 
 
+import com.example.springboot.dao.ExerciseDao;
+import com.example.springboot.dao.NoteDao;
+import com.example.springboot.model.ApiResponse;
 import com.example.springboot.model.Exercise;
+import com.example.springboot.model.Note;
 import com.example.springboot.repository.ExerciseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("api/exercise")
 public class ExerciseController {
 
-    @Autowired
-    ExerciseRepository exerciseRepo;
+    private final ExerciseDao exerciseDao;
 
-    @PostMapping("/saveExercise")
-    public Exercise saveExercise (@RequestBody Exercise exercise) {
-        return exerciseRepo.save(exercise);
+    @Autowired
+    public ExerciseController(ExerciseDao exerciseDao) {
+        this.exerciseDao = exerciseDao;
     }
 
-    @GetMapping("/getExercise")
-    public Iterable<Exercise> getExercise() {
-        return exerciseRepo.findAll();
+    @RequestMapping(method = RequestMethod.GET)
+    @ResponseBody
+    public ApiResponse getAllExercises(){
+        return new ApiResponse(HttpStatus.ACCEPTED, this.exerciseDao.getAllExercises());
+    }
+
+    @RequestMapping(value ="", method = RequestMethod.POST)
+    @ResponseBody
+    public ApiResponse addExercise(@RequestBody Exercise newDao){
+        Exercise comment = this.exerciseDao.addExercise(newDao);
+        return new ApiResponse(HttpStatus.ACCEPTED, comment);
     }
 }
