@@ -25,8 +25,8 @@ public class UserController {
     @RequestMapping(value ="", method = RequestMethod.POST)
     @ResponseBody
     public ApiResponse addUsers(@RequestBody User newDao){
-        User comment = this.userDao.addUsers(newDao);
-        return new ApiResponse(HttpStatus.ACCEPTED, comment);
+        User add = this.userDao.addUsers(newDao);
+        return new ApiResponse(HttpStatus.ACCEPTED, add);
     }
 
 
