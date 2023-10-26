@@ -29,7 +29,7 @@ public class User implements UserDetails {
 
     @ManyToOne
     private Dojo dojo;
-
+    @Enumerated
     private Rank rank;
 
     public User(Rights rights, String name, Dojo dojo, Rank rank) {
@@ -45,18 +45,28 @@ public class User implements UserDetails {
     }
 
     @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return username;
+    }
+
+    @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
