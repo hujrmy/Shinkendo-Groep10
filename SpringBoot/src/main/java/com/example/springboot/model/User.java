@@ -1,16 +1,29 @@
 package com.example.springboot.model;
 
 import jakarta.persistence.*;
+import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.Collection;
+import java.util.List;
+
+@Getter
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long ID;
 
     private String username;
     private String password;
+    @Enumerated(EnumType.STRING)
     private Rights rights;
     private String name;
 
@@ -26,60 +39,53 @@ public class User {
         this.rank = rank;
     }
 
-    public User() {
-
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(rights.name()));
     }
 
-    public String getUsername() {
-        return username;
+    @Override
+    public boolean isAccountNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return false;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 
     public void setUsername(String username) {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public long getID() {
-        return ID;
     }
 
     public void setID(long ID) {
         this.ID = ID;
     }
 
-    public Rights getRights() {
-        return rights;
-    }
-
     public void setRights(Rights rights) {
         this.rights = rights;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public Dojo getDojo() {
-        return dojo;
-    }
-
     public void setDojo(Dojo dojo) {
         this.dojo = dojo;
-    }
-
-    public Rank getRank() {
-        return rank;
     }
 
     public void setRank(Rank rank) {
