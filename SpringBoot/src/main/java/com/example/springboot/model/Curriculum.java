@@ -13,6 +13,9 @@ public class Curriculum {
     private String name;
     private String description;
 
+    @ManyToOne
+    private Exercise exercise;
+
     public Curriculum() {
 
     }
