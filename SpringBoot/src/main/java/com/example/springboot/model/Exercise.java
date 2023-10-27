@@ -16,15 +16,27 @@ public class Exercise {
     private String media;
     private int exerciseCount;
 
-    public Exercise(String name, Note note, String media, int exerciseCount) {
+    @ManyToOne
+    private Curriculum curriculum;
+
+    public Exercise(String name, Note note, String media, int exerciseCount, Curriculum curriculum) {
         this.name = name;
         this.note = note;
         this.media = media;
         this.exerciseCount = exerciseCount;
+        this.curriculum = curriculum;
     }
 
     public Exercise() {
 
+    }
+
+    public Curriculum getCurriculum() {
+        return curriculum;
+    }
+
+    public void setCurriculum(Curriculum curriculum) {
+        this.curriculum = curriculum;
     }
 
     public long getID() {
@@ -75,7 +87,7 @@ public class Exercise {
                 ", note=" + note +
                 ", media='" + media + '\'' +
                 ", exerciseCount=" + exerciseCount +
+                ", curriculum=" + curriculum +
                 '}';
     }
-
 }
