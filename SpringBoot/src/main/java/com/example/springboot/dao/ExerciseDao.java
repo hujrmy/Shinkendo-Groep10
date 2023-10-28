@@ -28,8 +28,4 @@ public class ExerciseDao {
 
         return exerciseNames;
     }
-
-    public List<Exercise> getExercisesByCurriculumId(long curriculumId) {
-        return this.exerciseRepository.findByCurriculumId(curriculumId);
-    }
 }
