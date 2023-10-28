@@ -18,6 +18,17 @@ public class ExerciseDao {
         return exercise;
     }
 
+    public List<String> getExerciseNamesByCurriculumId(long curriculumId) {
+        List<String> exerciseNames = new ArrayList<>();
+        List<Exercise> exercises = this.exerciseRepository.findByCurriculumId(curriculumId);
+
+        for (Exercise exercise : exercises) {
+            exerciseNames.add(exercise.getName());
+        }
+
+        return exerciseNames;
+    }
+
     public List<Exercise> getExercisesByCurriculumId(long curriculumId) {
         return this.exerciseRepository.findByCurriculumId(curriculumId);
     }
