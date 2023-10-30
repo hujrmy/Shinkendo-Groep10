@@ -14,16 +14,11 @@ public class CurriculumSeeder {
     private CurriculumDao curriculumDao;
 
     public void seed(Faker faker){
-        for (int i = 0; i < 200; i++) {
+        for (int i = 0; i < 8; i++) {
             Curriculum curriculum1 = new Curriculum();
             curriculum1.setName(String.valueOf(faker.name()));
             curriculum1.setDescription(String.join(" ", faker.lorem().characters(20)));
             this.curriculumDao.addCurriculum(curriculum1);
-
-            Curriculum curriculum2 = new Curriculum();
-            curriculum1.setName(String.valueOf(faker.name()));
-            curriculum2.setDescription(String.join(" ", faker.lorem().characters(20)));
-            this.curriculumDao.addCurriculum(curriculum2);
         }
     }
 }
