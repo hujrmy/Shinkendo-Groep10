@@ -1,7 +1,6 @@
 package com.example.springboot.auth;
 
 import com.example.springboot.config.JwtService;
-import com.example.springboot.model.Rights;
 import com.example.springboot.model.User;
 import com.example.springboot.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -9,8 +8,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import javax.management.relation.Role;
 
 @Service
 @RequiredArgsConstructor
@@ -21,6 +18,11 @@ public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
 
     public AuthenticationResponse register(RegisterRequeset request) {
+
+        if (repository.existsByUsername(request.getUsername())) {
+            throw new UsernameAlreadyExistsException("Username already exists.");
+        }
+
         var user = User.builder()
                 .username(request.getUsername())
                 .password(passwordEncoder.encode(request.getPassword()))
@@ -49,5 +51,11 @@ public class AuthenticationService {
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .build();
+    }
+
+    public static class UsernameAlreadyExistsException extends RuntimeException {
+        public UsernameAlreadyExistsException(String message) {
+            super(message);
+        }
     }
 }
