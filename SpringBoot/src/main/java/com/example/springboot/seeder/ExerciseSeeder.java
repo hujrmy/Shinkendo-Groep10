@@ -1,4 +1,4 @@
-package com.example.springboot.repository;
+package com.example.springboot.seeder;
 
 import com.example.springboot.model.Curriculum;
 import com.example.springboot.model.Exercise;
