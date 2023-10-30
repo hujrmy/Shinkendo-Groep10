@@ -1,7 +1,7 @@
 package com.example.springboot.model;
 
 import jakarta.persistence.*;
-
+//
 @Entity
 @Table(name = "users")
 public class User {
