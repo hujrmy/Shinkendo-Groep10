@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class ExerciseDao {
@@ -18,14 +19,13 @@ public class ExerciseDao {
         return exercise;
     }
 
-    public List<String> getExerciseNamesByCurriculumId(long curriculumId) {
-        List<String> exerciseNames = new ArrayList<>();
-        List<Exercise> exercises = this.exerciseRepository.findByCurriculumId(curriculumId);
+    public Exercise getExerciseMediaByCurriculumId(int curriculumId) {
+        Optional<Exercise> exercises = this.exerciseRepository.findById(curriculumId);
+        return exercises.get();
+    }
 
-        for (Exercise exercise : exercises) {
-            exerciseNames.add(exercise.getName());
-        }
-
-        return exerciseNames;
+    public Exercise getExerciseNamesByCurriculumId(int curriculumId) {
+        Optional<Exercise> exercises = this.exerciseRepository.findById(curriculumId);
+        return exercises.get();
     }
 }

@@ -8,7 +8,7 @@ public class Exercise {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long ID;
+    private int ID;
     private String name;
 
     @ManyToOne
@@ -43,7 +43,7 @@ public class Exercise {
         return ID;
     }
 
-    public void setID(long ID) {
+    public void setID(int ID) {
         this.ID = ID;
     }
 
