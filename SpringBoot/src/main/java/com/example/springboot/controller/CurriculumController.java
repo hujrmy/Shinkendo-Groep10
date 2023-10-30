@@ -16,10 +16,16 @@ public class CurriculumController {
         this.curriculumDao = curriculumDao;
     }
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value = "names", method = RequestMethod.GET)
     @ResponseBody
-    public ApiResponse getAllCurriculums(){
-        return new ApiResponse(HttpStatus.ACCEPTED, this.curriculumDao.getAllCurriculums());
+    public ApiResponse getAllCurriculumNames() {
+        return new ApiResponse(HttpStatus.ACCEPTED, this.curriculumDao.getAllCurriculumNames());
+    }
+
+    @RequestMapping(value = "descriptions", method = RequestMethod.GET)
+    @ResponseBody
+    public ApiResponse getAllCurriculumDescriptions() {
+        return new ApiResponse(HttpStatus.ACCEPTED, this.curriculumDao.getAllCurriculumDescriptions());
     }
 
     @RequestMapping(value ="", method = RequestMethod.POST)

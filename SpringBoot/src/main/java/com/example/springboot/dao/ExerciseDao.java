@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class ExerciseDao {
@@ -17,8 +18,14 @@ public class ExerciseDao {
         return exercise;
     }
 
-    public ArrayList<Exercise> getAllExercises(){
-        ArrayList<Exercise> allExercises = (ArrayList<Exercise>) this.exerciseRepository.findAll();
-        return allExercises;
+    public List<String> getExerciseNamesByCurriculumId(long curriculumId) {
+        List<String> exerciseNames = new ArrayList<>();
+        List<Exercise> exercises = this.exerciseRepository.findByCurriculumId(curriculumId);
+
+        for (Exercise exercise : exercises) {
+            exerciseNames.add(exercise.getName());
+        }
+
+        return exerciseNames;
     }
 }

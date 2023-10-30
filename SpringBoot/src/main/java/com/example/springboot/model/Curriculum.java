@@ -13,6 +13,8 @@ public class Curriculum {
     private String name;
     private String description;
 
+
+
     public Curriculum() {
 
     }
