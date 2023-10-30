@@ -12,6 +12,5 @@ import java.util.List;
 
 @Repository
 public interface ExerciseRepository extends JpaRepository<Exercise, Integer>{
-    @Query("SELECT e FROM Exercise e WHERE e.curriculum.ID = :curriculumId")
-    List<Exercise> findByCurriculumId(@Param("curriculumId") long curriculumId);
+
 }
