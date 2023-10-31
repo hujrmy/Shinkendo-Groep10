@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
@@ -16,11 +19,25 @@ public class UserController {
         this.userDao = userDao;
     }
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value = "allNames", method = RequestMethod.GET)
     @ResponseBody
     public ApiResponse getAllUsers(){
-        return new ApiResponse(HttpStatus.ACCEPTED, this.userDao.getAllUsers());
+        List<String> allNames = this.userDao.getAllUsers();
+        return new ApiResponse(HttpStatus.ACCEPTED, allNames);
     }
+
+
+
+
+    @RequestMapping(value = "names", method = RequestMethod.GET)
+    @ResponseBody
+    public ApiResponse getUsersByName(@RequestParam("name") String name) {
+        List<String> names = this.userDao.getUsersByName(name);
+        return new ApiResponse(HttpStatus.ACCEPTED, names);
+    }
+
+
+
 
     @RequestMapping(value ="", method = RequestMethod.POST)
     @ResponseBody
@@ -28,6 +45,7 @@ public class UserController {
         User add = this.userDao.addUsers(newDao);
         return new ApiResponse(HttpStatus.ACCEPTED, add);
     }
+
 
 
 
