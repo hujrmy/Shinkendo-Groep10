@@ -48,6 +48,7 @@ public class UserDao {
 
         for(User user : users){
             userData.add(user.getName());
+            userData.add(String.valueOf(user.getID()));
             userData.add(user.getRights().toString());
         }
         return userData;
