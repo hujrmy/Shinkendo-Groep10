@@ -22,7 +22,7 @@ public class UserController {
     @RequestMapping(value = "allNames", method = RequestMethod.GET)
     @ResponseBody
     public ApiResponse getAllUsers(){
-        List<String> allNames = this.userDao.getAllUsers();
+        List<String> allNames = this.userDao.getAllUserData();
         return new ApiResponse(HttpStatus.ACCEPTED, allNames);
     }
 

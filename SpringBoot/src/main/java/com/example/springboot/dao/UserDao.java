@@ -1,6 +1,6 @@
 package com.example.springboot.dao;
 
-import com.example.springboot.model.Exercise;
+import com.example.springboot.model.Rights;
 import com.example.springboot.model.User;
 import com.example.springboot.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,4 +42,14 @@ public class UserDao {
         return usersList;
     }
 
+    public List<String> getAllUserData(){
+        List<String> userData = new ArrayList<>();
+        List<User> users = this.userRepository.findAll();
+
+        for(User user : users){
+            userData.add(user.getName());
+            userData.add(user.getRights().toString());
+        }
+        return userData;
+    }
 }
