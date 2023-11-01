@@ -16,19 +16,19 @@ public class CurriculumController {
         this.curriculumDao = curriculumDao;
     }
 
-    @RequestMapping(value = "names", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
-    public ApiResponse getAllCurriculumNames() {
-        return new ApiResponse(HttpStatus.ACCEPTED, this.curriculumDao.getAllCurriculumNames());
+    public ApiResponse getAllCurriculums() {
+        return new ApiResponse(HttpStatus.ACCEPTED, this.curriculumDao.getAllCurriculums());
     }
 
-    @RequestMapping(value = "descriptions", method = RequestMethod.GET)
-    @ResponseBody
-    public ApiResponse getAllCurriculumDescriptions() {
-        return new ApiResponse(HttpStatus.ACCEPTED, this.curriculumDao.getAllCurriculumDescriptions());
-    }
+//    @RequestMapping(value = "descriptions", method = RequestMethod.GET)
+//    @ResponseBody
+//    public ApiResponse getAllCurriculumDescriptions() {
+//        return new ApiResponse(HttpStatus.ACCEPTED, this.curriculumDao.getAllCurriculumDescriptions());
+//    }
 
-    @RequestMapping(value ="", method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @ResponseBody
     public ApiResponse addCurriculum(@RequestBody Curriculum newDao){
         Curriculum comment = this.curriculumDao.addCurriculum(newDao);
