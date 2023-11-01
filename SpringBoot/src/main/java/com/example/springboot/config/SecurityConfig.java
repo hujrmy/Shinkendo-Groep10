@@ -17,6 +17,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import static com.example.springboot.model.Rights.ADMIN;
 import static com.example.springboot.model.Rights.SENSEI;
 import static org.springframework.http.HttpMethod.GET;
+import static org.springframework.http.HttpMethod.POST;
 
 
 @Configuration
@@ -34,9 +35,13 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(req ->
                         req.requestMatchers("/api/v1/auth/**")
-
                                 .permitAll()
                                 .requestMatchers(GET, "api/attendanceList").hasAnyAuthority("SENSEI", "ADMIN")
+                                .requestMatchers(POST, "api/attendanceList").hasAnyAuthority("SENSEI", "ADMIN")
+                                .requestMatchers(POST, "api/curriculum").hasAnyAuthority("SENSEI", "ADMIN")
+                                .requestMatchers(POST, "api/dojo").hasAnyAuthority("ADMIN")
+                                .requestMatchers(POST, "api/exercise").hasAnyAuthority("SENSEI", "ADMIN")
+                                .requestMatchers(POST, "api/lesson").hasAnyAuthority("SENSEI", "ADMIN")
                                 .anyRequest()
                                 .authenticated()
                 )

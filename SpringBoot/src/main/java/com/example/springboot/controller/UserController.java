@@ -27,18 +27,12 @@ public class UserController {
         return new ApiResponse(HttpStatus.ACCEPTED, allNames);
     }
 
-
-
-
     @RequestMapping(value = "names", method = RequestMethod.GET)
     @ResponseBody
     public ApiResponse getUsersByName(@RequestParam("name") String name) {
         List<String> names = this.userDao.getUsersByName(name);
         return new ApiResponse(HttpStatus.ACCEPTED, names);
     }
-
-
-
 
     @RequestMapping(value ="", method = RequestMethod.POST)
     @ResponseBody
