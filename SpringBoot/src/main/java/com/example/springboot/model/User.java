@@ -103,6 +103,8 @@ public class User implements UserDetails {
         this.rank = rank;
     }
 
+
+
     @Override
     public String toString() {
         return "Username{" +

@@ -1,4 +1,4 @@
-package com.example.springboot.auth;
+package com.example.springboot.model;
 
 
 import lombok.AllArgsConstructor;

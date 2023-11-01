@@ -1,5 +1,8 @@
-package com.example.springboot.auth;
+package com.example.springboot.dao;
 
+import com.example.springboot.model.AuthenticationRequest;
+import com.example.springboot.model.AuthenticationResponse;
+import com.example.springboot.model.RegisterRequest;
 import com.example.springboot.config.JwtService;
 import com.example.springboot.model.User;
 import com.example.springboot.repository.UserRepository;
@@ -11,13 +14,13 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class AuthenticationService {
+public class AuthenticationDao {
     private final UserRepository repository;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
 
-    public AuthenticationResponse register(RegisterRequeset request) {
+    public AuthenticationResponse register(RegisterRequest request) {
 
         if (repository.existsByUsername(request.getUsername())) {
             throw new UsernameAlreadyExistsException("Username already exists.");
@@ -38,7 +41,7 @@ public class AuthenticationService {
                 .build();
     }
 
-    public AuthenticationResponse authenticate(AuthenticationRequeset request) {
+    public AuthenticationResponse authenticate(AuthenticationRequest request) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getUsername(),

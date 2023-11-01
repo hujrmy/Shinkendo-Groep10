@@ -1,6 +1,7 @@
 package com.example.springboot.config;
 
 import com.example.springboot.model.User;
+import com.example.springboot.model.Rights;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,6 +13,11 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import static com.example.springboot.model.Rights.ADMIN;
+import static com.example.springboot.model.Rights.SENSEI;
+import static org.springframework.http.HttpMethod.GET;
+
 
 @Configuration
 @EnableWebSecurity
@@ -28,7 +34,9 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(req ->
                         req.requestMatchers("/api/v1/auth/**")
+
                                 .permitAll()
+                                .requestMatchers(GET, "api/attendanceList").hasAnyAuthority("SENSEI", "ADMIN")
                                 .anyRequest()
                                 .authenticated()
                 )

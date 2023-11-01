@@ -1,9 +1,6 @@
-package com.example.springboot.auth;
+package com.example.springboot.model;
 
 
-import com.example.springboot.model.Dojo;
-import com.example.springboot.model.Rank;
-import com.example.springboot.model.Rights;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class RegisterRequeset {
+public class RegisterRequest {
     private String username;
     private String password;
     private String name;

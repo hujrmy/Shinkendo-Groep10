@@ -1,4 +1,4 @@
-package com.example.springboot.auth;
+package com.example.springboot.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AuthenticationRequeset {
+public class AuthenticationRequest {
     private String username;
     String password;
 }

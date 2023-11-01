@@ -1,5 +1,9 @@
-package com.example.springboot.auth;
+package com.example.springboot.controller;
 
+import com.example.springboot.model.AuthenticationRequest;
+import com.example.springboot.model.AuthenticationResponse;
+import com.example.springboot.model.RegisterRequest;
+import com.example.springboot.dao.AuthenticationDao;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,17 +16,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class AuthenticationController {
 
-    private final AuthenticationService service;
+    private final AuthenticationDao service;
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(
-            @RequestBody RegisterRequeset request
+            @RequestBody RegisterRequest request
     ){
         return ResponseEntity.ok(service.register(request));
     }
 
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> register(
-            @RequestBody AuthenticationRequeset request
+            @RequestBody AuthenticationRequest request
     ){
         return ResponseEntity.ok(service.authenticate(request));
     }
