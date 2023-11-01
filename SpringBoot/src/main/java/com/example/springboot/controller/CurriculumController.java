@@ -22,12 +22,6 @@ public class CurriculumController {
         return new ApiResponse(HttpStatus.ACCEPTED, this.curriculumDao.getAllCurriculums());
     }
 
-//    @RequestMapping(value = "descriptions", method = RequestMethod.GET)
-//    @ResponseBody
-//    public ApiResponse getAllCurriculumDescriptions() {
-//        return new ApiResponse(HttpStatus.ACCEPTED, this.curriculumDao.getAllCurriculumDescriptions());
-//    }
-
     @RequestMapping(method = RequestMethod.POST)
     @ResponseBody
     public ApiResponse addCurriculum(@RequestBody Curriculum newDao){
