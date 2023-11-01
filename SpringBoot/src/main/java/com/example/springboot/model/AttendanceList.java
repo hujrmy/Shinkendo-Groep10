@@ -51,7 +51,7 @@ public class AttendanceList {
 
     @Override
     public String toString() {
-        return "AttendaceList{" +
+        return "AttendanceList{" +
                 "ID=" + ID +
                 ", user=" + user +
                 '}';
