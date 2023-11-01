@@ -19,25 +19,31 @@ public class CurriculumDao {
         return curriculum;
     }
 
-    public List<String> getAllCurriculumNames() {
-        List<String> curriculumNames = new ArrayList<>();
-        List<Curriculum> allCurriculums = curriculumRepository.findAll();
+//    public List<String> getAllCurriculumNames() {
+//        List<String> curriculumNames = new ArrayList<>();
+//        List<Curriculum> allCurriculums = curriculumRepository.findAll();
+//
+//        for (Curriculum curriculum : allCurriculums) {
+//            curriculumNames.add(curriculum.getName());
+//        }
+//
+//        return curriculumNames;
+//    }
+//
+//    public List<String> getAllCurriculumDescriptions() {
+//        List<String> curriculumDescriptions = new ArrayList<>();
+//        List<Curriculum> allCurriculums = curriculumRepository.findAll();
+//
+//        for (Curriculum curriculum : allCurriculums) {
+//            curriculumDescriptions.add(curriculum.getDescription());
+//        }
+//
+//        return curriculumDescriptions;
+//    }
 
-        for (Curriculum curriculum : allCurriculums) {
-            curriculumNames.add(curriculum.getName());
-        }
-
-        return curriculumNames;
-    }
-
-    public List<String> getAllCurriculumDescriptions() {
-        List<String> curriculumDescriptions = new ArrayList<>();
-        List<Curriculum> allCurriculums = curriculumRepository.findAll();
-
-        for (Curriculum curriculum : allCurriculums) {
-            curriculumDescriptions.add(curriculum.getDescription());
-        }
-
-        return curriculumDescriptions;
+    public List<Curriculum> getAllCurriculums () {
+        List<Curriculum> curriculums = new ArrayList<>();
+        curriculums = curriculumRepository.findAll();
+        return curriculums;
     }
 }
