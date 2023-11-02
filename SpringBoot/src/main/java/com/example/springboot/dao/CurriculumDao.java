@@ -23,4 +23,13 @@ public class CurriculumDao {
         ArrayList<Curriculum> curriculums = (ArrayList<Curriculum>) curriculumRepository.findAll();
         return curriculums;
     }
+
+    public boolean deleteCurriculum(long curriculumId) {
+        if (curriculumRepository.existsById((int) curriculumId)) {
+            curriculumRepository.deleteById((int) curriculumId);
+            return true;
+        }
+        return false;
+    }
+
 }

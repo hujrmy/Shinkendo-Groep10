@@ -16,8 +16,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import static com.example.springboot.model.Rights.ADMIN;
 import static com.example.springboot.model.Rights.SENSEI;
-import static org.springframework.http.HttpMethod.GET;
-import static org.springframework.http.HttpMethod.POST;
+import static org.springframework.http.HttpMethod.*;
 
 
 @Configuration
@@ -42,6 +41,7 @@ public class SecurityConfig {
                                 .requestMatchers(POST, "api/dojo").hasAnyAuthority("ADMIN")
                                 .requestMatchers(POST, "api/exercise").hasAnyAuthority("SENSEI", "ADMIN")
                                 .requestMatchers(POST, "api/lesson").hasAnyAuthority("SENSEI", "ADMIN")
+                                .requestMatchers(DELETE, "api/curriculum/{curriculumId}").hasAnyAuthority("ADMIN")
                                 .anyRequest()
                                 .authenticated()
                 )

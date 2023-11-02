@@ -28,4 +28,14 @@ public class CurriculumController {
         Curriculum comment = this.curriculumDao.addCurriculum(newDao);
         return new ApiResponse(HttpStatus.ACCEPTED, comment);
     }
+
+    @DeleteMapping("/{curriculumId}")
+    @ResponseBody
+    public ApiResponse deleteCurriculum(@PathVariable long curriculumId) {
+        if (curriculumDao.deleteCurriculum(curriculumId)) {
+            return new ApiResponse(HttpStatus.ACCEPTED, "Curriculum with ID " + curriculumId + " has been deleted.");
+        } else {
+            return new ApiResponse(HttpStatus.NOT_FOUND, "Curriculum with ID " + curriculumId + " not found.");
+        }
+    }
 }
