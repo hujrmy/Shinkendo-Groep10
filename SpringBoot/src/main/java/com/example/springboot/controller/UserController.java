@@ -22,7 +22,7 @@ public class UserController {
 
     @RequestMapping(value = "allNames", method = RequestMethod.GET)
     @ResponseBody
-    public ApiResponse getAllUsers(){
+    public ApiResponse getAllNames(){
         List<String> allNames = this.userDao.getAllUserData();
         return new ApiResponse(HttpStatus.ACCEPTED, allNames);
     }
@@ -32,6 +32,12 @@ public class UserController {
     public ApiResponse getUsersByName(@RequestParam("name") String name) {
         List<String> names = this.userDao.getUsersByName(name);
         return new ApiResponse(HttpStatus.ACCEPTED, names);
+    }
+
+    @RequestMapping(method = RequestMethod.GET)
+    @ResponseBody
+    public ApiResponse getAllUsers() {
+        return new ApiResponse(HttpStatus.ACCEPTED, this.userDao.getAllUsers());
     }
 
     @RequestMapping(value ="", method = RequestMethod.POST)

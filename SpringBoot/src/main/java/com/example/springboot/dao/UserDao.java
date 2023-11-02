@@ -1,5 +1,6 @@
 package com.example.springboot.dao;
 
+import com.example.springboot.model.Curriculum;
 import com.example.springboot.model.Rights;
 import com.example.springboot.model.User;
 import com.example.springboot.repository.UserRepository;
@@ -20,14 +21,9 @@ public class UserDao {
         return user;
     }
 
-    public List<String> getAllUsers(){
-        List<String> usersList = new ArrayList<>();
-        List<User> users = this.userRepository.findAll();
-
-        for (User user : users) {
-            usersList.add(user.getName());
-        }
-        return usersList;
+    public ArrayList<User> getAllUsers(){
+        ArrayList<User> users = (ArrayList<User>) userRepository.findAll();
+        return users;
     }
 
     public List<String> getUsersByName(String name) {
@@ -49,6 +45,7 @@ public class UserDao {
         for(User user : users){
             userData.add(user.getName());
             userData.add(String.valueOf(user.getID()));
+            userData.add(String.valueOf(user.getUsername()));
             userData.add(user.getRights().toString());
         }
         return userData;
