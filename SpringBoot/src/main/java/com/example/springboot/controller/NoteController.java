@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("api/note")
 public class NoteController {
@@ -17,10 +19,11 @@ public class NoteController {
         this.noteDao = noteDao;
     }
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value = "allNotes",method = RequestMethod.GET)
     @ResponseBody
     public ApiResponse getAllNotes(){
-        return new ApiResponse(HttpStatus.ACCEPTED, this.noteDao.getAllNotes());
+        List<Note> allNotes = this.noteDao.getAllNotes();
+        return new ApiResponse(HttpStatus.ACCEPTED, allNotes);
     }
 
     @RequestMapping(value ="", method = RequestMethod.POST)
