@@ -1,6 +1,5 @@
 package com.example.springboot.dao;
 
-import com.example.springboot.model.Curriculum;
 import com.example.springboot.model.Exercise;
 import com.example.springboot.repository.ExerciseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +18,13 @@ public class ExerciseDao {
         return exercise;
     }
 
-    public ArrayList<Exercise> getAllExercises(long curriculumId){
+    public ArrayList<Exercise> getAllExercisesByCurriculum(long curriculumId){
         ArrayList<Exercise> exercises = (ArrayList<Exercise>) exerciseRepository.findByCurriculumId(curriculumId);
+        return exercises;
+    }
+
+    public List<Exercise> getAllExercises(){
+        List<Exercise> exercises = exerciseRepository.findAll();
         return exercises;
     }
 

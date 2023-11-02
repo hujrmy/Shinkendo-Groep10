@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("api/exercise")
 public class ExerciseController {
@@ -35,8 +33,14 @@ public class ExerciseController {
 
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
-    public ApiResponse getAllExercises(long curriculumId) {
-        return new ApiResponse(HttpStatus.ACCEPTED, this.exerciseDao.getAllExercises(curriculumId));
+    public ApiResponse getAllExercisesByCurriculum(long curriculumId) {
+        return new ApiResponse(HttpStatus.ACCEPTED, this.exerciseDao.getAllExercisesByCurriculum(curriculumId));
+    }
+
+    @RequestMapping(value ="/all", method = RequestMethod.GET)
+    @ResponseBody
+    public ApiResponse getAllExercises() {
+        return new ApiResponse(HttpStatus.ACCEPTED, this.exerciseDao.getAllExercises());
     }
 
     @RequestMapping(value ="", method = RequestMethod.POST)
