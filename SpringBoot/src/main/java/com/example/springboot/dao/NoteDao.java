@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class NoteDao {
@@ -18,8 +19,8 @@ public class NoteDao {
         return note;
     }
 
-    public ArrayList<Note> getAllNotes(){
-        ArrayList<Note> allNote = (ArrayList<Note>) this.noteRepository.findAll();
-        return allNote;
+    public List<Note> getAllNotes(){
+        List<Note> allNotes = (ArrayList<Note>) this.noteRepository.findAll();
+        return allNotes;
     }
 }
