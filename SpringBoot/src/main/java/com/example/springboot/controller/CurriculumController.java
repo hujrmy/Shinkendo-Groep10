@@ -43,14 +43,14 @@ public class CurriculumController {
     @ResponseBody
     public ApiResponse updateCurriculum(
             @PathVariable long curriculumId,
-            @RequestParam String newName,
-            @RequestParam String newDescription) {
-        Curriculum updatedCurriculum = curriculumDao.updateCurriculum(curriculumId, newName, newDescription);
-        if (updatedCurriculum != null) {
-            return new ApiResponse(HttpStatus.ACCEPTED, updatedCurriculum);
+            @RequestBody Curriculum updatedCurriculum) {
+        Curriculum result = curriculumDao.updateCurriculum(curriculumId, updatedCurriculum.getName(), updatedCurriculum.getDescription());
+        if (result != null) {
+            return new ApiResponse(HttpStatus.ACCEPTED, result);
         } else {
             return new ApiResponse(HttpStatus.NOT_FOUND, "Curriculum with ID " + curriculumId + " not found.");
         }
     }
+
 
 }
