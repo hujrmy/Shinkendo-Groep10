@@ -7,6 +7,8 @@ public class ApiResponse<Type> {
     private HttpStatus code;
     private Type payload;
     private String message;
+    private int status;
+
 
     public ApiResponse(HttpStatus code, Type payload) {
         this.code = code;
@@ -22,6 +24,7 @@ public class ApiResponse<Type> {
         this.code = code;
         this.message = message;
     }
+
 
 
     public Type getPayload() {

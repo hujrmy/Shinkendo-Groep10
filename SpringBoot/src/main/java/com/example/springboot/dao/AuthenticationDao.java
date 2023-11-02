@@ -1,5 +1,6 @@
 package com.example.springboot.dao;
 
+import com.example.springboot.Exception.UsernameAlreadyExistsException;
 import com.example.springboot.model.AuthenticationRequest;
 import com.example.springboot.model.AuthenticationResponse;
 import com.example.springboot.model.RegisterRequest;
@@ -54,11 +55,5 @@ public class AuthenticationDao {
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .build();
-    }
-
-    public static class UsernameAlreadyExistsException extends RuntimeException {
-        public UsernameAlreadyExistsException(String message) {
-            super(message);
-        }
     }
 }
