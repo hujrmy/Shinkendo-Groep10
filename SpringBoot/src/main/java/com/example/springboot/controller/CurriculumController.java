@@ -38,4 +38,19 @@ public class CurriculumController {
             return new ApiResponse(HttpStatus.NOT_FOUND, "Curriculum with ID " + curriculumId + " not found.");
         }
     }
+
+    @PutMapping("/{curriculumId}")
+    @ResponseBody
+    public ApiResponse updateCurriculum(
+            @PathVariable long curriculumId,
+            @RequestParam String newName,
+            @RequestParam String newDescription) {
+        Curriculum updatedCurriculum = curriculumDao.updateCurriculum(curriculumId, newName, newDescription);
+        if (updatedCurriculum != null) {
+            return new ApiResponse(HttpStatus.ACCEPTED, updatedCurriculum);
+        } else {
+            return new ApiResponse(HttpStatus.NOT_FOUND, "Curriculum with ID " + curriculumId + " not found.");
+        }
+    }
+
 }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class CurriculumDao {
@@ -31,5 +32,18 @@ public class CurriculumDao {
         }
         return false;
     }
+
+    public Curriculum updateCurriculum(long curriculumId, String newName, String newDescription) {
+        Optional<Curriculum> curriculumOptional = curriculumRepository.findById((int) curriculumId);
+        if (curriculumOptional.isPresent()) {
+            Curriculum curriculum = curriculumOptional.get();
+            curriculum.setName(newName);
+            curriculum.setDescription(newDescription);
+            curriculum = curriculumRepository.save(curriculum);
+            return curriculum;
+        }
+        return null;
+    }
+
 
 }
