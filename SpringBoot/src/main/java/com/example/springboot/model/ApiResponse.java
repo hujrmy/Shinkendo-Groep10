@@ -12,11 +12,8 @@ public class ApiResponse<Type> {
 
     public ApiResponse(HttpStatus code, Type payload) {
         this.code = code;
-        if (code == HttpStatus.OK) {
-            this.payload = payload;
-        }
+        this.payload = payload;
     }
-
 
     public ApiResponse(HttpStatus code, String message) {
         this.code = code;
