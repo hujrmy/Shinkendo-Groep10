@@ -50,7 +50,7 @@ public class AuthenticationDao {
                 )
         );
         var user = repository.findByUsername(request.getUsername())
-                .orElseThrow(); //exeption
+                .orElseThrow();
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)

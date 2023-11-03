@@ -39,7 +39,6 @@ public class AttendanceListTest {
 
     @Test
     void should_add_attendance_to_repository(){
-        // Arrange
         AttendanceList attendanceToAdd = new AttendanceList();
         attendanceToAdd.setID(1L);
         attendanceToAdd.setUser(user);
@@ -47,10 +46,8 @@ public class AttendanceListTest {
 
         when(attendanceListRepository.save(attendanceToAdd)).thenReturn(attendanceToAdd);
 
-        // Act
         AttendanceList addedAttendance = SUT.addAttendance(attendanceToAdd);
 
-        // Assert
         assertEquals(1L, addedAttendance.getID());
         assertEquals(1L, 1);
         assertEquals(1L, 1);
