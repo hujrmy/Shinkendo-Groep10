@@ -4,6 +4,7 @@ import com.example.springboot.model.Curriculum;
 import com.example.springboot.model.Exercise;
 import com.example.springboot.model.Lesson;
 import com.example.springboot.repository.CurriculumRepository;
+import com.example.springboot.repository.LessonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,6 +16,10 @@ import java.util.Optional;
 public class CurriculumDao {
     @Autowired
     private CurriculumRepository curriculumRepository;
+
+    public CurriculumDao(CurriculumRepository curriculumRepository) {
+        this.curriculumRepository = curriculumRepository;
+    }
 
     public Curriculum addCurriculum(Curriculum newCurriculum) {
         Curriculum curriculum = this.curriculumRepository.save(newCurriculum);
