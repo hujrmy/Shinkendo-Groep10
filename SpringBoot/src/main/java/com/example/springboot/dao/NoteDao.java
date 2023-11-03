@@ -13,6 +13,10 @@ public class NoteDao {
     @Autowired
     private NoteRepository noteRepository;
 
+    public NoteDao(NoteRepository noteRepository) {
+        this.noteRepository = noteRepository;
+    }
+
     public Note addNote(Note newNote) {
         Note note = this.noteRepository.save(newNote);
         return note;

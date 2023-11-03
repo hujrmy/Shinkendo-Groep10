@@ -23,4 +23,8 @@ public class AttendanceListDao {
         return attendanceLists;
     }
 
+    public AttendanceListDao(AttendanceListRepository attendanceListRepository){
+        this.attendanceListRepository = attendanceListRepository;
+    }
+
 }
