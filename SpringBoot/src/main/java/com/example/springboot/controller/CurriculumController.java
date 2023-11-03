@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("api/curriculum")
 public class CurriculumController {
@@ -19,7 +21,8 @@ public class CurriculumController {
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
     public ApiResponse getAllCurriculums() {
-        return new ApiResponse(HttpStatus.ACCEPTED, this.curriculumDao.getAllCurriculums());
+        List<Curriculum> curriculums = curriculumDao.getAllCurriculumsOrderedById();
+        return new ApiResponse(HttpStatus.ACCEPTED, curriculums);
     }
 
     @RequestMapping(method = RequestMethod.POST)

@@ -20,9 +20,9 @@ public class CurriculumDao {
         Curriculum curriculum = this.curriculumRepository.save(newCurriculum);
         return curriculum;
     }
-    public ArrayList<Curriculum> getAllCurriculums(){
-        ArrayList<Curriculum> curriculums = (ArrayList<Curriculum>) curriculumRepository.findAll();
-        return curriculums;
+    public List<Curriculum> getAllCurriculumsOrderedById() {
+        List<Curriculum> orderedCurriculums = curriculumRepository.findAllOrderedById();
+        return orderedCurriculums;
     }
 
     public boolean deleteCurriculum(long curriculumId) {
