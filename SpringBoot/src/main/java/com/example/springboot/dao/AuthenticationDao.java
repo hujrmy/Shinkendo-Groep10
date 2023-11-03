@@ -37,13 +37,10 @@ public class AuthenticationDao {
                 .build();
         repository.save(user);
         var jwtToken = jwtService.generateToken(user);
-
         return AuthenticationResponse.builder()
                 .token(jwtToken)
-                .rights(String.valueOf(user.getRights()))
                 .build();
     }
-
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
         authenticationManager.authenticate(
@@ -57,7 +54,6 @@ public class AuthenticationDao {
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
-                .rights(String.valueOf(user.getRights()))
                 .build();
     }
 }
