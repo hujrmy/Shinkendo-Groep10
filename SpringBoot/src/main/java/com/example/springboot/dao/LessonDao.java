@@ -12,6 +12,10 @@ public class LessonDao {
     @Autowired
     private LessonRepository lessonRepository;
 
+    public LessonDao(LessonRepository lessonRepository) {
+        this.lessonRepository = lessonRepository;
+    }
+
     public Lesson addLesson(Lesson newLesson) {
         Lesson lesson = this.lessonRepository.save(newLesson);
         return lesson;
