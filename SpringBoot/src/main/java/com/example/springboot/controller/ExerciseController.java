@@ -19,17 +19,6 @@ public class ExerciseController {
         this.exerciseDao = exerciseDao;
     }
 
-//    @RequestMapping(value = "media", method = RequestMethod.GET)
-//    @ResponseBody
-//    public ApiResponse getMediaByCurriculumId(@RequestParam("curriculumId") long curriculumId) {
-//        List<String> exerciseMedia = this.exerciseDao.getExerciseMediaByCurriculumId(curriculumId);
-//        return new ApiResponse(HttpStatus.ACCEPTED, exerciseMedia);     }
-//    @RequestMapping(value = "names", method = RequestMethod.GET)
-//    @ResponseBody
-//    public ApiResponse getExercisesByCurriculumId(@RequestParam("curriculumId") long curriculumId) {
-//        List<String> exerciseNames = this.exerciseDao.getExerciseNamesByCurriculumId(curriculumId);
-//        return new ApiResponse(HttpStatus.ACCEPTED, exerciseNames);
-//    }
 
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody

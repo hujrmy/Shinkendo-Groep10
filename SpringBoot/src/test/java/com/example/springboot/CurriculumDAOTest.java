@@ -65,10 +65,8 @@ public class CurriculumDAOTest {
 
         when(curriculumRepository.findAllOrderedById()).thenReturn(curriculums);
 
-        // Act
         List<Curriculum> returnCurriculums = SUT.getAllCurriculumsOrderedById();
 
-        // Assert
         assertEquals(curriculums.size(), returnCurriculums.size());
         assertEquals(curriculums.get(0).getID(), returnCurriculums.get(0).getID());
         assertEquals(curriculums.get(1).getID(), returnCurriculums.get(1).getID());
