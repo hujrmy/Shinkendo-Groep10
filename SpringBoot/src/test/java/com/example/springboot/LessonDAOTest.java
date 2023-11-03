@@ -28,24 +28,20 @@ public class LessonDAOTest {
 
     @Test
     void should_add_lesson_to_repository(){
-        // Arrange
         Lesson lessonToAdd = new Lesson();
         lessonToAdd.setID(1L);
         lessonToAdd.setDate(LocalDate.now());
 
         when(lessonRepository.save(lessonToAdd)).thenReturn(lessonToAdd);
 
-        // Act
         Lesson addedLesson = SUT.addLesson(lessonToAdd);
 
-        // Assert
         assertEquals(1L, addedLesson.getID());
         assertEquals(LocalDate.now(), addedLesson.getDate());
     }
 
     @Test
     void should_get_all_lessons_from_repository(){
-        // Arrange
         List<Lesson> expectedLessons = new ArrayList<>();
         Lesson lesson1 = new Lesson();
         lesson1.setID(1L);
@@ -60,10 +56,8 @@ public class LessonDAOTest {
 
         when(lessonRepository.findAll()).thenReturn(expectedLessons);
 
-        // Act
         List<Lesson> retrievedLessons = SUT.getAllLessons();
 
-        // Assert
         assertEquals(expectedLessons.size(), retrievedLessons.size());
         assertEquals(expectedLessons.get(0).getID(), retrievedLessons.get(0).getID());
         assertEquals(expectedLessons.get(1).getID(), retrievedLessons.get(1).getID());

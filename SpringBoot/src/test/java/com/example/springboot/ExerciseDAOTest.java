@@ -30,24 +30,20 @@ public class ExerciseDAOTest {
 
     @Test
     void should_add_exercise_to_repository() {
-        // Arrange
         Exercise exerciseToAdd = new Exercise();
         exerciseToAdd.setID(1L);
         exerciseToAdd.setName("Sample Exercise");
 
         when(exerciseRepository.save(exerciseToAdd)).thenReturn(exerciseToAdd);
 
-        // Act
         Exercise addedExercise = SUT.addExercise(exerciseToAdd);
 
-        // Assert
         assertEquals(1L, addedExercise.getID());
         assertEquals("Sample Exercise", addedExercise.getName());
     }
 
     @Test
     void should_get_all_exercises_from_repository() {
-        // Arrange
         List<Exercise> expectedExercises = new ArrayList<>();
         Exercise exercise1 = new Exercise();
         exercise1.setID(1L);
@@ -62,10 +58,8 @@ public class ExerciseDAOTest {
 
         when(exerciseRepository.findAll()).thenReturn(expectedExercises);
 
-        // Act
         List<Exercise> retrievedExercises = SUT.getAllExercises();
 
-        // Assert
         assertEquals(expectedExercises.size(), retrievedExercises.size());
         assertEquals(expectedExercises.get(0).getID(), retrievedExercises.get(0).getID());
         assertEquals(expectedExercises.get(1).getID(), retrievedExercises.get(1).getID());
