@@ -50,4 +50,13 @@ public class UserDao {
         }
         return userData;
     }
+
+
+    public boolean deleteUser(long userId) {
+        if (userRepository.existsById((int) userId)) {
+            userRepository.deleteById((int) userId);
+            return true;
+        }
+        return false;
+    }
 }
