@@ -32,7 +32,8 @@ public class User implements UserDetails {
     @Enumerated
     private Rank rank;
 
-    public User(String name, Dojo dojo, Rank rank) {
+    public User(Rights rights, String name, Dojo dojo, Rank rank) {
+        this.rights = rights;
         this.name = name;
         this.dojo = dojo;
         this.rank = rank;
