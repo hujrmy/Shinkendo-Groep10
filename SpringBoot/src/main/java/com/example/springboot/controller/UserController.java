@@ -47,6 +47,15 @@ public class UserController {
         return new ApiResponse(HttpStatus.ACCEPTED, add);
     }
 
+    @DeleteMapping("/{userId}")
+    @ResponseBody
+    public ApiResponse deleteUser(@PathVariable long userId) {
+        if (userDao.deleteUser(userId)) {
+            return new ApiResponse(HttpStatus.ACCEPTED, "Curriculum with ID " + userId + " has been deleted.");
+        } else {
+            return new ApiResponse(HttpStatus.NOT_FOUND, "Curriculum with ID " + userId + " not found.");
+        }
+    }
 
 
 
