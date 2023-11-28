@@ -1,8 +1,6 @@
 package com.example.springboot.dao;
 
-import com.example.springboot.model.Curriculum;
-import com.example.springboot.model.Rights;
-import com.example.springboot.model.User;
+import com.example.springboot.model.*;
 import com.example.springboot.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -10,6 +8,7 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Component
 public class UserDao {
@@ -59,4 +58,22 @@ public class UserDao {
         }
         return false;
     }
+
+
+
+    public User updateUser(long userId, Rights newRights, String newName, String newUsername, String newPassword, Dojo newDojo, Rank newRank) {
+        Optional<User> userOptional = userRepository.findById((int) userId);
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            user.setName(newName);
+            user.setUsername(newUsername);
+            user.setRights(newRights);
+            user.setDojo(newDojo);
+            user.setRank(newRank);
+            user = userRepository.save(user);
+            return user;
+        }
+        return null;
+    }
+
 }

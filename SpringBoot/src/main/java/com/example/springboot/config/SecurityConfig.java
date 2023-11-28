@@ -15,8 +15,6 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import static com.example.springboot.model.Rights.ADMIN;
-import static com.example.springboot.model.Rights.SENSEI;
 import static org.springframework.http.HttpMethod.*;
 
 @Configuration

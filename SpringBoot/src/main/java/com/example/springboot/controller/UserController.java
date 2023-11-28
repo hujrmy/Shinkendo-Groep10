@@ -2,9 +2,11 @@ package com.example.springboot.controller;
 
 import com.example.springboot.dao.UserDao;
 import com.example.springboot.model.ApiResponse;
+import com.example.springboot.model.Curriculum;
 import com.example.springboot.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -56,6 +58,22 @@ public class UserController {
             return new ApiResponse(HttpStatus.NOT_FOUND, "Curriculum with ID " + userId + " not found.");
         }
     }
+
+    @PutMapping("/{userId}")
+    @ResponseBody
+    public ApiResponse<User> updateUser(
+            @PathVariable long userId,
+            @RequestBody User updatedUser
+    ){
+        User result = userDao.updateUser(userId, updatedUser.getRights(), updatedUser.getName(), updatedUser.getUsername(), updatedUser.getPassword(),
+                updatedUser.getDojo(), updatedUser.getRank());
+        if (result != null) {
+            return new ApiResponse(HttpStatus.ACCEPTED, result);
+        } else {
+            return new ApiResponse(HttpStatus.NOT_FOUND, "User with ID " + userId + " not found.");
+        }
+    }
+
 
 
 
