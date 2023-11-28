@@ -3,6 +3,7 @@ package com.example.springboot.dao;
 import com.example.springboot.model.*;
 import com.example.springboot.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -57,6 +58,11 @@ public class UserDao {
             return true;
         }
         return false;
+    }
+
+    public User findUserById(Long id){
+        return userRepository.findUserByID(id)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 
 
