@@ -1,7 +1,9 @@
 package com.example.springboot.model;
 
 import jakarta.persistence.*;
+import org.springframework.cglib.core.*;
 
+import java.time.*;
 import java.util.*;
 
 @Entity
@@ -15,12 +17,12 @@ public class Post {
     private String title;
     private String description;
     private String link;
-    private Date date;
+    private LocalDate date;
 
     @ManyToOne
     private User user;
 
-    public Post(String title, String description, String link, Date date, User user) {
+    public Post(String title, String description, String link, LocalDate date, User user) {
         this.title = title;
         this.description = description;
         this.link = link;
@@ -64,11 +66,11 @@ public class Post {
         this.link = link;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
