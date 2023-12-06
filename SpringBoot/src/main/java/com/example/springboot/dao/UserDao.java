@@ -38,6 +38,30 @@ public class UserDao {
         return usersList;
     }
 
+    public List<String> getUsersByUsername(String username) {
+        List<String> usersList = new ArrayList<>();
+        List<User> users = this.userRepository.findAll();
+
+        for (User user : users) {
+            if(Objects.equals(user.getUsername(), username)){
+                usersList.add(user.getUsername());
+            }
+        }
+        return usersList;
+    }
+
+    public List<Rights> getRightsByUserName(String username){
+        List<Rights> usersList = new ArrayList<>();
+        List<User> users = this.userRepository.findAll();
+
+        for (User user : users) {
+            if(Objects.equals(user.getUsername(), username)){
+                usersList.add(user.getRights());
+            }
+        }
+        return usersList;
+    }
+
     public List<String> getAllUserData(){
         List<String> userData = new ArrayList<>();
         List<User> users = this.userRepository.findAll();

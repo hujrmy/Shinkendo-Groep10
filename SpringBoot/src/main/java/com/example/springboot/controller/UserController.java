@@ -3,6 +3,7 @@ package com.example.springboot.controller;
 import com.example.springboot.dao.UserDao;
 import com.example.springboot.model.ApiResponse;
 import com.example.springboot.model.Curriculum;
+import com.example.springboot.model.Rights;
 import com.example.springboot.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,6 +35,13 @@ public class UserController {
     public ApiResponse getUsersByName(@RequestParam("name") String name) {
         List<String> names = this.userDao.getUsersByName(name);
         return new ApiResponse(HttpStatus.ACCEPTED, names);
+    }
+
+    @RequestMapping(value = "rights", method = RequestMethod.GET)
+    @ResponseBody
+    public ApiResponse getRightsByName(@RequestParam("username") String username) {
+        List<Rights> rights = this.userDao.getRightsByUserName(username);
+        return new ApiResponse(HttpStatus.ACCEPTED, rights);
     }
 
     @RequestMapping(method = RequestMethod.GET)
