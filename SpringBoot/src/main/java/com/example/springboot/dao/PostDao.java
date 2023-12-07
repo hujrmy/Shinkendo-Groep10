@@ -30,4 +30,8 @@ public class PostDao {
         }
         return false;
     }
+
+    public Long getHighestId(){
+        return postRepository.getHighestId();
+    }
 }

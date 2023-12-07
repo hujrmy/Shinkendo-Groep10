@@ -38,4 +38,10 @@ public class PostController {
             return new ApiResponse(HttpStatus.NOT_FOUND, "Post with ID " + postId + "not found.");
         }
     }
+
+    @RequestMapping(value ="/getHighestId", method = RequestMethod.GET)
+    @ResponseBody
+    public ApiResponse getHighestId(){
+        return new ApiResponse(HttpStatus.ACCEPTED, this.postDao.getHighestId());
+    }
 }
