@@ -33,9 +33,15 @@ public class SecurityConfig {
                 .authorizeHttpRequests(req ->
                         req.requestMatchers("/api/v1/auth/**")
                                 .permitAll()
-                                .requestMatchers(GET, "/api/attendanceList").hasAnyAuthority("SENSEI", "ADMIN")
-                                // ... other endpoint configurations ...
-                                .anyRequest().authenticated()
+                                .requestMatchers(GET, "api/attendanceList").hasAnyAuthority("SENSEI", "ADMIN")
+                                .requestMatchers(POST, "api/attendanceList").hasAnyAuthority("SENSEI", "ADMIN")
+                                .requestMatchers(POST, "api/curriculum").hasAnyAuthority("SENSEI", "ADMIN")
+                                .requestMatchers(POST, "api/dojo").hasAnyAuthority("ADMIN")
+                                .requestMatchers(POST, "api/exercise").hasAnyAuthority("SENSEI", "ADMIN")
+                                .requestMatchers(POST, "api/lesson").hasAnyAuthority("SENSEI", "ADMIN")
+                                .requestMatchers(DELETE, "api/curriculum/{curriculumId}").hasAnyAuthority("ADMIN")
+                                .anyRequest()
+                                .authenticated()
                 )
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
