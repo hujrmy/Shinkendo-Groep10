@@ -16,6 +16,8 @@ public class DatabaseSeeder {
     private CurriculumSeeder curriculumSeeder;
     @Autowired
     private ExerciseSeeder exerciseSeeder;
+    @Autowired
+    private DojoSeeder dojoSeeder;
     private boolean alreadySeeded = false;
 
 
@@ -26,8 +28,9 @@ public class DatabaseSeeder {
         }
 
         Faker faker = new Faker(new Locale("nl"));
-        curriculumSeeder.seed(faker);
+        curriculumSeeder.seed();
         exerciseSeeder.seed(faker);
+        dojoSeeder.seed();
 
 
         this.alreadySeeded = true;

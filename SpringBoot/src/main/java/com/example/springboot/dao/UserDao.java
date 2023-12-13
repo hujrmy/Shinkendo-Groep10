@@ -1,15 +1,15 @@
 package com.example.springboot.dao;
 
-import com.example.springboot.model.Curriculum;
-import com.example.springboot.model.Rights;
-import com.example.springboot.model.User;
+import com.example.springboot.model.*;
 import com.example.springboot.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Component
 public class UserDao {
@@ -38,6 +38,30 @@ public class UserDao {
         return usersList;
     }
 
+    public List<String> getUsersByUsername(String username) {
+        List<String> usersList = new ArrayList<>();
+        List<User> users = this.userRepository.findAll();
+
+        for (User user : users) {
+            if(Objects.equals(user.getUsername(), username)){
+                usersList.add(user.getUsername());
+            }
+        }
+        return usersList;
+    }
+
+    public List<Rights> getRightsByUserName(String username){
+        List<Rights> usersList = new ArrayList<>();
+        List<User> users = this.userRepository.findAll();
+
+        for (User user : users) {
+            if(Objects.equals(user.getUsername(), username)){
+                usersList.add(user.getRights());
+            }
+        }
+        return usersList;
+    }
+
     public List<String> getAllUserData(){
         List<String> userData = new ArrayList<>();
         List<User> users = this.userRepository.findAll();
@@ -50,4 +74,36 @@ public class UserDao {
         }
         return userData;
     }
+
+
+    public boolean deleteUser(long userId) {
+        if (userRepository.existsById((int) userId)) {
+            userRepository.deleteById((int) userId);
+            return true;
+        }
+        return false;
+    }
+
+    public User findUserById(Long id){
+        return userRepository.findUserByID(id)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+    }
+
+
+
+    public User updateUser(long userId, Rights newRights, String newName, String newUsername, String newPassword, Dojo newDojo, Rank newRank) {
+        Optional<User> userOptional = userRepository.findById((int) userId);
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            user.setName(newName);
+            user.setUsername(newUsername);
+            user.setRights(newRights);
+            user.setDojo(newDojo);
+            user.setRank(newRank);
+            user = userRepository.save(user);
+            return user;
+        }
+        return null;
+    }
+
 }
