@@ -1,6 +1,7 @@
 package com.example.springboot.Seeder;
 
 
+import com.example.springboot.model.Dojo;
 import com.github.javafaker.Faker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -18,6 +19,8 @@ public class DatabaseSeeder {
     private ExerciseSeeder exerciseSeeder;
     @Autowired
     private DojoSeeder dojoSeeder;
+    @Autowired
+    private AdminAccountSeeder adminAccountSeeder;
     private boolean alreadySeeded = false;
 
 
@@ -30,7 +33,8 @@ public class DatabaseSeeder {
         Faker faker = new Faker(new Locale("nl"));
         curriculumSeeder.seed();
         exerciseSeeder.seed(faker);
-        dojoSeeder.seed();
+        Dojo dojo = dojoSeeder.seed();
+        adminAccountSeeder.seed(dojo);
 
 
         this.alreadySeeded = true;
