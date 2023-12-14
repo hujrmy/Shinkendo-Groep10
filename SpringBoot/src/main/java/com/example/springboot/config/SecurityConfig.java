@@ -31,8 +31,9 @@ public class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(req ->
-                        req.requestMatchers("/api/v1/auth/**")
+                        req.requestMatchers("/api/v1/auth/authenticate")
                                 .permitAll()
+                                .requestMatchers(POST, "api/v1/auth/register").hasAnyAuthority("ADMIN")
                                 .requestMatchers(GET, "api/attendanceList").hasAnyAuthority("SENSEI", "ADMIN")
                                 .requestMatchers(POST, "api/attendanceList").hasAnyAuthority("SENSEI", "ADMIN")
                                 .requestMatchers(POST, "api/curriculum").hasAnyAuthority("SENSEI", "ADMIN")
