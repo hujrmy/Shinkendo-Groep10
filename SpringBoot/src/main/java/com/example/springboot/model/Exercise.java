@@ -13,7 +13,7 @@ public class Exercise {
 
     private String media;
 
-    public Exercise(String name, Note note, String media) {
+    public Exercise(String name, String media) {
         this.name = name;
         this.media = media;
     }

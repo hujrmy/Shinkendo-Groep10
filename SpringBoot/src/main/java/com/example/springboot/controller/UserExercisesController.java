@@ -31,7 +31,7 @@ public class UserExercisesController {
         return new ApiResponse(HttpStatus.ACCEPTED, add);
     }
 
-    @DeleteMapping("/{postId}")
+    @DeleteMapping("/{userExercisesId}")
     @ResponseBody
     public ApiResponse deleteUserExercises(@PathVariable long userExercisesId) {
         if (userExercisesDao.deleteUserExercises(userExercisesId)) {
