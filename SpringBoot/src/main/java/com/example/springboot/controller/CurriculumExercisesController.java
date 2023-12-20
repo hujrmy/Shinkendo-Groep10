@@ -33,10 +33,10 @@ public class CurriculumExercisesController {
     @DeleteMapping("/{curriculumExercisesId}")
     @ResponseBody
     public ApiResponse deleteUserExercises(@PathVariable long curriculumExercisesId) {
-        if (curriculumExercisesDao.deleteCurriculumExercises(curriculumExercisesId)) {
-            return new ApiResponse(HttpStatus.ACCEPTED, "Post with ID " + curriculumExercisesId + "has been deleted.");
+        if (curriculumExercisesDao.deleteCurriculumExercisesByExerciseId(curriculumExercisesId)) {
+            return new ApiResponse(HttpStatus.ACCEPTED, "Exercise with ID " + curriculumExercisesId + "has been deleted.");
         } else {
-            return new ApiResponse(HttpStatus.NOT_FOUND, "Post with ID " + curriculumExercisesId + "not found.");
+            return new ApiResponse(HttpStatus.NOT_FOUND, "Exercise with ID " + curriculumExercisesId + "not found.");
         }
     }
 }

@@ -35,4 +35,11 @@ public class ExerciseDao {
         return exercises;}
 
 
+    public boolean deleteExercise(long exerciseId) {
+        if (exerciseRepository.existsById((int) exerciseId)) {
+            exerciseRepository.deleteById((int) exerciseId);
+            return true;
+        }
+        return false;
+    }
 }

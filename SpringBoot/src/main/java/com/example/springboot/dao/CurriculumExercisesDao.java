@@ -3,6 +3,7 @@ package com.example.springboot.dao;
 import com.example.springboot.model.CurriculumExercises;
 import com.example.springboot.model.UserExercises;
 import com.example.springboot.repository.CurriculumExercisesRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -24,12 +25,10 @@ public class CurriculumExercisesDao {
         return curriculumExercises;
     }
 
-    public boolean deleteCurriculumExercises(long curriculumExercisesId){
-        if(curriculumExercisesRepository.existsById((int) curriculumExercisesId)) {
-            curriculumExercisesRepository.deleteById((int) curriculumExercisesId);
-            return true;
-        }
-        return false;
+    @Transactional
+    public boolean deleteCurriculumExercisesByExerciseId(long exerciseId){
+        curriculumExercisesRepository.deleteByExerciseID((int) exerciseId);
+        return curriculumExercisesRepository.findByExerciseID((int) exerciseId) == null;
     }
 
 

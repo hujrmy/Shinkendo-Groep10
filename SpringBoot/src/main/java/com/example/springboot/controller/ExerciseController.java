@@ -38,4 +38,14 @@ public class ExerciseController {
         Exercise comment = this.exerciseDao.addExercise(newDao);
         return new ApiResponse(HttpStatus.ACCEPTED, comment);
     }
+
+    @DeleteMapping("/{exerciseId}")
+    @ResponseBody
+    public ApiResponse deleteExercise(@PathVariable long exerciseId) {
+        if (exerciseDao.deleteExercise(exerciseId)) {
+            return new ApiResponse(HttpStatus.ACCEPTED, "Exercise with ID " + exerciseId + " has been deleted.");
+        } else {
+            return new ApiResponse(HttpStatus.NOT_FOUND, "Exercise with ID " + exerciseId + " not found.");
+        }
+    }
 }
