@@ -20,12 +20,6 @@ public class ExerciseController {
     }
 
 
-    @RequestMapping(method = RequestMethod.GET)
-    @ResponseBody
-    public ApiResponse getAllExercisesByCurriculum(long curriculumId) {
-        return new ApiResponse(HttpStatus.ACCEPTED, this.exerciseDao.getAllExercisesByCurriculum(curriculumId));
-    }
-
     @RequestMapping(value ="/all", method = RequestMethod.GET)
     @ResponseBody
     public ApiResponse getAllExercises() {

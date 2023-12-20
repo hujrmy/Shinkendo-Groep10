@@ -30,16 +30,6 @@ public class ExerciseDao {
         return exercise;
     }
 
-    public ArrayList<Exercise> getAllExercisesByCurriculum(long curriculumId) {
-        ArrayList<Exercise> exercises = (ArrayList<Exercise>) exerciseRepository.findByCurriculumId(curriculumId);
-
-        if (exercises.isEmpty()) {
-            throw new ExercisesNotFoundException("No exercises found for curriculum with ID " + curriculumId);
-        }
-
-        return exercises;
-    }
-
     public List<Exercise> getAllExercises() {
         List<Exercise> exercises = exerciseRepository.findAll();
         return exercises;}
