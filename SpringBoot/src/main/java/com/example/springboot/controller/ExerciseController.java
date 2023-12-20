@@ -32,6 +32,12 @@ public class ExerciseController {
         return new ApiResponse(HttpStatus.ACCEPTED, this.exerciseDao.getAllExercises());
     }
 
+    @RequestMapping(value ="/{exerciseId}", method = RequestMethod.GET)
+    @ResponseBody
+    public ApiResponse getExerciseById(@PathVariable long exerciseId) {
+        return new ApiResponse(HttpStatus.ACCEPTED, this.exerciseDao.getExerciseById(exerciseId));
+    }
+
     @RequestMapping(value ="", method = RequestMethod.POST)
     @ResponseBody
     public ApiResponse addExercise(@RequestBody Exercise newDao){

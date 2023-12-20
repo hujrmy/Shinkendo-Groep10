@@ -24,6 +24,12 @@ public class ExerciseDao {
         return exercise;
     }
 
+    public Exercise getExerciseById(long exerciseId) {
+        Exercise exercise = exerciseRepository.findById((int) exerciseId)
+                .orElseThrow(() -> new ExercisesNotFoundException("Exercise not found with ID " + exerciseId));
+        return exercise;
+    }
+
     public ArrayList<Exercise> getAllExercisesByCurriculum(long curriculumId) {
         ArrayList<Exercise> exercises = (ArrayList<Exercise>) exerciseRepository.findByCurriculumId(curriculumId);
 
