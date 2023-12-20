@@ -2,7 +2,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/shinkendo
     username: postgres
-    password: postgres
+    password: J#R#MY2005!?
   jpa:
     hibernate:
       ddl-auto: create-drop
