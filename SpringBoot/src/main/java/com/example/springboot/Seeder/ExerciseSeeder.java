@@ -12,10 +12,10 @@ public class ExerciseSeeder {
     @Autowired
     private ExerciseDao exerciseDao;
     public void seed(Faker faker){
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 80; i++) {
             Exercise exercise1 = new Exercise();
-            exercise1.setName(String.valueOf(faker.name()));
-            exercise1.setMedia(String.join(" ", faker.lorem().characters(20)));
+            exercise1.setName("Exercise: " + (i+1));
+            exercise1.setMedia("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
             this.exerciseDao.addExercise(exercise1);
         }
     }

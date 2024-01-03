@@ -41,6 +41,7 @@ public class SecurityConfig {
                                 .requestMatchers(POST, "api/exercise").hasAnyAuthority("SENSEI", "ADMIN")
                                 .requestMatchers(POST, "api/lesson").hasAnyAuthority("SENSEI", "ADMIN")
                                 .requestMatchers(DELETE, "api/curriculum/{curriculumId}").hasAnyAuthority("ADMIN")
+                                .requestMatchers(GET, "api/userExercises").hasAnyAuthority("ADMIN", "SENSEI", "STUDENT")
                                 .anyRequest()
                                 .authenticated()
                 )

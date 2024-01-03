@@ -20,7 +20,7 @@ public class CurriculumSeeder {
             Curriculum rank1 = new Curriculum();
             List<String> ranks = List.of(new String[]{"Ikkyu", "Nikyu", "Sankyu", "Yonkyu", "Gokyu", "Roklyu", "Nanakyu", "Hachikyu"});
             rank1.setName(ranks.get(i));
-            rank1.setDescription("rank" + i+1);
+            rank1.setDescription("rank" + (i+1));
             this.curriculumDao.addCurriculum(rank1);
         }
     }

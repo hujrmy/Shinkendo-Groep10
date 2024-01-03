@@ -21,6 +21,7 @@ public class DatabaseSeeder {
     private DojoSeeder dojoSeeder;
     @Autowired
     private AdminAccountSeeder adminAccountSeeder;
+
     private boolean alreadySeeded = false;
 
 

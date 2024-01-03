@@ -6,7 +6,10 @@ import com.example.springboot.model.Post;
 import com.example.springboot.model.UserExercises;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/userExercises")
@@ -29,6 +32,13 @@ public class UserExercisesController {
     public ApiResponse addUserExercises(@RequestBody UserExercises newDao){
         UserExercises add = this.userExercisesDao.addUserExercises(newDao);
         return new ApiResponse(HttpStatus.ACCEPTED, add);
+    }
+
+    @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseEntity <UserExercises> getUserExercisesByUserId(@PathVariable("id") long id){
+        UserExercises userExercises = userExercisesDao.GetUser(id);
+        return new ResponseEntity<>(userExercises, HttpStatus.OK);
     }
 
     @DeleteMapping("/{userExercisesId}")
