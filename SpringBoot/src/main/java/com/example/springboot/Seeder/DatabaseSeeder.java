@@ -28,7 +28,7 @@ public class DatabaseSeeder {
         }
 
         Faker faker = new Faker(new Locale("nl"));
-        curriculumSeeder.seed(faker);
+        curriculumSeeder.seed();
         exerciseSeeder.seed(faker);
         dojoSeeder.seed();
 

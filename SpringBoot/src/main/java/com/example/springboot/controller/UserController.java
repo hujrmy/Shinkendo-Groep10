@@ -56,36 +56,4 @@ public class UserController {
         User add = this.userDao.addUsers(newDao);
         return new ApiResponse(HttpStatus.ACCEPTED, add);
     }
-
-    @DeleteMapping("/{userId}")
-    @ResponseBody
-    public ApiResponse deleteUser(@PathVariable long userId) {
-        if (userDao.deleteUser(userId)) {
-            return new ApiResponse(HttpStatus.ACCEPTED, "Curriculum with ID " + userId + " has been deleted.");
-        } else {
-            return new ApiResponse(HttpStatus.NOT_FOUND, "Curriculum with ID " + userId + " not found.");
-        }
-    }
-
-    @PutMapping("/{userId}")
-    @ResponseBody
-    public ApiResponse<User> updateUser(
-            @PathVariable long userId,
-            @RequestBody User updatedUser
-    ){
-        User result = userDao.updateUser(userId, updatedUser.getRights(), updatedUser.getName(), updatedUser.getUsername(), updatedUser.getPassword(),
-                updatedUser.getDojo(), updatedUser.getRank());
-        if (result != null) {
-            return new ApiResponse(HttpStatus.ACCEPTED, result);
-        } else {
-            return new ApiResponse(HttpStatus.NOT_FOUND, "User with ID " + userId + " not found.");
-        }
-    }
-
-    @GetMapping("/find/{id}")
-    public ResponseEntity<User> getProductById (@PathVariable("id") Long id){
-        User user = userDao.findUserById(id);
-        return new ResponseEntity<>(user, HttpStatus.OK);
-    }
-
 }
