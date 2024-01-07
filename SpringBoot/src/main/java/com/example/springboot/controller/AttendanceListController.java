@@ -22,14 +22,14 @@ public class AttendanceListController {
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
     public ApiResponse getAllAttendance(){
-        return new ApiResponse(HttpStatus.ACCEPTED, this.attendanceListDao.getAllAttendance());
+        return new ApiResponse(HttpStatus.OK, this.attendanceListDao.getAllAttendance());
     }
 
     @RequestMapping(value ="", method = RequestMethod.POST)
     @ResponseBody
     public ApiResponse addAttendance(@RequestBody AttendanceList newDao){
         AttendanceList comment = this.attendanceListDao.addAttendance(newDao);
-        return new ApiResponse(HttpStatus.ACCEPTED, comment);
+        return new ApiResponse(HttpStatus.OK, comment);
     }
 
 

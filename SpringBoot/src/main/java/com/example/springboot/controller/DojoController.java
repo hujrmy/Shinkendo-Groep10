@@ -21,14 +21,14 @@ public class DojoController {
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
     public ApiResponse getAllDojo(){
-        return new ApiResponse(HttpStatus.ACCEPTED, this.dojoDao.getAllDojo());
+        return new ApiResponse(HttpStatus.OK, this.dojoDao.getAllDojo());
     }
 
     @RequestMapping(value ="", method = RequestMethod.POST)
     @ResponseBody
     public ApiResponse addDojo(@RequestBody Dojo newDao){
         Dojo comment = this.dojoDao.addDojo(newDao);
-        return new ApiResponse(HttpStatus.ACCEPTED, comment);
+        return new ApiResponse(HttpStatus.OK, comment);
     }
 
 }

@@ -20,14 +20,14 @@ public class LessonController {
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
     public ApiResponse getAllLessons(){
-        return new ApiResponse(HttpStatus.ACCEPTED, this.lessonDao.getAllLessons());
+        return new ApiResponse(HttpStatus.OK, this.lessonDao.getAllLessons());
     }
 
     @RequestMapping(value ="", method = RequestMethod.POST)
     @ResponseBody
     public ApiResponse addLesson(@RequestBody Lesson newDao){
         Lesson comment = this.lessonDao.addLesson(newDao);
-        return new ApiResponse(HttpStatus.ACCEPTED, comment);
+        return new ApiResponse(HttpStatus.OK, comment);
     }
 
 

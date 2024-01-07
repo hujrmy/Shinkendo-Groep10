@@ -23,19 +23,19 @@ public class ExerciseController {
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
     public ApiResponse getAllExercisesByCurriculum(long curriculumId) {
-        return new ApiResponse(HttpStatus.ACCEPTED, this.exerciseDao.getAllExercisesByCurriculum(curriculumId));
+        return new ApiResponse(HttpStatus.OK, this.exerciseDao.getAllExercisesByCurriculum(curriculumId));
     }
 
     @RequestMapping(value ="/all", method = RequestMethod.GET)
     @ResponseBody
     public ApiResponse getAllExercises() {
-        return new ApiResponse(HttpStatus.ACCEPTED, this.exerciseDao.getAllExercises());
+        return new ApiResponse(HttpStatus.OK, this.exerciseDao.getAllExercises());
     }
 
     @RequestMapping(value ="", method = RequestMethod.POST)
     @ResponseBody
     public ApiResponse addExercise(@RequestBody Exercise newDao){
         Exercise comment = this.exerciseDao.addExercise(newDao);
-        return new ApiResponse(HttpStatus.ACCEPTED, comment);
+        return new ApiResponse(HttpStatus.OK, comment);
     }
 }

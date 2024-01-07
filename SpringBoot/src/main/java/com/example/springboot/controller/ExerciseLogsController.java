@@ -19,13 +19,13 @@ public class ExerciseLogsController {
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
     public ApiResponse getAllExerciseLogs(){
-        return new ApiResponse(HttpStatus.ACCEPTED, this.exerciseLogsDao.getAllExerciseLogs());
+        return new ApiResponse(HttpStatus.OK, this.exerciseLogsDao.getAllExerciseLogs());
     }
 
     @RequestMapping(value ="", method = RequestMethod.POST)
     @ResponseBody
     public ApiResponse addExerciseLogs(@RequestBody ExerciseLogs newDao){
         ExerciseLogs comment = this.exerciseLogsDao.addExerciseLogs(newDao);
-        return new ApiResponse(HttpStatus.ACCEPTED, comment);
+        return new ApiResponse(HttpStatus.OK, comment);
     }
 }

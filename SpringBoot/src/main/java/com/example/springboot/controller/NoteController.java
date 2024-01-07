@@ -20,13 +20,13 @@ public class NoteController {
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
     public ApiResponse getAllNotes(){
-        return new ApiResponse(HttpStatus.ACCEPTED, this.noteDao.getAllNotes());
+        return new ApiResponse(HttpStatus.OK, this.noteDao.getAllNotes());
     }
 
     @RequestMapping(value ="", method = RequestMethod.POST)
     @ResponseBody
     public ApiResponse addNote(@RequestBody Note newDao){
         Note comment = this.noteDao.addNote(newDao);
-        return new ApiResponse(HttpStatus.ACCEPTED, comment);
+        return new ApiResponse(HttpStatus.OK, comment);
     }
 }

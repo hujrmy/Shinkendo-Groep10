@@ -22,21 +22,21 @@ public class CurriculumController {
     @ResponseBody
     public ApiResponse getAllCurriculums() {
         List<Curriculum> curriculums = curriculumDao.getAllCurriculumsOrderedById();
-        return new ApiResponse(HttpStatus.ACCEPTED, curriculums);
+        return new ApiResponse(HttpStatus.OK, curriculums);
     }
 
     @RequestMapping(method = RequestMethod.POST)
     @ResponseBody
     public ApiResponse addCurriculum(@RequestBody Curriculum newDao){
         Curriculum comment = this.curriculumDao.addCurriculum(newDao);
-        return new ApiResponse(HttpStatus.ACCEPTED, comment);
+        return new ApiResponse(HttpStatus.OK, comment);
     }
 
     @DeleteMapping("/{curriculumId}")
     @ResponseBody
     public ApiResponse deleteCurriculum(@PathVariable long curriculumId) {
         if (curriculumDao.deleteCurriculum(curriculumId)) {
-            return new ApiResponse(HttpStatus.ACCEPTED, "Curriculum with ID " + curriculumId + " has been deleted.");
+            return new ApiResponse(HttpStatus.OK, "Curriculum with ID " + curriculumId + " has been deleted.");
         } else {
             return new ApiResponse(HttpStatus.NOT_FOUND, "Curriculum with ID " + curriculumId + " not found.");
         }
@@ -49,7 +49,7 @@ public class CurriculumController {
             @RequestBody Curriculum updatedCurriculum) {
         Curriculum result = curriculumDao.updateCurriculum(curriculumId, updatedCurriculum.getName(), updatedCurriculum.getDescription());
         if (result != null) {
-            return new ApiResponse(HttpStatus.ACCEPTED, result);
+            return new ApiResponse(HttpStatus.OK, result);
         } else {
             return new ApiResponse(HttpStatus.NOT_FOUND, "Curriculum with ID " + curriculumId + " not found.");
         }

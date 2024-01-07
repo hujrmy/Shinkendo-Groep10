@@ -19,21 +19,21 @@ public class PostController {
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
     public ApiResponse getPosts(){
-        return new ApiResponse(HttpStatus.ACCEPTED, this.postDao.getAllPost());
+        return new ApiResponse(HttpStatus.OK, this.postDao.getAllPost());
     }
 
     @RequestMapping(value ="", method = RequestMethod.POST)
     @ResponseBody
     public ApiResponse addUsers(@RequestBody Post newDao){
         Post add = this.postDao.addPost(newDao);
-        return new ApiResponse(HttpStatus.ACCEPTED, add);
+        return new ApiResponse(HttpStatus.OK, add);
     }
 
     @DeleteMapping("/{postId}")
     @ResponseBody
     public ApiResponse deletePost(@PathVariable long postId){
         if (postDao.deletePost(postId)) {
-            return new ApiResponse(HttpStatus.ACCEPTED, "Post with ID "+ postId + "has been deleted.");
+            return new ApiResponse(HttpStatus.OK, "Post with ID "+ postId + "has been deleted.");
         }else{
             return new ApiResponse(HttpStatus.NOT_FOUND, "Post with ID " + postId + "not found.");
         }
@@ -42,6 +42,6 @@ public class PostController {
     @RequestMapping(value ="/getHighestId", method = RequestMethod.GET)
     @ResponseBody
     public ApiResponse getHighestId(){
-        return new ApiResponse(HttpStatus.ACCEPTED, this.postDao.getHighestId());
+        return new ApiResponse(HttpStatus.OK, this.postDao.getHighestId());
     }
 }

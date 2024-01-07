@@ -27,33 +27,33 @@ public class UserController {
     @ResponseBody
     public ApiResponse getAllNames(){
         List<String> allNames = this.userDao.getAllUserData();
-        return new ApiResponse(HttpStatus.ACCEPTED, allNames);
+        return new ApiResponse(HttpStatus.OK, allNames);
     }
 
     @RequestMapping(value = "names", method = RequestMethod.GET)
     @ResponseBody
     public ApiResponse getUsersByName(@RequestParam("name") String name) {
         List<String> names = this.userDao.getUsersByName(name);
-        return new ApiResponse(HttpStatus.ACCEPTED, names);
+        return new ApiResponse(HttpStatus.OK, names);
     }
 
     @RequestMapping(value = "rights", method = RequestMethod.GET)
     @ResponseBody
     public ApiResponse getRightsByName(@RequestParam("username") String username) {
         List<Rights> rights = this.userDao.getRightsByUserName(username);
-        return new ApiResponse(HttpStatus.ACCEPTED, rights);
+        return new ApiResponse(HttpStatus.OK, rights);
     }
 
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
     public ApiResponse getAllUsers() {
-        return new ApiResponse(HttpStatus.ACCEPTED, this.userDao.getAllUsers());
+        return new ApiResponse(HttpStatus.OK, this.userDao.getAllUsers());
     }
 
     @RequestMapping(value ="", method = RequestMethod.POST)
     @ResponseBody
     public ApiResponse addUsers(@RequestBody User newDao){
         User add = this.userDao.addUsers(newDao);
-        return new ApiResponse(HttpStatus.ACCEPTED, add);
+        return new ApiResponse(HttpStatus.OK, add);
     }
 }
