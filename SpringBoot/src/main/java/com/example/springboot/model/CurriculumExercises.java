@@ -10,8 +10,10 @@ public class CurriculumExercises {
     private long ID;
 
     @ManyToOne
+    @JoinColumn(name = "exercise_id")
     private Exercise exercise;
     @ManyToOne
+    @JoinColumn(name = "curriculum_id")
     private Curriculum curriculum;
 
     public CurriculumExercises() {

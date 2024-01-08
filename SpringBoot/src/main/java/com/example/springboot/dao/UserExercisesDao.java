@@ -5,7 +5,7 @@ import com.example.springboot.repository.UserExercisesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
+import java.util.*;
 
 @Component
 public class UserExercisesDao {
@@ -29,5 +29,14 @@ public class UserExercisesDao {
             return true;
         }
         return false;
+    }
+
+    public List<Object[]> findUserExercisesByUsername(String username) {
+        System.out.println(username);
+        return userExercisesRepository.findUserExercises(username);
+    }
+
+    public boolean existsByUsername(String username){
+        return (userExercisesRepository.existsByUsername(username));
     }
 }

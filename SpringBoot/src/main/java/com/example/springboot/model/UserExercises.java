@@ -12,8 +12,10 @@ public class UserExercises {
     private long ID;
 
     @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
     @ManyToOne
+    @JoinColumn(name = "exercise_id")
     private Exercise exercise;
     private int exerciseToDo;
     private int exerciseDone;

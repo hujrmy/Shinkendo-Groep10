@@ -8,7 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/curriculumExercises")
+@RequestMapping("api/curriculumExercises")
 public class CurriculumExercisesController {
     private final CurriculumExercisesDao curriculumExercisesDao;
 
