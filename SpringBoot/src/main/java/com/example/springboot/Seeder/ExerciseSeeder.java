@@ -15,7 +15,7 @@ public class ExerciseSeeder {
         for (int i = 0; i < 10; i++) {
             Exercise exercise1 = new Exercise();
             exercise1.setName(String.valueOf(faker.name()));
-            exercise1.setMedia(String.join(" ", faker.lorem().characters(20)));
+            exercise1.setMedia(String.join(" ", faker.lorem().characters(5)));
             this.exerciseDao.addExercise(exercise1);
         }
     }
