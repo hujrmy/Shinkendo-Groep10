@@ -7,10 +7,6 @@ import org.springframework.data.repository.query.*;
 import java.util.List;
 
 public interface UserExercisesRepository extends JpaRepository<UserExercises, Integer> {
-    @Query("SELECT CASE WHEN COUNT(ue) > 0 THEN true ELSE false END FROM UserExercises ue " +
-            "JOIN ue.user u " +
-            "WHERE u.username = :username")
-    Boolean existsByUsername(@Param("username") String username);
 
     @Query(value = "SELECT e.name, ue.exerciseToDo, ue.exerciseDone, ue.lastDone FROM UserExercises ue " +
             "JOIN ue.exercise e " +

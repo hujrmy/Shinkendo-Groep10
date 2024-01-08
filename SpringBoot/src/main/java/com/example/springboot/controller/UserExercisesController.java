@@ -44,20 +44,10 @@ public class UserExercisesController {
     }
 
     @GetMapping("/findExercises/{username}")
-    public ResponseEntity<List<Object[]>> getUserExercises(@PathVariable String username) {
-        List<Object[]> userExercises = userExercisesDao.findUserExercisesByUsername(username);
-        return new ResponseEntity<>(userExercises, HttpStatus.OK);
-    }
-
-    @GetMapping("/exists/{username}")
     @ResponseBody
-    public ResponseEntity<String> doesUsernameExist(@PathVariable String username) {
-        if (userExercisesDao.existsByUsername(username)) {
-            return ResponseEntity.ok("Username exists in UserExercises.");
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    public ApiResponse getUserExercises(@PathVariable String username) {
+        List<Object[]> userExercises = userExercisesDao.findUserExercisesByUsername(username);
+        return new ApiResponse(HttpStatus.ACCEPTED, userExercises);
     }
-
 
 }

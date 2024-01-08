@@ -1,7 +1,9 @@
 package com.example.springboot.model;
 
 import jakarta.persistence.*;
+import org.springframework.cglib.core.*;
 
+import java.time.*;
 import java.util.Date;
 
 @Entity
@@ -20,12 +22,12 @@ public class UserExercises {
     private int exerciseToDo;
     private int exerciseDone;
 
-    private Date lastDone;
+    private LocalDate lastDone;
 
     public UserExercises() {
     }
 
-    public UserExercises(long ID, User user, Exercise exercise, int exerciseToDo, int exerciseDone, Date lastDone) {
+    public UserExercises(long ID, User user, Exercise exercise, int exerciseToDo, int exerciseDone, LocalDate lastDone) {
         this.ID = ID;
         this.user = user;
         this.exercise = exercise;
@@ -34,11 +36,11 @@ public class UserExercises {
         this.lastDone = lastDone;
     }
 
-    public Date getLastDone() {
+    public LocalDate getLastDone() {
         return lastDone;
     }
 
-    public void setLastDone(Date lastDone) {
+    public void setLastDone(LocalDate lastDone) {
         this.lastDone = lastDone;
     }
 

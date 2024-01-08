@@ -35,8 +35,4 @@ public class UserExercisesDao {
         System.out.println(username);
         return userExercisesRepository.findUserExercises(username);
     }
-
-    public boolean existsByUsername(String username){
-        return (userExercisesRepository.existsByUsername(username));
-    }
 }
