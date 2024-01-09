@@ -1,8 +1,8 @@
-spring:
+sspring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/shinkendo
-    username: postgres
-    password: postgres
+    url: jdbc:postgresql://db-shinkendo-do-user-15503084-0.c.db.ondigitalocean.com:25060/defaultdb
+    username: doadmin
+    password: AVNS_-F-yN3DfjJQkVA8PyGP
   jpa:
     hibernate:
       ddl-auto: create-drop
@@ -19,3 +19,7 @@ application:
       expiration: 86400000 # 1 day
       refresh-token:
         expiration: 604800000 # 7 days
+
+server:
+  port: 8080
+  address: 164.92.150.243
