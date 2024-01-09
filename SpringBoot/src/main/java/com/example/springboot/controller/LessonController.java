@@ -29,6 +29,4 @@ public class LessonController {
         Lesson comment = this.lessonDao.addLesson(newDao);
         return new ApiResponse(HttpStatus.ACCEPTED, comment);
     }
-
-
 }

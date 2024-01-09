@@ -14,11 +14,11 @@ public class AttendanceList {
     private User user;
 
     @ManyToOne
-    private Lesson lesson;
+    private Exercise exercise;
 
-    public AttendanceList(User user, Lesson lesson) {
+    public AttendanceList(User user, Exercise exercise) {
         this.user = user;
-        this.lesson = lesson;
+        this.exercise = exercise;
     }
 
     public AttendanceList() {
@@ -42,12 +42,12 @@ public class AttendanceList {
         this.user = username;
     }
 
-    public Lesson getLesson() {
-        return lesson;
+    public Exercise getExercise() {
+        return exercise;
     }
 
-    public void setLesson(Lesson lesson) {
-        this.lesson = lesson;
+    public void setExercise(Exercise exercise) {
+        this.exercise = exercise;
     }
 
     @Override

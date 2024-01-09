@@ -14,11 +14,11 @@ public class Lesson {
     private LocalDate date;
 
     @ManyToOne
-    private Exercise exercise;
+    private AttendanceList attendance;
 
-    public Lesson(LocalDate date, Exercise exercise) {
+    public Lesson(LocalDate date, AttendanceList attendance) {
         this.date = date;
-        this.exercise = exercise;
+        this.attendance = attendance;
     }
 
     public Lesson() {
@@ -41,12 +41,12 @@ public class Lesson {
         this.date = date;
     }
 
-    public Exercise getExercise() {
-        return exercise;
+    public AttendanceList getAttendance() {
+        return attendance;
     }
 
-    public void setExercise(Exercise exercise) {
-        this.exercise = exercise;
+    public void setAttendance(AttendanceList attendance) {
+        this.attendance = attendance;
     }
 
     @Override
@@ -54,7 +54,7 @@ public class Lesson {
         return "Lesson{" +
                 "ID=" + ID +
                 ", date=" + date +
-                ", exercise=" + exercise +
+                ", attendance=" + attendance +
                 '}';
     }
 

@@ -3,6 +3,7 @@ package com.example.springboot;
 import com.example.springboot.dao.AttendanceListDao;
 import com.example.springboot.dao.LessonDao;
 import com.example.springboot.model.AttendanceList;
+import com.example.springboot.model.Exercise;
 import com.example.springboot.model.Lesson;
 import com.example.springboot.model.User;
 import com.example.springboot.repository.AttendanceListRepository;
@@ -30,7 +31,7 @@ public class AttendanceListTest {
     private User user;
 
     @Mock
-    private Lesson lesson;
+    private Exercise exercise;
 
     @BeforeEach
     void setup(){
@@ -42,7 +43,7 @@ public class AttendanceListTest {
         AttendanceList attendanceToAdd = new AttendanceList();
         attendanceToAdd.setID(1L);
         attendanceToAdd.setUser(user);
-        attendanceToAdd.setLesson(lesson);
+        attendanceToAdd.setExercise(exercise);
 
         when(attendanceListRepository.save(attendanceToAdd)).thenReturn(attendanceToAdd);
 
@@ -58,7 +59,7 @@ public class AttendanceListTest {
         List<AttendanceList> expectedAttendance = new ArrayList<>();
         AttendanceList attendance1 = new AttendanceList();
         attendance1.setID(1);
-        attendance1.setLesson(lesson);
+        attendance1.setExercise(exercise);
         attendance1.setUser(user);
 
         expectedAttendance.add(attendance1);
@@ -68,7 +69,7 @@ public class AttendanceListTest {
 
         assertEquals(expectedAttendance.size(), retrievedAttendance.size());
         assertEquals(expectedAttendance.get(0).getID(), retrievedAttendance.get(0).getID());
-        assertEquals(expectedAttendance.get(0).getLesson(), retrievedAttendance.get(0).getLesson());
+        assertEquals(expectedAttendance.get(0).getExercise(), retrievedAttendance.get(0).getExercise());
         assertEquals(expectedAttendance.get(0).getUser(), retrievedAttendance.get(0).getUser());
     }
 }

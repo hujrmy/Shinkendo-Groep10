@@ -28,8 +28,8 @@ public class AttendanceListController {
     @RequestMapping(value ="", method = RequestMethod.POST)
     @ResponseBody
     public ApiResponse addAttendance(@RequestBody AttendanceList newDao){
-        AttendanceList comment = this.attendanceListDao.addAttendance(newDao);
-        return new ApiResponse(HttpStatus.ACCEPTED, comment);
+        AttendanceList attendanceList = this.attendanceListDao.addAttendance(newDao);
+        return new ApiResponse(HttpStatus.ACCEPTED, attendanceList);
     }
 
 
