@@ -38,7 +38,7 @@ public class DatabaseSeeder {
         exerciseSeeder.seed(faker);
         Dojo dojo = dojoSeeder.seed();
         User user = adminAccountSeeder.seed(dojo);
-        userExercisesSeeder.seed(user);
+        userExercisesSeeder.seed(user, faker);
 
 
         this.alreadySeeded = true;
