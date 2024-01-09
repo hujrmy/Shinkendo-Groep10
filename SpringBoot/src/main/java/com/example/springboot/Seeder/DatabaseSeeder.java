@@ -1,9 +1,10 @@
 package com.example.springboot.Seeder;
 
 
-import com.example.springboot.model.Dojo;
+import com.example.springboot.model.*;
 import com.github.javafaker.Faker;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.kafka.*;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
@@ -21,6 +22,8 @@ public class DatabaseSeeder {
     private DojoSeeder dojoSeeder;
     @Autowired
     private AdminAccountSeeder adminAccountSeeder;
+    @Autowired
+    private UserExercisesSeeder userExercisesSeeder;
     private boolean alreadySeeded = false;
 
 
@@ -34,7 +37,8 @@ public class DatabaseSeeder {
         curriculumSeeder.seed();
         exerciseSeeder.seed(faker);
         Dojo dojo = dojoSeeder.seed();
-        adminAccountSeeder.seed(dojo);
+        User user = adminAccountSeeder.seed(dojo);
+        userExercisesSeeder.seed(user);
 
 
         this.alreadySeeded = true;

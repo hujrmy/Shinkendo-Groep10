@@ -15,7 +15,7 @@ public class AdminAccountSeeder {
     @Autowired
     private UserDao userDao;
 
-    public void seed(Dojo dojo){
+    public User seed(Dojo dojo){
         User user = new User();
         user.setID(1);
         user.setRights(Rights.ADMIN);
@@ -25,5 +25,6 @@ public class AdminAccountSeeder {
         user.setDojo(dojo);
         user.setRank(Rank.IKKYU);
         this.userDao.addUsers(user);
+        return user;
     }
 }
