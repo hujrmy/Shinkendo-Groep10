@@ -29,4 +29,15 @@ public class NoteController {
         Note comment = this.noteDao.addNote(newDao);
         return new ApiResponse(HttpStatus.ACCEPTED, comment);
     }
+
+    @DeleteMapping("/{noteId}")
+    @ResponseBody
+    public ApiResponse deleteNote(@PathVariable long noteId){
+        if(noteDao.deleteNote(noteId)){
+            return new ApiResponse(HttpStatus.ACCEPTED, "Note with ID " + noteId + " has been deleted");
+        }
+        else{
+            return new ApiResponse(HttpStatus.NOT_FOUND, "Note with ID " + noteId + " not found.");
+        }
+    }
 }

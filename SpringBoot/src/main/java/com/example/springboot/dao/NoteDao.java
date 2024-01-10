@@ -26,4 +26,12 @@ public class NoteDao {
         ArrayList<Note> allNote = (ArrayList<Note>) this.noteRepository.findAll();
         return allNote;
     }
+
+    public boolean deleteNote(long noteId){
+        if (noteRepository.existsById((int) noteId)){
+            noteRepository.deleteById((int) noteId);
+            return true;
+        }
+        return false;
+    }
 }
