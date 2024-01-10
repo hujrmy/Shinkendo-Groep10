@@ -23,3 +23,8 @@ application:
 server:
   port: 8080
   address: 164.92.150.243
+  ssl:
+    key-store: /etc/ssl/keystore.p12
+    key-store-password: password
+    key-store-type: PKCS12
+    key-alias: fuujokan-amsterdam.online
