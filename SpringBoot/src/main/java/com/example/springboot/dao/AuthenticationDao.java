@@ -61,11 +61,15 @@ public class AuthenticationDao {
         );
         var user = repository.findByUsername(request.getUsername())
                 .orElseThrow();
+
         var jwtToken = jwtService.generateToken(user);
         var refreshToken = jwtService.generateRefreshToken(user);
+
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .refreshToken(refreshToken)
+                .userId(user.getID())
+                .rights(user.getRights())
                 .build();
     }
 
