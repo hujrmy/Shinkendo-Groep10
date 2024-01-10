@@ -13,12 +13,8 @@ public class Lesson {
     private long ID;
     private LocalDate date;
 
-    @ManyToOne
-    private AttendanceList attendance;
-
-    public Lesson(LocalDate date, AttendanceList attendance) {
+    public Lesson(LocalDate date) {
         this.date = date;
-        this.attendance = attendance;
     }
 
     public Lesson() {
@@ -41,20 +37,11 @@ public class Lesson {
         this.date = date;
     }
 
-    public AttendanceList getAttendance() {
-        return attendance;
-    }
-
-    public void setAttendance(AttendanceList attendance) {
-        this.attendance = attendance;
-    }
-
     @Override
     public String toString() {
         return "Lesson{" +
                 "ID=" + ID +
                 ", date=" + date +
-                ", attendance=" + attendance +
                 '}';
     }
 

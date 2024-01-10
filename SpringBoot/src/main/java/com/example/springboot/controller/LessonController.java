@@ -17,10 +17,17 @@ public class LessonController {
         this.lessonDao = lessonDao;
     }
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value="/all", method = RequestMethod.GET)
     @ResponseBody
     public ApiResponse getAllLessons(){
         return new ApiResponse(HttpStatus.ACCEPTED, this.lessonDao.getAllLessons());
+    }
+
+
+    @RequestMapping(value ="/{lessonId}", method = RequestMethod.GET)
+    @ResponseBody
+    public ApiResponse getLessonById(@PathVariable long lessonId) {
+        return new ApiResponse(HttpStatus.ACCEPTED, this.lessonDao.getLessonById(lessonId));
     }
 
     @RequestMapping(value ="", method = RequestMethod.POST)
