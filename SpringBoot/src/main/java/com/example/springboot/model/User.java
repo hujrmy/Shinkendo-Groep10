@@ -1,5 +1,6 @@
 package com.example.springboot.model;
 
+import com.example.springboot.Validation.Password;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -22,6 +23,7 @@ public class User implements UserDetails {
     private long ID;
 
     private String username;
+    @Password
     private String password;
     @Enumerated(EnumType.STRING)
     private Rights rights;
