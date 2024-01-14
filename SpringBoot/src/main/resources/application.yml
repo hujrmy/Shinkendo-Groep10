@@ -5,7 +5,7 @@ spring:
     password: AVNS_-F-yN3DfjJQkVA8PyGP
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
     show-sql: true
     properties:
       hibernate:
