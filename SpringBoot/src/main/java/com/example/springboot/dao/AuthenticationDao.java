@@ -29,7 +29,7 @@ public class AuthenticationDao {
     private final AuthenticationManager authenticationManager;
 
 
-    public AuthenticationResponse register(RegisterRequest request) {
+    public AuthenticationResponse register(User request) {
 
         if (repository.existsByUsername(request.getUsername())) {
             throw new UsernameAlreadyExistsException("Username already exists.");

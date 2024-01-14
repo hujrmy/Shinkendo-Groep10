@@ -4,6 +4,7 @@ import com.example.springboot.model.AuthenticationRequest;
 import com.example.springboot.model.AuthenticationResponse;
 import com.example.springboot.model.RegisterRequest;
 import com.example.springboot.dao.AuthenticationDao;
+import com.example.springboot.model.User;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +24,7 @@ public class AuthenticationController {
     private final AuthenticationDao service;
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(
-            @RequestBody RegisterRequest request
+            @RequestBody User request
     ){
         return ResponseEntity.ok(service.register(request));
     }
@@ -34,6 +35,8 @@ public class AuthenticationController {
     ){
         return ResponseEntity.ok(service.authenticate(request));
     }
+
+
 
     @PostMapping("/refresh-token")
     public void refreshToken(
