@@ -1,12 +1,12 @@
 package com.example.springboot.model;
 
-import com.example.springboot.Validation.Password;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.validation.constraints.Pattern;
 import java.util.Collection;
 import java.util.List;
 
@@ -23,7 +23,7 @@ public class User implements UserDetails {
     private long ID;
 
     private String username;
-    @Password
+    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,}$", message = "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one digit.")
     private String password;
     @Enumerated(EnumType.STRING)
     private Rights rights;
