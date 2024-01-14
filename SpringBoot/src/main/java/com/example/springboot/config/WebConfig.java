@@ -12,7 +12,7 @@ public class WebConfig implements WebMvcConfigurer {
         System.out.println("CORS configuration applied");
         registry.addMapping("/**")
                 .allowedOrigins("http://localhost:4200", "https://159.65.194.205", "http://159.65.194.205",
-                        "http://159.65.194.205:8080", "https://oyster-app-hhkq7.ondigitalocean.app",
+                        "http://159.65.194.205:8080", "https://oyster-app-hhkq7.ondigitalocean.app, https://164.92.150.243:8080",
                         "https://fuujokan-amsterdam.online", "https://fuujokan-amsterdam.online:8080")
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowCredentials(true);
