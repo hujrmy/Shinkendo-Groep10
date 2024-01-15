@@ -18,7 +18,7 @@ public interface UserExercisesRepository extends JpaRepository<UserExercises, In
             "JOIN Curriculum c ON c = ce.curriculum " +
             "WHERE u.username = :username " +
             "AND u.rank = c.ID " +
-            "ORDER BY ue.exerciseToDo DESC")
+            "ORDER BY ue.exerciseDone ASC ")
     List<Object[]> findUserExercises(@Param("username") String username);
 
     @Modifying
@@ -29,14 +29,4 @@ public interface UserExercisesRepository extends JpaRepository<UserExercises, In
             "AND ue.exercise.ID = :exercise_id"
             )
     int updateToDoList(@Param("username") String username, @Param("exercise_id") int exercise_id);
-
-    @Modifying
-    @Transactional
-    @Query("UPDATE UserExercises ue " +
-            "SET ue.exerciseToDo = 0 " +
-            "WHERE ue.user.ID = (SELECT u.ID FROM User u WHERE u.username = :username) " +
-            "AND ue.exercise.ID = :exercise_id " +
-            "AND ue.exerciseToDo < 0"
-    )
-    int backToZero(@Param("username") String username, @Param("exercise_id") int exercise_id);
 }
