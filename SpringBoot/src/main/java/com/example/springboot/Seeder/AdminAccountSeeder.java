@@ -20,8 +20,8 @@ public class AdminAccountSeeder {
         User user = new User();
         user.setID(1);
         user.setRights(Rights.SENSEI);
-        user.setName("admin");
-        user.setUsername("admin");
+        user.setName("Sensei");
+        user.setUsername("Sensei");
         user.setPassword("Groente123");
         user.setDojo(dojo);
         user.setRank(Rank.IKKYU);
