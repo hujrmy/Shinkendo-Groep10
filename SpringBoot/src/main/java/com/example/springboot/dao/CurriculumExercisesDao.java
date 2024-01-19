@@ -26,8 +26,8 @@ public class CurriculumExercisesDao {
 
     @Transactional
     public boolean deleteCurriculumExercisesByExerciseId(long curriculumExerciseId){
-        curriculumExercisesRepository.deleteByCurriculumExerciseID((int) curriculumExerciseId);
-        return curriculumExercisesRepository.findByCurriculumExerciseID((int) curriculumExerciseId) == null;
+        curriculumExercisesRepository.deleteByID((int) curriculumExerciseId);
+        return curriculumExercisesRepository.findByID((int) curriculumExerciseId) == null;
     }
 
 
