@@ -34,4 +34,12 @@ public class LessonDao {
         return lesson;
     }
 
+    public boolean deleteLesson(long lessonId) {
+        if (lessonRepository.existsById((int) lessonId)) {
+            lessonRepository.deleteById((int) lessonId);
+            return true;
+        }
+        return false;
+    }
+
 }

@@ -36,4 +36,14 @@ public class LessonController {
         Lesson comment = this.lessonDao.addLesson(newDao);
         return new ApiResponse(HttpStatus.ACCEPTED, comment);
     }
+
+    @DeleteMapping("/delete/{lessonId}")
+    @ResponseBody
+    public ApiResponse deleteLesson(@PathVariable long lessonId) {
+        if (lessonDao.deleteLesson(lessonId)) {
+            return new ApiResponse(HttpStatus.ACCEPTED, "Lesson with ID " + lessonId + " has been deleted.");
+        } else {
+            return new ApiResponse(HttpStatus.NOT_FOUND, "Lesson with ID " + lessonId + " not found.");
+        }
+    }
 }
