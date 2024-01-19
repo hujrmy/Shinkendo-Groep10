@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CurriculumExercisesRepository extends JpaRepository<CurriculumExercises, Integer> {
 
-    CurriculumExercises findByCurriculumExerciseID(int curriculumExerciseId);
+    CurriculumExercises findByID(int curriculumExerciseId);
 
-    void deleteByCurriculumExerciseID(int curriculumExerciseId);
+    void deleteByID(int curriculumExerciseId);
 }
