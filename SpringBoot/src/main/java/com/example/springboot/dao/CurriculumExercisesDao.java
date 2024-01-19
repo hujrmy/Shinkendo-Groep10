@@ -1,7 +1,6 @@
 package com.example.springboot.dao;
 
 import com.example.springboot.model.CurriculumExercises;
-import com.example.springboot.model.UserExercises;
 import com.example.springboot.repository.CurriculumExercisesRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +25,9 @@ public class CurriculumExercisesDao {
     }
 
     @Transactional
-    public boolean deleteCurriculumExercisesByExerciseId(long exerciseId){
-        curriculumExercisesRepository.deleteByExerciseID((int) exerciseId);
-        return curriculumExercisesRepository.findByExerciseID((int) exerciseId) == null;
+    public boolean deleteCurriculumExercisesByExerciseId(long curriculumExerciseId){
+        curriculumExercisesRepository.deleteByCurriculumExerciseID((int) curriculumExerciseId);
+        return curriculumExercisesRepository.findByCurriculumExerciseID((int) curriculumExerciseId) == null;
     }
 
 

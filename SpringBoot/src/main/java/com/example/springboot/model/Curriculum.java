@@ -13,10 +13,7 @@ public class Curriculum {
     private String name;
     private String description;
 
-
-
     public Curriculum() {
-
     }
 
     public Curriculum(String name, String description) {
