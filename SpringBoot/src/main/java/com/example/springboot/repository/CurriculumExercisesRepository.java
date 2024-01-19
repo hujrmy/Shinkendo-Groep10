@@ -7,5 +7,5 @@ public interface CurriculumExercisesRepository extends JpaRepository<CurriculumE
 
     CurriculumExercises findByCurriculumExerciseID(int curriculumExerciseId);
 
-    void deleteByCurriculumExerciseID(int exerciseId);
+    void deleteByCurriculumExerciseID(int curriculumExerciseId);
 }
