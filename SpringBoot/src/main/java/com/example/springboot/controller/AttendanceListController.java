@@ -25,12 +25,27 @@ public class AttendanceListController {
         return new ApiResponse(HttpStatus.ACCEPTED, this.attendanceListDao.getAllAttendance());
     }
 
+    @RequestMapping(value ="/lesson/{lessonId}", method = RequestMethod.GET)
+    @ResponseBody
+    public ApiResponse getAttendanceByLesson(@PathVariable long lessonId) {
+        return new ApiResponse(HttpStatus.ACCEPTED, this.attendanceListDao.getAttendancesByLessonId(lessonId));
+    }
+
     @RequestMapping(value ="", method = RequestMethod.POST)
     @ResponseBody
     public ApiResponse addAttendance(@RequestBody AttendanceList newDao){
-        AttendanceList comment = this.attendanceListDao.addAttendance(newDao);
-        return new ApiResponse(HttpStatus.ACCEPTED, comment);
+        AttendanceList attendanceList = this.attendanceListDao.addAttendance(newDao);
+        return new ApiResponse(HttpStatus.ACCEPTED, attendanceList);
     }
 
+    @DeleteMapping("/delete/{lessonId}")
+    @ResponseBody
+    public ApiResponse deleteAttendanceByLesson(@PathVariable long lessonId) {
+        if (attendanceListDao.deleteAttendanceByLesson(lessonId)) {
+            return new ApiResponse(HttpStatus.ACCEPTED, "Attendance(s) with LessonID " + lessonId + " has been deleted.");
+        } else {
+            return new ApiResponse(HttpStatus.NOT_FOUND, "Attendance(s) with LessonID " + lessonId + " not found.");
+        }
+    }
 
 }

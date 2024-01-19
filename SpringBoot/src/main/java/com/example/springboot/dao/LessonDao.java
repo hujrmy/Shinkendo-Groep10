@@ -1,5 +1,7 @@
 package com.example.springboot.dao;
 
+import com.example.springboot.Exception.ExercisesNotFoundException;
+import com.example.springboot.model.Exercise;
 import com.example.springboot.model.Lesson;
 import com.example.springboot.repository.LessonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,20 @@ public class LessonDao {
     public ArrayList<Lesson> getAllLessons(){
         ArrayList<Lesson> AllLessons = (ArrayList<Lesson>) this.lessonRepository.findAll();
         return AllLessons;
+    }
+
+    public Lesson getLessonById(long lessonId) {
+        Lesson lesson = lessonRepository.findById((int) lessonId)
+                .orElseThrow(() -> new ExercisesNotFoundException("Exercise not found with ID " + lessonId));
+        return lesson;
+    }
+
+    public boolean deleteLesson(long lessonId) {
+        if (lessonRepository.existsById((int) lessonId)) {
+            lessonRepository.deleteById((int) lessonId);
+            return true;
+        }
+        return false;
     }
 
 }

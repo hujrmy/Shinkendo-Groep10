@@ -17,10 +17,17 @@ public class LessonController {
         this.lessonDao = lessonDao;
     }
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value="/all", method = RequestMethod.GET)
     @ResponseBody
     public ApiResponse getAllLessons(){
         return new ApiResponse(HttpStatus.ACCEPTED, this.lessonDao.getAllLessons());
+    }
+
+
+    @RequestMapping(value ="/{lessonId}", method = RequestMethod.GET)
+    @ResponseBody
+    public ApiResponse getLessonById(@PathVariable long lessonId) {
+        return new ApiResponse(HttpStatus.ACCEPTED, this.lessonDao.getLessonById(lessonId));
     }
 
     @RequestMapping(value ="", method = RequestMethod.POST)
@@ -30,5 +37,13 @@ public class LessonController {
         return new ApiResponse(HttpStatus.ACCEPTED, comment);
     }
 
-
+    @DeleteMapping("/delete/{lessonId}")
+    @ResponseBody
+    public ApiResponse deleteLesson(@PathVariable long lessonId) {
+        if (lessonDao.deleteLesson(lessonId)) {
+            return new ApiResponse(HttpStatus.ACCEPTED, "Lesson with ID " + lessonId + " has been deleted.");
+        } else {
+            return new ApiResponse(HttpStatus.NOT_FOUND, "Lesson with ID " + lessonId + " not found.");
+        }
+    }
 }

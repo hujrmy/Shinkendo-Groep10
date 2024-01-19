@@ -13,12 +13,8 @@ public class Lesson {
     private long ID;
     private LocalDate date;
 
-    @ManyToOne
-    private Exercise exercise;
-
-    public Lesson(LocalDate date, Exercise exercise) {
+    public Lesson(LocalDate date) {
         this.date = date;
-        this.exercise = exercise;
     }
 
     public Lesson() {
@@ -41,20 +37,11 @@ public class Lesson {
         this.date = date;
     }
 
-    public Exercise getExercise() {
-        return exercise;
-    }
-
-    public void setExercise(Exercise exercise) {
-        this.exercise = exercise;
-    }
-
     @Override
     public String toString() {
         return "Lesson{" +
                 "ID=" + ID +
                 ", date=" + date +
-                ", exercise=" + exercise +
                 '}';
     }
 
