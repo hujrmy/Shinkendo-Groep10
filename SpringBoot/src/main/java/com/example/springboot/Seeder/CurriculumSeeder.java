@@ -16,12 +16,12 @@ public class CurriculumSeeder {
     private CurriculumDao curriculumDao;
 
     public void seed(){
+        List<String> ranks = List.of(new String[]{"Ichimonji", "Jiho", "Santen", "Shiho", "Kirigami", "Gohou", "Gohoumokuroku", "Hyaku-e"});
         for(int i = 0; i < 8; i++) {
-            Curriculum rank1 = new Curriculum();
-            List<String> ranks = List.of(new String[]{"Ikkyu", "Nikyu", "Sankyu", "Yonkyu", "Gokyu", "Roklyu", "Nanakyu", "Hachikyu"});
-            rank1.setName(ranks.get(i));
-            rank1.setDescription("rank" + i+1);
-            this.curriculumDao.addCurriculum(rank1);
+            Curriculum rank = new Curriculum();
+            rank.setName(ranks.get(i));
+            rank.setDescription("rank" + i+1);
+            this.curriculumDao.addCurriculum(rank);
         }
     }
 }
