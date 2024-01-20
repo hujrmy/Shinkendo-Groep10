@@ -37,6 +37,7 @@ public class UserExercisesDao {
 
     public int updateToDo(String username, int exercise_id) {
         int update = userExercisesRepository.updateToDoList(username, exercise_id);
+        userExercisesRepository.updateLastDone(username, exercise_id);
         return update;
     }
 }
