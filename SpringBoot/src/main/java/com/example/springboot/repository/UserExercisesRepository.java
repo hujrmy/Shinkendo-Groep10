@@ -29,4 +29,13 @@ public interface UserExercisesRepository extends JpaRepository<UserExercises, In
             "AND ue.exercise.ID = :exercise_id"
             )
     int updateToDoList(@Param("username") String username, @Param("exercise_id") int exercise_id);
+
+    @Modifying
+    @Transactional
+    @Query("UPDATE UserExercises ue " +
+            "SET ue.lastDone = local date " +
+            "WHERE ue.user.ID = (SELECT u.ID FROM User u WHERE u.username = :username) " +
+            "AND ue.exercise.ID = :exercise_id"
+    )
+    void updateLastDone(@Param("username") String username, @Param("exercise_id") int exercise_id);
 }
