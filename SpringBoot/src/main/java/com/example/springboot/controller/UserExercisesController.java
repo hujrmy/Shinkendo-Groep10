@@ -50,7 +50,8 @@ public class UserExercisesController {
         return new ApiResponse(HttpStatus.ACCEPTED, userExercises);
     }
 
-    @GetMapping("/updateToDo/{username}/{exercise_id}")
+
+    @RequestMapping(value = "/updateToDo/{username}/{exercise_id}", method = RequestMethod.POST)
     @ResponseBody
     public ApiResponse udpateToDoList(@PathVariable String username, @PathVariable int exercise_id) {
         return new ApiResponse(HttpStatus.ACCEPTED, userExercisesDao.updateToDo(username, exercise_id));
