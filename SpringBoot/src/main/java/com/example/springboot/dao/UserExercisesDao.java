@@ -13,6 +13,10 @@ public class UserExercisesDao {
     @Autowired
     private UserExercisesRepository userExercisesRepository;
 
+    public UserExercisesDao(UserExercisesRepository userExercisesRepository) {
+        this.userExercisesRepository = userExercisesRepository;
+    }
+
     public UserExercises addUserExercises(UserExercises newUserExercises){
         UserExercises userExercises = this.userExercisesRepository.save(newUserExercises);
         return userExercises;

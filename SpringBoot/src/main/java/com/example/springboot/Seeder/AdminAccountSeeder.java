@@ -24,7 +24,7 @@ public class AdminAccountSeeder {
         user.setUsername("Sensei");
         user.setPassword("Groente123");
         user.setDojo(dojo);
-        user.setRank(Rank.IKKYU);
+        user.setRank(Rank.Hyaku);
         this.authenticationDao.register(user);
         return user;
     }
