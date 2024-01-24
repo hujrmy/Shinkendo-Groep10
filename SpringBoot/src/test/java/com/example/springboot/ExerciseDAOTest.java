@@ -1,5 +1,6 @@
 package com.example.springboot;
 
+import com.example.springboot.Exception.ExercisesNotFoundException;
 import com.example.springboot.dao.ExerciseDao;
 import com.example.springboot.model.Exercise;
 import com.example.springboot.repository.ExerciseRepository;
@@ -11,8 +12,9 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -33,13 +35,34 @@ public class ExerciseDAOTest {
         Exercise exerciseToAdd = new Exercise();
         exerciseToAdd.setID(1L);
         exerciseToAdd.setName("Sample Exercise");
+        exerciseToAdd.setMedia("www.youtube.com");
 
         when(exerciseRepository.save(exerciseToAdd)).thenReturn(exerciseToAdd);
 
         Exercise addedExercise = SUT.addExercise(exerciseToAdd);
 
-        assertEquals(1L, addedExercise.getID());
-        assertEquals("Sample Exercise", addedExercise.getName());
+        assertNotNull(addedExercise);
+        assertEquals(addedExercise, exerciseToAdd);
+    }
+
+    @Test
+    public void testGetExerciseById_ExerciseFound() {
+        long exerciseId = 1L;
+        Exercise mockExercise = new Exercise();
+        when(exerciseRepository.findById((int) exerciseId)).thenReturn(Optional.of(mockExercise));
+
+        Exercise result = SUT.getExerciseById(exerciseId);
+
+        assertNotNull(result);
+        assertEquals(mockExercise, result);
+    }
+
+    @Test
+    public void testGetExerciseById_ExerciseNotFound() {
+        long exerciseId = 1L;
+        when(exerciseRepository.findById((int) exerciseId)).thenReturn(Optional.empty());
+
+        assertThrows(ExercisesNotFoundException.class, () -> SUT.getExerciseById(exerciseId));
     }
 
     @Test
