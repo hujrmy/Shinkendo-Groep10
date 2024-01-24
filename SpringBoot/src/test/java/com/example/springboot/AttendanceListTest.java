@@ -36,33 +36,46 @@ public class AttendanceListTest {
     @BeforeEach
     void setup(){
         this.SUT = new AttendanceListDao(attendanceListRepository);
+        AttendanceList attendanceList = new AttendanceList();
     }
 
     @Test
     void should_add_attendance_to_repository(){
         AttendanceList attendanceToAdd = new AttendanceList();
-        attendanceToAdd.setID(1L);
+        Lesson lesson = new Lesson();
+        User user = new User();
+
+        lesson.setID(1);
+        user.setName("TestName");
+
+        attendanceToAdd.setID(1);
+        attendanceToAdd.setLesson(lesson);
         attendanceToAdd.setUser(user);
-        attendanceToAdd.setExercise(exercise);
 
         when(attendanceListRepository.save(attendanceToAdd)).thenReturn(attendanceToAdd);
 
-        AttendanceList addedAttendance = SUT.addAttendance(attendanceToAdd);
+        AttendanceList addedAttendanceList = SUT.addAttendance(attendanceToAdd);
 
-        assertEquals(1L, addedAttendance.getID());
-        assertEquals(1L, 1);
-        assertEquals(1L, 1);
+        assertEquals(1, addedAttendanceList.getID());
+        assertEquals("TestName", addedAttendanceList.getUser().getName());
+        assertEquals(1, addedAttendanceList.getLesson().getID());
     }
 
     @Test
     void should_get_all_attendance_from_repository(){
         List<AttendanceList> expectedAttendance = new ArrayList<>();
-        AttendanceList attendance1 = new AttendanceList();
-        attendance1.setID(1);
-        attendance1.setExercise(exercise);
-        attendance1.setUser(user);
+        AttendanceList attendanceList = new AttendanceList();
+        Exercise exercise = new Exercise();
+        User user = new User();
 
-        expectedAttendance.add(attendance1);
+        exercise.setName("TestExercise");
+        user.setName("TestUser");
+
+        attendanceList.setID(1);
+        attendanceList.setExercise(exercise);
+        attendanceList.setUser(user);
+
+        expectedAttendance.add(attendanceList);
 
         when(attendanceListRepository.findAll()).thenReturn((expectedAttendance));
         List<AttendanceList> retrievedAttendance = SUT.getAllAttendance();
