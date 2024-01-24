@@ -26,6 +26,7 @@ public class AttendanceListTest {
     @Mock
     private AttendanceListRepository attendanceListRepository;
     private AttendanceListDao SUT;
+    private AttendanceList attendanceList;
 
     @Mock
     private User user;
@@ -36,25 +37,24 @@ public class AttendanceListTest {
     @BeforeEach
     void setup(){
         this.SUT = new AttendanceListDao(attendanceListRepository);
-        AttendanceList attendanceList = new AttendanceList();
+        this.attendanceList = new AttendanceList();
     }
 
     @Test
     void should_add_attendance_to_repository(){
-        AttendanceList attendanceToAdd = new AttendanceList();
         Lesson lesson = new Lesson();
         User user = new User();
 
         lesson.setID(1);
         user.setName("TestName");
 
-        attendanceToAdd.setID(1);
-        attendanceToAdd.setLesson(lesson);
-        attendanceToAdd.setUser(user);
+        attendanceList.setID(1);
+        attendanceList.setLesson(lesson);
+        attendanceList.setUser(user);
 
-        when(attendanceListRepository.save(attendanceToAdd)).thenReturn(attendanceToAdd);
+        when(attendanceListRepository.save(attendanceList)).thenReturn(attendanceList);
 
-        AttendanceList addedAttendanceList = SUT.addAttendance(attendanceToAdd);
+        AttendanceList addedAttendanceList = SUT.addAttendance(attendanceList);
 
         assertEquals(1, addedAttendanceList.getID());
         assertEquals("TestName", addedAttendanceList.getUser().getName());
@@ -64,7 +64,6 @@ public class AttendanceListTest {
     @Test
     void should_get_all_attendance_from_repository(){
         List<AttendanceList> expectedAttendance = new ArrayList<>();
-        AttendanceList attendanceList = new AttendanceList();
         Exercise exercise = new Exercise();
         User user = new User();
 
