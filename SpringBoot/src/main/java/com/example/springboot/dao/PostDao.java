@@ -13,6 +13,10 @@ public class PostDao {
     @Autowired
     private PostRepository postRepository;
 
+    public PostDao(PostRepository postRepository) {
+        this.postRepository = postRepository;
+    }
+
     public Post addPost(Post newPost){
         Post post = this.postRepository.save(newPost);
         return post;
