@@ -1,11 +1,11 @@
 package com.example.springboot.model;
 
+import com.example.springboot.model.Enums.Rank;
+import com.example.springboot.model.Enums.Rights;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.jsonwebtoken.security.Password;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.GenericGenerator;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 @Component
 public class NoteDao {
@@ -27,9 +28,9 @@ public class NoteDao {
         return allNote;
     }
 
-    public boolean deleteNote(long noteId){
-        if (noteRepository.existsById((int) noteId)){
-            noteRepository.deleteById((int) noteId);
+    public boolean deleteNote(UUID noteId){
+        if (noteRepository.existsById(noteId)){
+            noteRepository.deleteById(noteId);
             return true;
         }
         return false;

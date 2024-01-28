@@ -1,6 +1,8 @@
 package com.example.springboot.model;
 
 
+import com.example.springboot.model.Enums.Rank;
+import com.example.springboot.model.Enums.Rights;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("api/lesson")
 public class LessonController {
@@ -26,7 +28,7 @@ public class LessonController {
 
     @RequestMapping(value ="/{lessonId}", method = RequestMethod.GET)
     @ResponseBody
-    public ApiResponse getLessonById(@PathVariable long lessonId) {
+    public ApiResponse getLessonById(@PathVariable UUID lessonId) {
         return new ApiResponse(HttpStatus.ACCEPTED, this.lessonDao.getLessonById(lessonId));
     }
 
@@ -39,7 +41,7 @@ public class LessonController {
 
     @DeleteMapping("/delete/{lessonId}")
     @ResponseBody
-    public ApiResponse deleteLesson(@PathVariable long lessonId) {
+    public ApiResponse deleteLesson(@PathVariable UUID lessonId) {
         if (lessonDao.deleteLesson(lessonId)) {
             return new ApiResponse(HttpStatus.ACCEPTED, "Lesson with ID " + lessonId + " has been deleted.");
         } else {

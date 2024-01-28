@@ -15,6 +15,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
@@ -34,7 +35,7 @@ public class CurriculumDAOTest {
     @Test
     void should_add_curriculum_to_repository(){
         Curriculum newCurriculum = new Curriculum();
-        newCurriculum.setID(1);
+        newCurriculum.setID(UUID.randomUUID());
         newCurriculum.setName("newCurriculum");
         newCurriculum.setDescription("new curriculum");
 
@@ -51,12 +52,12 @@ public class CurriculumDAOTest {
     void should_get_all_curriculums_by_id_from_repository(){
         List<Curriculum> curriculums = new ArrayList<>();
         Curriculum curriculum1 = new Curriculum();
-        curriculum1.setID(1);
+        curriculum1.setID(UUID.randomUUID());
         curriculum1.setName("newCurriculum1");
         curriculum1.setDescription("new curriculum 1");
 
         Curriculum curriculum2 = new Curriculum();
-        curriculum1.setID(2);
+        curriculum1.setID(UUID.randomUUID());
         curriculum1.setName("newCurriculum2");
         curriculum1.setDescription("new curriculum 2");
 

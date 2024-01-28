@@ -8,18 +8,22 @@ import org.springframework.transaction.annotation.*;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
-public interface UserExercisesRepository extends JpaRepository<UserExercises, Integer> {
+public interface UserExercisesRepository extends JpaRepository<UserExercises, UUID> {
 
-    @Query(value = "SELECT e.name, ue.exerciseToDo, ue.exerciseDone, ue.lastDone FROM UserExercises ue " +
-            "JOIN ue.exercise e ON ue.exercise = e " +
-            "JOIN ue.user u ON ue.user = u " +
-            "JOIN CurriculumExercises ce ON ce.exercise = e " +
-            "JOIN Curriculum c ON c = ce.curriculum " +
+    @Query(value = "SELECT e.name, ue.exercise_to_do, ue.exercise_done, ue.last_done " +
+            "FROM userexercises ue " +
+            "JOIN exercise e ON ue.exercise_id = e.id " +
+            "JOIN user u ON ue.user_id = u.id " +
+            "JOIN curriculumexercises ce ON ce.exercise_id = e.id " +
+            "JOIN curriculum c ON c.id = ce.curriculum_id " +
             "WHERE u.username = :username " +
-            "AND u.rank = c.ID " +
-            "ORDER BY ue.exerciseDone ASC ")
+            "AND u.rank = c.id " +
+            "ORDER BY ue.exercise_done ASC", nativeQuery = true)
     List<Object[]> findUserExercises(@Param("username") String username);
+
+
 
     @Modifying
     @Transactional
@@ -28,7 +32,7 @@ public interface UserExercisesRepository extends JpaRepository<UserExercises, In
             "WHERE ue.user.ID = (SELECT u.ID FROM User u WHERE u.username = :username) " +
             "AND ue.exercise.ID = :exercise_id"
             )
-    int updateToDoList(@Param("username") String username, @Param("exercise_id") int exercise_id);
+    int updateToDoList(@Param("username") String username, @Param("exercise_id") UUID exercise_id);
 
     @Modifying
     @Transactional
@@ -37,5 +41,9 @@ public interface UserExercisesRepository extends JpaRepository<UserExercises, In
             "WHERE ue.user.ID = (SELECT u.ID FROM User u WHERE u.username = :username) " +
             "AND ue.exercise.ID = :exercise_id"
     )
-    void updateLastDone(@Param("username") String username, @Param("exercise_id") int exercise_id);
+    void updateLastDone(@Param("username") String username, @Param("exercise_id") UUID exercise_id);
+
+    boolean existsByID(UUID userExercisesId);
+
+    void deleteByID(UUID userExercisesId);
 }

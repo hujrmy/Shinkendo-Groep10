@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("api/curriculum")
@@ -34,7 +35,7 @@ public class CurriculumController {
 
     @DeleteMapping("/{curriculumId}")
     @ResponseBody
-    public ApiResponse deleteCurriculum(@PathVariable long curriculumId) {
+    public ApiResponse deleteCurriculum(@PathVariable UUID curriculumId) {
         if (curriculumDao.deleteCurriculum(curriculumId)) {
             return new ApiResponse(HttpStatus.ACCEPTED, "Curriculum with ID " + curriculumId + " has been deleted.");
         } else {
@@ -45,7 +46,7 @@ public class CurriculumController {
     @PutMapping("/{curriculumId}")
     @ResponseBody
     public ApiResponse updateCurriculum(
-            @PathVariable long curriculumId,
+            @PathVariable UUID curriculumId,
             @RequestBody Curriculum updatedCurriculum) {
         Curriculum result = curriculumDao.updateCurriculum(curriculumId, updatedCurriculum.getName(), updatedCurriculum.getDescription());
         if (result != null) {

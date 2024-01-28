@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("api/exercise")
 public class ExerciseController {
@@ -29,7 +31,7 @@ public class ExerciseController {
 
     @RequestMapping(value ="/{exerciseId}", method = RequestMethod.GET)
     @ResponseBody
-    public ApiResponse getExerciseById(@PathVariable long exerciseId) {
+    public ApiResponse getExerciseById(@PathVariable UUID exerciseId) {
         return new ApiResponse(HttpStatus.ACCEPTED, this.exerciseDao.getExerciseById(exerciseId));
     }
 
@@ -42,7 +44,7 @@ public class ExerciseController {
 
     @DeleteMapping("/{exerciseId}")
     @ResponseBody
-    public ApiResponse deleteExercise(@PathVariable long exerciseId) {
+    public ApiResponse deleteExercise(@PathVariable UUID exerciseId) {
         if (exerciseDao.deleteExercise(exerciseId)) {
             return new ApiResponse(HttpStatus.ACCEPTED, "Exercise with ID " + exerciseId + " has been deleted.");
         } else {
@@ -53,7 +55,7 @@ public class ExerciseController {
     @PutMapping("/{exerciseId}")
     @ResponseBody
     public ApiResponse<Exercise> updateExercise(
-            @PathVariable long exerciseId,
+            @PathVariable UUID exerciseId,
             @RequestBody Exercise updatedExercise
     ){
         Exercise result = exerciseDao.updateExercise(exerciseId, updatedExercise.getName(), updatedExercise.getMedia());

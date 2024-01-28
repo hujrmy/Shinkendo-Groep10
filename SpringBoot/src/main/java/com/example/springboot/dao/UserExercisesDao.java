@@ -27,9 +27,9 @@ public class UserExercisesDao {
         return userExercises;
     }
 
-    public boolean deleteUserExercises(long userExercisesId){
-        if(userExercisesRepository.existsById((int) userExercisesId)) {
-            userExercisesRepository.deleteById((int) userExercisesId);
+    public boolean deleteUserExercises(UUID userExercisesId){
+        if(userExercisesRepository.existsByID(userExercisesId)) {
+            userExercisesRepository.deleteByID(userExercisesId);
             return true;
         }
         return false;
@@ -39,7 +39,7 @@ public class UserExercisesDao {
         return userExercisesRepository.findUserExercises(username);
     }
 
-    public int updateToDo(String username, int exercise_id) {
+    public int updateToDo(String username, UUID exercise_id) {
         int update = userExercisesRepository.updateToDoList(username, exercise_id);
         userExercisesRepository.updateLastDone(username, exercise_id);
         return update;
