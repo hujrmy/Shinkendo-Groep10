@@ -2,16 +2,25 @@ package com.example.springboot.dao;
 
 import com.example.springboot.model.*;
 import com.example.springboot.repository.UserRepository;
+import io.jsonwebtoken.security.Password;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 
 import java.util.*;
 
 @Component
 public class UserDao {
     @Autowired
+    private PasswordEncoder passwordEncoder;
+    @Autowired
     private UserRepository userRepository;
+
+
 
     public User addUsers(User newUser) {
         User user = this.userRepository.save(newUser);
@@ -89,7 +98,7 @@ public class UserDao {
 
 
     public User updateUser(UUID userId, Rights newRights, String newName, String newUsername, String newPassword, Dojo newDojo, Rank newRank) {
-        Optional<User> userOptional = userRepository.findById( userId);
+        Optional<User> userOptional = userRepository.findById(userId);
         if (userOptional.isPresent()) {
             User user = userOptional.get();
             user.setName(newName);
@@ -97,10 +106,18 @@ public class UserDao {
             user.setRights(newRights);
             user.setDojo(newDojo);
             user.setRank(newRank);
+
+            String encodedPassword = passwordEncoder.encode(newPassword);
+            user.setPassword(encodedPassword);
+
             user = userRepository.save(user);
             return user;
         }
         return null;
     }
-
 }
+
+
+
+
+
