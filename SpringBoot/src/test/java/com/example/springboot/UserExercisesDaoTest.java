@@ -37,7 +37,7 @@ class UserExercisesDaoTest {
         exercise.setName("Exercise1");
 
         User user = new User();
-        user.setID(1L);
+        user.setID(UUID.randomUUID());
 
         UserExercises userExercises = new UserExercises();
         userExercises.setID(1L);
@@ -64,7 +64,7 @@ class UserExercisesDaoTest {
         exercise.setName("Exercise1");
 
         User user = new User();
-        user.setID(1L);
+        user.setID(UUID.randomUUID());
 
         UserExercises userExercises = new UserExercises();
         userExercises.setID(1L);
