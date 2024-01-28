@@ -11,6 +11,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
@@ -29,7 +31,7 @@ public class LessonDAOTest {
     @Test
     void should_add_lesson_to_repository(){
         Lesson lessonToAdd = new Lesson();
-        lessonToAdd.setID(1L);
+        lessonToAdd.setID(UUID.randomUUID());
         lessonToAdd.setDate(LocalDate.now());
 
         when(lessonRepository.save(lessonToAdd)).thenReturn(lessonToAdd);
@@ -44,11 +46,11 @@ public class LessonDAOTest {
     void should_get_all_lessons_from_repository(){
         List<Lesson> expectedLessons = new ArrayList<>();
         Lesson lesson1 = new Lesson();
-        lesson1.setID(1L);
+        lesson1.setID(UUID.randomUUID());
         lesson1.setDate(LocalDate.now());
 
         Lesson lesson2 = new Lesson();
-        lesson2.setID(2L);
+        lesson2.setID(UUID.randomUUID());
         lesson2.setDate(LocalDate.now().plusDays(1));
 
         expectedLessons.add(lesson1);

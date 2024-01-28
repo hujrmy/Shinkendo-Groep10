@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 @Component
 public class LessonDao {
@@ -28,15 +29,15 @@ public class LessonDao {
         return AllLessons;
     }
 
-    public Lesson getLessonById(long lessonId) {
-        Lesson lesson = lessonRepository.findById((int) lessonId)
+    public Lesson getLessonById(UUID lessonId) {
+        Lesson lesson = lessonRepository.findById(lessonId)
                 .orElseThrow(() -> new ExercisesNotFoundException("Exercise not found with ID " + lessonId));
         return lesson;
     }
 
-    public boolean deleteLesson(long lessonId) {
-        if (lessonRepository.existsById((int) lessonId)) {
-            lessonRepository.deleteById((int) lessonId);
+    public boolean deleteLesson(UUID lessonId) {
+        if (lessonRepository.existsById(lessonId)) {
+            lessonRepository.deleteById(lessonId);
             return true;
         }
         return false;

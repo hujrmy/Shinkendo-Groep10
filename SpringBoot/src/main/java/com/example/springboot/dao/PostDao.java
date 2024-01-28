@@ -27,9 +27,9 @@ public class PostDao {
         return posts;
     }
 
-    public boolean deletePost(long postId){
-        if(postRepository.existsById((int) postId)) {
-            postRepository.deleteById((int) postId);
+    public boolean deletePost(UUID postId){
+        if(postRepository.existsById(postId)) {
+            postRepository.deleteById(postId);
             return true;
         }
         return false;

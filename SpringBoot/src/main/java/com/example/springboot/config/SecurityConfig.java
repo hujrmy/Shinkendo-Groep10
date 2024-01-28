@@ -1,7 +1,5 @@
 package com.example.springboot.config;
 
-import com.example.springboot.model.User;
-import com.example.springboot.model.Rights;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,14 +1,21 @@
 package com.example.springboot.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.util.UUID;
 
 @Entity
+@Getter
+@Setter
 @Table(name = "dojo")
 public class Dojo {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long ID;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(nullable = false, updatable = false)
+    private UUID ID;
     private String name;
     private String place;
 
@@ -17,7 +24,7 @@ public class Dojo {
         this.place = place;
     }
 
-    public Dojo(long ID, String name, String place) {
+    public Dojo(UUID ID, String name, String place) {
         this.ID = ID;
         this.name = name;
         this.place = place;
@@ -25,30 +32,6 @@ public class Dojo {
 
     public Dojo() {
 
-    }
-
-    public long getID() {
-        return ID;
-    }
-
-    public void setID(long ID) {
-        this.ID = ID;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPlace() {
-        return place;
-    }
-
-    public void setPlace(String place) {
-        this.place = place;
     }
 
     @Override

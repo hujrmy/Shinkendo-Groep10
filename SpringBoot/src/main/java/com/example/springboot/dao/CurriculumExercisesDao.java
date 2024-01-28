@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 @Component
 public class CurriculumExercisesDao {
@@ -25,9 +26,9 @@ public class CurriculumExercisesDao {
     }
 
     @Transactional
-    public boolean deleteCurriculumExercisesByExerciseId(long curriculumExerciseId){
-        curriculumExercisesRepository.deleteByID((int) curriculumExerciseId);
-        return curriculumExercisesRepository.findByID((int) curriculumExerciseId) == null;
+    public boolean deleteCurriculumExercisesByExerciseId(UUID curriculumExerciseId){
+        curriculumExercisesRepository.deleteByID(curriculumExerciseId);
+        return curriculumExercisesRepository.findByID(curriculumExerciseId) == null;
     }
 
 

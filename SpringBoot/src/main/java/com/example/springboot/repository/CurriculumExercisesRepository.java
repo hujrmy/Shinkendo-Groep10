@@ -3,9 +3,11 @@ package com.example.springboot.repository;
 import com.example.springboot.model.CurriculumExercises;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface CurriculumExercisesRepository extends JpaRepository<CurriculumExercises, Integer> {
+import java.util.UUID;
 
-    CurriculumExercises findByID(int curriculumExerciseId);
+public interface CurriculumExercisesRepository extends JpaRepository<CurriculumExercises, UUID> {
 
-    void deleteByID(int curriculumExerciseId);
+    CurriculumExercises findByID(UUID curriculumExerciseId);
+
+    void deleteByID(UUID curriculumExerciseId);
 }

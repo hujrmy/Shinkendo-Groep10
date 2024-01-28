@@ -2,13 +2,20 @@ package com.example.springboot.model;
 
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.util.UUID;
 
 @Entity
+@Getter
+@Setter
 @Table(name="attendance_list")
 public class AttendanceList {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long ID;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(nullable = false, updatable = false)
+    private UUID ID;
 
     @ManyToOne
     private User user;
@@ -27,39 +34,6 @@ public class AttendanceList {
 
     public AttendanceList() {
 
-    }
-
-
-    public long getID() {
-        return ID;
-    }
-
-    public void setID(long ID) {
-        this.ID = ID;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User username) {
-        this.user = username;
-    }
-
-    public Exercise getExercise() {
-        return exercise;
-    }
-
-    public void setExercise(Exercise exercise) {
-        this.exercise = exercise;
-    }
-
-    public void setLesson(Lesson lesson) {
-        this.lesson = lesson;
-    }
-
-    public Lesson getLesson() {
-        return lesson;
     }
 
     @Override

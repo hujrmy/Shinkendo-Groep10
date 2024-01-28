@@ -1,12 +1,11 @@
 package com.example.springboot.dao;
 
 import com.example.springboot.model.*;
+import com.example.springboot.model.Enums.Rank;
+import com.example.springboot.model.Enums.Rights;
 import com.example.springboot.repository.UserRepository;
-import io.jsonwebtoken.security.Password;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.security.crypto.password.PasswordEncoder;
 

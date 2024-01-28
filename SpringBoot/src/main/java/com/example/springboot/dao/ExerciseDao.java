@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Component
 public class ExerciseDao {
@@ -26,8 +27,8 @@ public class ExerciseDao {
         return exercise;
     }
 
-    public Exercise getExerciseById(long exerciseId) {
-        Exercise exercise = exerciseRepository.findById((int) exerciseId)
+    public Exercise getExerciseById(UUID exerciseId) {
+        Exercise exercise = exerciseRepository.findById(exerciseId)
                 .orElseThrow(() -> new ExercisesNotFoundException("Exercise not found with ID " + exerciseId));
         return exercise;
     }
@@ -37,16 +38,16 @@ public class ExerciseDao {
         return exercises;}
 
 
-    public boolean deleteExercise(long exerciseId) {
-        if (exerciseRepository.existsById((int) exerciseId)) {
-            exerciseRepository.deleteById((int) exerciseId);
+    public boolean deleteExercise(UUID exerciseId) {
+        if (exerciseRepository.existsById(exerciseId)) {
+            exerciseRepository.deleteById(exerciseId);
             return true;
         }
         return false;
     }
 
-    public Exercise updateExercise(long exerciseId, String name, String media) {
-        Optional<Exercise> exerciseOptional = exerciseRepository.findById((int) exerciseId);
+    public Exercise updateExercise(UUID exerciseId, String name, String media) {
+        Optional<Exercise> exerciseOptional = exerciseRepository.findById(exerciseId);
         if (exerciseOptional.isPresent()) {
             Exercise exercise = exerciseOptional.get();
             exercise.setName(name);
