@@ -109,7 +109,9 @@ public class User implements UserDetails {
         this.rank = rank;
     }
 
-
+    public UUID getID() {
+        return ID;
+    }
 
     @Override
     public String toString() {

@@ -9,11 +9,13 @@ import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+import com.example.springboot.model.User;
 
 import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 import java.util.function.Function;
 
 @Service
@@ -25,8 +27,8 @@ public class JwtService {
     private Long jwtExpiration;
     @Value("${application.security.jwt.refresh-token.expiration}")
     private Long refreshExpiration;
-    public String extractUsername(String token) {
-        return exctractClaim(token, Claims::getSubject);
+    public UUID extractUserId(String token) {
+        return UUID.fromString(exctractClaim(token, Claims::getSubject));
     }
 
     public <T> T exctractClaim(String token, Function<Claims, T> claimsResolver) {
@@ -56,10 +58,10 @@ public class JwtService {
                               UserDetails userDetails,
                               long expiration
     ) {
-        return  Jwts
-                .builder()
+        User customUser = (User) userDetails;
+        return Jwts.builder()
                 .setClaims(extraClaims)
-                .setSubject(userDetails.getUsername())
+                .setSubject(customUser.getID().toString())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + expiration))
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256)
@@ -67,8 +69,9 @@ public class JwtService {
     }
 
     public boolean isTokenValid(String token, UserDetails userDetails){
-        final String username = extractUsername(token);
-        return (username.equals(userDetails.getUsername())) && !isTokenExpired(token);
+        final UUID userId = extractUserId(token);
+        User customUser = (User) userDetails;
+        return (userId.equals(customUser.getID())) && !isTokenExpired(token);
     }
 
     private boolean isTokenExpired(String token) {
