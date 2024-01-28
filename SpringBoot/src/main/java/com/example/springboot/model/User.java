@@ -1,7 +1,11 @@
 package com.example.springboot.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.jsonwebtoken.security.Password;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.validation.constraints.Pattern;
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
 @Getter
 @Data
@@ -19,10 +24,13 @@ import java.util.List;
 @Table(name = "users")
 public class User implements UserDetails {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long ID;
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    @Column(updatable = false, nullable = false)
+    private UUID ID;
 
     private String username;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,}$", message = "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one digit.")
     private String password;
     @Enumerated(EnumType.STRING)
@@ -42,6 +50,7 @@ public class User implements UserDetails {
     }
 
     @Override
+    @JsonIgnore
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(rights.name()));
     }
@@ -57,21 +66,25 @@ public class User implements UserDetails {
     }
 
     @Override
+    @JsonIgnore
     public boolean isAccountNonExpired() {
         return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isAccountNonLocked() {
         return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isCredentialsNonExpired() {
         return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isEnabled() {
         return true;
     }
@@ -85,7 +98,7 @@ public class User implements UserDetails {
     }
 
 
-    public void setID(long ID) {
+    public void setID(UUID ID) {
         this.ID = ID;
     }
 
@@ -105,7 +118,9 @@ public class User implements UserDetails {
         this.rank = rank;
     }
 
-
+    public UUID getID() {
+        return ID;
+    }
 
     @Override
     public String toString() {

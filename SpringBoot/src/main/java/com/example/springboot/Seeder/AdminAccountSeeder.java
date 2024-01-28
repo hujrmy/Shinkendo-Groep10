@@ -18,7 +18,6 @@ public class AdminAccountSeeder {
 
     public User seed(Dojo dojo){
         User user = new User();
-        user.setID(1);
         user.setRights(Rights.SENSEI);
         user.setName("Sensei");
         user.setUsername("Sensei");

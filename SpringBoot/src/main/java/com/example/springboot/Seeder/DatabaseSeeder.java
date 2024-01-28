@@ -33,12 +33,12 @@ public class DatabaseSeeder {
             return;
         }
 
-//        Faker faker = new Faker(new Locale("nl"));
-//        curriculumSeeder.seed();
-//        exerciseSeeder.seed(faker);
-//        Dojo dojo = dojoSeeder.seed();
-//        User user = adminAccountSeeder.seed(dojo);
-//        userExercisesSeeder.seed(user, faker);
+        Faker faker = new Faker(new Locale("nl"));
+        curriculumSeeder.seed();
+        exerciseSeeder.seed(faker);
+        Dojo dojo = dojoSeeder.seed();
+        User user = adminAccountSeeder.seed(dojo);
+        userExercisesSeeder.seed(user, faker);
 
 
         this.alreadySeeded = true;
