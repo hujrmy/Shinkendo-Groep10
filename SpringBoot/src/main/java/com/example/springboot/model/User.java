@@ -23,10 +23,10 @@ import java.util.UUID;
 @Entity
 @Table(name = "users")
 public class User implements UserDetails {
+
     @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(updatable = false, nullable = false)
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(nullable = false, updatable = false)
     private UUID ID;
 
     private String username;
