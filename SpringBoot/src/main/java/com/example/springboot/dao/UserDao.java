@@ -67,6 +67,13 @@ public class UserDao {
         return usersList;
     }
 
+    public Rights findUserRightsById(UUID id) {
+        return userRepository.findUserByID(id)
+                .map(User::getRights)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+    }
+
+
     public List<String> getAllUserData(){
         List<String> userData = new ArrayList<>();
         List<User> users = this.userRepository.findAll();
