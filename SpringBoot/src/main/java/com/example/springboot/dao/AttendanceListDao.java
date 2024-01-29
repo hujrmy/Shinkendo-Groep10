@@ -41,7 +41,7 @@ public class AttendanceListDao {
         this.attendanceListRepository = attendanceListRepository;
     }
 
-    public boolean deleteAttendanceByLesson(long lessonId) {
+    public boolean deleteAttendanceByLesson(UUID lessonId) {
         ArrayList<AttendanceList> attendancesToDelete = new ArrayList<>();
         List<AttendanceList> attendances = this.attendanceListRepository.findAll();
 

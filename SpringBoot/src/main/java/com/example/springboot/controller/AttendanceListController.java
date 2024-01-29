@@ -47,7 +47,7 @@ public class AttendanceListController {
 
     @DeleteMapping("/delete/{lessonId}")
     @ResponseBody
-    public ApiResponse deleteAttendanceByLesson(@PathVariable long lessonId) {
+    public ApiResponse deleteAttendanceByLesson(@PathVariable UUID lessonId) {
         if (attendanceListDao.deleteAttendanceByLesson(lessonId)) {
             return new ApiResponse(HttpStatus.ACCEPTED, "Attendance(s) with LessonID " + lessonId + " has been deleted.");
         } else {
