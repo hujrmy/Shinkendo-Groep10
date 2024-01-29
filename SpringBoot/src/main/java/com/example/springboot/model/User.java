@@ -2,6 +2,7 @@ package com.example.springboot.model;
 
 import com.example.springboot.model.Enums.Rank;
 import com.example.springboot.model.Enums.Rights;
+import com.example.springboot.validation.Password;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
@@ -30,7 +31,8 @@ public class User implements UserDetails {
 
     private String username;
 
-    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,}$", message = "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one digit.")
+    @Password
+    @NotBlank(message = "Password has to contain a value")
     private String password;
 
     @Enumerated(EnumType.STRING)

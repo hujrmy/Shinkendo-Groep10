@@ -2,7 +2,6 @@ package com.example.springboot.controller;
 
 import com.example.springboot.model.AuthenticationRequest;
 import com.example.springboot.model.AuthenticationResponse;
-import com.example.springboot.model.RegisterRequest;
 import com.example.springboot.dao.AuthenticationDao;
 import com.example.springboot.model.User;
 import jakarta.servlet.http.HttpServletRequest;

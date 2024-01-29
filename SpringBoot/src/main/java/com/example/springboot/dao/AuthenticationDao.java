@@ -3,7 +3,6 @@ package com.example.springboot.dao;
 import com.example.springboot.Exception.UsernameAlreadyExistsException;
 import com.example.springboot.model.AuthenticationRequest;
 import com.example.springboot.model.AuthenticationResponse;
-import com.example.springboot.model.RegisterRequest;
 import com.example.springboot.config.JwtService;
 import com.example.springboot.model.User;
 import com.example.springboot.repository.UserRepository;
