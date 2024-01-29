@@ -37,7 +37,7 @@ public class User implements UserDetails {
     private String password;
 
     @Enumerated(EnumType.STRING)
-    @NotBlank(message = "Rights has to contain a value")
+    @NotNull(message = "Rights has to contain a value")
     private Rights rights;
 
     @Pattern(regexp = "^[A-Za-z.-]+$", message = "Names can contain [A-Z], [a-z], [.] and [-]")
