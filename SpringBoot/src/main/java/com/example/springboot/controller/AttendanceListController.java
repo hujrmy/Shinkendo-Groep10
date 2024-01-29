@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
 import java.util.*;
 
 @RestController
@@ -34,7 +35,7 @@ public class AttendanceListController {
 
     @RequestMapping(value ="/lesson/{lessonId}", method = RequestMethod.GET)
     @ResponseBody
-    public ApiResponse getAttendanceByLesson(@PathVariable long lessonId) {
+    public ApiResponse getAttendanceByLesson(@PathVariable UUID lessonId) {
         return new ApiResponse(HttpStatus.ACCEPTED, this.attendanceListDao.getAttendancesByLessonId(lessonId));
     }
 
@@ -47,7 +48,7 @@ public class AttendanceListController {
 
     @DeleteMapping("/delete/{lessonId}")
     @ResponseBody
-    public ApiResponse deleteAttendanceByLesson(@PathVariable long lessonId) {
+    public ApiResponse deleteAttendanceByLesson(@PathVariable UUID lessonId) {
         if (attendanceListDao.deleteAttendanceByLesson(lessonId)) {
             return new ApiResponse(HttpStatus.ACCEPTED, "Attendance(s) with LessonID " + lessonId + " has been deleted.");
         } else {

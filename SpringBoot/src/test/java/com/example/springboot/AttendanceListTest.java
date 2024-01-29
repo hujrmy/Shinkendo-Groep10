@@ -38,7 +38,7 @@ public class AttendanceListTest {
         this.attendanceList = new AttendanceList();
         this.user = new User();
 
-        user.setID(1);
+        user.setID(UUID.randomUUID());
         user.setName("TestUser");
         user.setUsername("TestUsername");
     }
@@ -52,9 +52,9 @@ public class AttendanceListTest {
 
         Lesson lesson = new Lesson();
 
-        lesson.setID(1);
+//        lesson.setID(1);
 
-        attendanceList.setID(1);
+//        attendanceList.setID(1);
         attendanceList.setLesson(lesson);
         attendanceList.setUser(user);
 
@@ -81,7 +81,7 @@ public class AttendanceListTest {
 
         exercise.setName("TestExercise");
 
-        attendanceList.setID(1);
+//        attendanceList.setID(1);
         attendanceList.setExercise(exercise);
         attendanceList.setUser(user);
 

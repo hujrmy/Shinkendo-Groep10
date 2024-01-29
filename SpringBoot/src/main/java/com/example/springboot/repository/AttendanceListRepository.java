@@ -2,6 +2,7 @@ package com.example.springboot.repository;
 
 import com.example.springboot.model.AttendanceList;
 import com.example.springboot.model.Exercise;
+import com.example.springboot.model.Lesson;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -14,8 +15,8 @@ import java.util.UUID;
 @Repository
 
 public interface AttendanceListRepository extends JpaRepository<AttendanceList, UUID>{
-    boolean existsByID(UUID id);
 
+    boolean existsById(UUID id);
 
-    void deleteByID(UUID id);
+    void deleteById(UUID id);
 }

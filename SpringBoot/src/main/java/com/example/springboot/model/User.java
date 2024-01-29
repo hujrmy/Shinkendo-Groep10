@@ -24,8 +24,7 @@ import java.util.UUID;
 public class User implements UserDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(nullable = false, updatable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID ID;
 
     @Pattern(regexp = "^[A-Za-z0-9.-_]+$", message = "Names can contain [A-Z], [a-z], [0-9], [.], [_], and [-]")

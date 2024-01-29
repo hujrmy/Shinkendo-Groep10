@@ -25,7 +25,7 @@ public class AttendanceListDao {
         return attendanceLists;
     }
 
-    public List<AttendanceList> getAttendancesByLessonId(long lessonId) {
+    public List<AttendanceList> getAttendancesByLessonId(UUID lessonId) {
         ArrayList<AttendanceList> attendanceLists = new ArrayList<>();
         List<AttendanceList> attendances = this.attendanceListRepository.findAll();
 
@@ -41,7 +41,7 @@ public class AttendanceListDao {
         this.attendanceListRepository = attendanceListRepository;
     }
 
-    public boolean deleteAttendanceByLesson(long lessonId) {
+    public boolean deleteAttendanceByLesson(UUID lessonId) {
         ArrayList<AttendanceList> attendancesToDelete = new ArrayList<>();
         List<AttendanceList> attendances = this.attendanceListRepository.findAll();
 
@@ -56,8 +56,8 @@ public class AttendanceListDao {
         }
 
         for (AttendanceList attendance : attendancesToDelete) {
-            if (attendanceListRepository.existsByID(attendance.getID())) {
-                attendanceListRepository.deleteByID(attendance.getID());
+            if (attendanceListRepository.existsById(attendance.getID())) {
+                attendanceListRepository.deleteById(attendance.getID());
                 System.out.println("testing: " + attendance);
             }
         }
