@@ -11,15 +11,14 @@ import java.util.List;
 import java.util.UUID;
 
 public interface UserExercisesRepository extends JpaRepository<UserExercises, UUID> {
-
-    @Query(value = "SELECT e.name, ue.exerciseToDo, ue.exerciseToDo, ue.lastDone " +
+    @Query(value = "SELECT e.name, ue.exerciseToDo, ue.exerciseDone, ue.lastDone " +
             "FROM UserExercises ue " +
             "JOIN Exercise e ON ue.exercise.ID = e.ID " +
             "JOIN User u ON ue.user.ID = u.ID " +
             "JOIN CurriculumExercises ce ON ce.exercise.ID = e.ID " +
             "JOIN Curriculum c ON c.ID = ce.curriculum.ID " +
             "WHERE u.ID = :userId " +
-            "AND u.rank = c.ID " +
+            "AND u.rank = c.name " +
             "ORDER BY ue.exerciseDone ASC")
     List<Object[]> findUserExercises(@Param("userId") UUID userId);
 

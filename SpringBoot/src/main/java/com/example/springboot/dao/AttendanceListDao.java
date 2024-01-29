@@ -65,8 +65,8 @@ public class AttendanceListDao {
         return true;
     }
 
-    public AttendanceList updateAttendance(long attendanceId, User newUser, Exercise newExercise, Lesson newLesson) {
-        Optional<AttendanceList> attendanceListOptional = attendanceListRepository.findById((int) attendanceId);
+    public AttendanceList updateAttendance(UUID attendanceId, User newUser, Exercise newExercise, Lesson newLesson) {
+        Optional<AttendanceList> attendanceListOptional = attendanceListRepository.findById(attendanceId);
         if (attendanceListOptional.isPresent()) {
             AttendanceList attendanceList = attendanceListOptional.get();
             attendanceList.setUser(newUser);

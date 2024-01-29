@@ -43,7 +43,7 @@ public class UserExercisesController {
         }
     }
 
-    @GetMapping("/findExercises/{username}")
+    @GetMapping("/findExercises/{userId}")
     @ResponseBody
     public ApiResponse getUserExercises(@PathVariable UUID userId) {
         List<Object[]> userExercises = userExercisesDao.findUserExercisesByUsername(userId);
@@ -51,7 +51,7 @@ public class UserExercisesController {
     }
 
 
-    @RequestMapping(value = "/updateToDo/{username}/{exercise_id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/updateToDo/{userId}/{exercise_id}", method = RequestMethod.POST)
     @ResponseBody
     public ApiResponse udpateToDoList(@PathVariable UUID userId, @PathVariable UUID exercise_id) {
         return new ApiResponse(HttpStatus.ACCEPTED, userExercisesDao.updateToDo(userId, exercise_id));
