@@ -27,16 +27,20 @@ public class AttendanceListTest {
     @Mock
     private AttendanceListRepository attendanceListRepository;
     private AttendanceListDao SUT;
-
+    @Mock
+    private AttendanceList attendanceList;
     @Mock
     private User user;
-
-    @Mock
-    private Exercise exercise;
 
     @BeforeEach
     void setup(){
         this.SUT = new AttendanceListDao(attendanceListRepository);
+        this.attendanceList = new AttendanceList();
+        this.user = new User();
+
+        user.setID(1);
+        user.setName("TestUser");
+        user.setUsername("TestUsername");
     }
 
     @Test
@@ -46,13 +50,23 @@ public class AttendanceListTest {
         attendanceToAdd.setUser(user);
         attendanceToAdd.setExercise(exercise);
 
-        when(attendanceListRepository.save(attendanceToAdd)).thenReturn(attendanceToAdd);
+        Lesson lesson = new Lesson();
 
-        AttendanceList addedAttendance = SUT.addAttendance(attendanceToAdd);
+        lesson.setID(1);
 
-        assertEquals(1L, addedAttendance.getID());
-        assertEquals(1L, 1);
-        assertEquals(1L, 1);
+        attendanceList.setID(1);
+        attendanceList.setLesson(lesson);
+        attendanceList.setUser(user);
+
+        when(attendanceListRepository.save(attendanceList)).thenReturn(attendanceList);
+
+        AttendanceList addedAttendanceList = SUT.addAttendance(attendanceList);
+
+        assertEquals(1, addedAttendanceList.getID());
+        assertEquals(1, addedAttendanceList.getUser().getID());
+        assertEquals("TestUser", addedAttendanceList.getUser().getName());
+        assertEquals("TestUsername", addedAttendanceList.getUser().getUsername());
+        assertEquals(1, addedAttendanceList.getLesson().getID());
     }
 
     @Test
@@ -63,7 +77,15 @@ public class AttendanceListTest {
         attendance1.setExercise(exercise);
         attendance1.setUser(user);
 
-        expectedAttendance.add(attendance1);
+        Exercise exercise = new Exercise();
+
+        exercise.setName("TestExercise");
+
+        attendanceList.setID(1);
+        attendanceList.setExercise(exercise);
+        attendanceList.setUser(user);
+
+        expectedAttendance.add(attendanceList);
 
         when(attendanceListRepository.findAll()).thenReturn((expectedAttendance));
         List<AttendanceList> retrievedAttendance = SUT.getAllAttendance();
@@ -72,5 +94,9 @@ public class AttendanceListTest {
         assertEquals(expectedAttendance.get(0).getID(), retrievedAttendance.get(0).getID());
         assertEquals(expectedAttendance.get(0).getExercise(), retrievedAttendance.get(0).getExercise());
         assertEquals(expectedAttendance.get(0).getUser(), retrievedAttendance.get(0).getUser());
+
+        assertEquals(1, retrievedAttendance.get(0).getUser().getID());
+        assertEquals("TestUser", retrievedAttendance.get(0).getUser().getName());
+        assertEquals("TestUsername", retrievedAttendance.get(0).getUser().getUsername());
     }
 }

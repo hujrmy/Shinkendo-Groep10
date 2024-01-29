@@ -46,4 +46,24 @@ public class PostController {
     public ApiResponse getHighestId(){
         return new ApiResponse(HttpStatus.ACCEPTED, this.postDao.getHighestId());
     }
+
+    @GetMapping("/find/{id}")
+    public ResponseEntity<Post> getProductById (@PathVariable("id") Long id){
+        Post post = postDao.findPostById(id);
+        return new ResponseEntity<>(post, HttpStatus.OK);
+    }
+
+    @PutMapping("/{postId}")
+    @ResponseBody
+    public ApiResponse<Post> updatePost(
+            @PathVariable long postId,
+            @RequestBody Post updatedPost
+    ){
+        Post result = postDao.updatePost(postId, updatedPost.getTitle(), updatedPost.getDescription(), updatedPost.getLink());
+        if (result != null) {
+            return new ApiResponse(HttpStatus.ACCEPTED, result);
+        } else {
+            return new ApiResponse(HttpStatus.NOT_FOUND, "User with ID " + postId + " not found.");
+        }
+    }
 }

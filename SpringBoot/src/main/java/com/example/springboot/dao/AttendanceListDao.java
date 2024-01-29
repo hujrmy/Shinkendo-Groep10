@@ -1,9 +1,7 @@
 package com.example.springboot.dao;
 
 import com.example.springboot.Exception.ExercisesNotFoundException;
-import com.example.springboot.model.AttendanceList;
-import com.example.springboot.model.Lesson;
-import com.example.springboot.model.User;
+import com.example.springboot.model.*;
 import com.example.springboot.repository.AttendanceListRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister;
@@ -65,6 +63,19 @@ public class AttendanceListDao {
         }
 
         return true;
+    }
+
+    public AttendanceList updateAttendance(long attendanceId, User newUser, Exercise newExercise, Lesson newLesson) {
+        Optional<AttendanceList> attendanceListOptional = attendanceListRepository.findById((int) attendanceId);
+        if (attendanceListOptional.isPresent()) {
+            AttendanceList attendanceList = attendanceListOptional.get();
+            attendanceList.setUser(newUser);
+            attendanceList.setExercise(newExercise);
+            attendanceList.setLesson(newLesson);
+            attendanceList = attendanceListRepository.save(attendanceList);
+            return attendanceList;
+        }
+        return null;
     }
 
 }
