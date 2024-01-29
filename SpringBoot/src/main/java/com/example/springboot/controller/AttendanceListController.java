@@ -2,8 +2,10 @@ package com.example.springboot.controller;
 
 
 import com.example.springboot.dao.AttendanceListDao;
+import com.example.springboot.dao.UserDao;
 import com.example.springboot.model.ApiResponse;
 import com.example.springboot.model.AttendanceList;
+import com.example.springboot.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -15,10 +17,13 @@ import java.util.UUID;
 public class AttendanceListController {
 
     private final AttendanceListDao attendanceListDao;
+    private final UserDao userDao;
+
 
     @Autowired
-    public AttendanceListController(AttendanceListDao attendanceListDao) {
+    public AttendanceListController(AttendanceListDao attendanceListDao, UserDao userDao) {
         this.attendanceListDao = attendanceListDao;
+        this.userDao = userDao;
     }
 
     @RequestMapping(method = RequestMethod.GET)
@@ -47,6 +52,23 @@ public class AttendanceListController {
             return new ApiResponse(HttpStatus.ACCEPTED, "Attendance(s) with LessonID " + lessonId + " has been deleted.");
         } else {
             return new ApiResponse(HttpStatus.NOT_FOUND, "Attendance(s) with LessonID " + lessonId + " not found.");
+        }
+    }
+
+    @PutMapping("/{attendanceId}")
+    @ResponseBody
+    public ApiResponse<AttendanceList> updateAttendance(
+            @PathVariable long attendanceId,
+            @RequestBody AttendanceList updatedAttendance
+    ){
+        System.out.println("test");
+        User newUser = userDao.findUserById(updatedAttendance.getUser().getID());
+        System.out.println("test" + newUser);
+        AttendanceList result = attendanceListDao.updateAttendance(attendanceId, newUser, updatedAttendance.getExercise(), updatedAttendance.getLesson());
+        if (result != null) {
+            return new ApiResponse(HttpStatus.ACCEPTED, result);
+        } else {
+            return new ApiResponse(HttpStatus.NOT_FOUND, "Attendance with ID " + attendanceId + " not found.");
         }
     }
 
