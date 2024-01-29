@@ -35,13 +35,13 @@ public class UserExercisesDao {
         return false;
     }
 
-    public List<Object[]> findUserExercisesByUsername(String username) {
-        return userExercisesRepository.findUserExercises(username);
+    public List<Object[]> findUserExercisesByUsername(UUID userId) {
+        return userExercisesRepository.findUserExercises(userId);
     }
 
-    public int updateToDo(String username, UUID exercise_id) {
-        int update = userExercisesRepository.updateToDoList(username, exercise_id);
-        userExercisesRepository.updateLastDone(username, exercise_id);
+    public int updateToDo(UUID userId, UUID exercise_id) {
+        int update = userExercisesRepository.updateToDoList(userId, exercise_id);
+        userExercisesRepository.updateLastDone(userId, exercise_id);
         return update;
     }
 }
