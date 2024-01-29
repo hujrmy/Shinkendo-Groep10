@@ -5,13 +5,15 @@ import org.springframework.cglib.core.*;
 
 import java.time.*;
 import java.util.Date;
+import java.util.UUID;
 
 @Entity
 @Table(name="userexercises")
 public class UserExercises {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long ID;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(nullable = false, updatable = false)
+    private UUID ID;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -27,7 +29,7 @@ public class UserExercises {
     public UserExercises() {
     }
 
-    public UserExercises(long ID, User user, Exercise exercise, int exerciseToDo, int exerciseDone, LocalDate lastDone) {
+    public UserExercises(UUID ID, User user, Exercise exercise, int exerciseToDo, int exerciseDone, LocalDate lastDone) {
         this.ID = ID;
         this.user = user;
         this.exercise = exercise;
@@ -44,11 +46,11 @@ public class UserExercises {
         this.lastDone = lastDone;
     }
 
-    public long getID() {
+    public UUID getID() {
         return ID;
     }
 
-    public void setID(long ID) {
+    public void setID(UUID ID) {
         this.ID = ID;
     }
 

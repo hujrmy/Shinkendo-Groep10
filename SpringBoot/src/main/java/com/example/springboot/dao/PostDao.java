@@ -1,10 +1,13 @@
 package com.example.springboot.dao;
 
 import com.example.springboot.model.*;
+import com.example.springboot.model.User;
 import com.example.springboot.repository.*;
 import org.springframework.beans.factory.annotation.*;
+import org.springframework.security.core.userdetails.*;
 import org.springframework.stereotype.*;
 
+import java.time.*;
 import java.util.*;
 
 @Component
@@ -27,9 +30,9 @@ public class PostDao {
         return posts;
     }
 
-    public boolean deletePost(long postId){
-        if(postRepository.existsById((int) postId)) {
-            postRepository.deleteById((int) postId);
+    public boolean deletePost(UUID postId){
+        if(postRepository.existsById(postId)) {
+            postRepository.deleteById(postId);
             return true;
         }
         return false;
@@ -37,5 +40,23 @@ public class PostDao {
 
     public Long getHighestId(){
         return postRepository.getHighestId();
+    }
+
+    public Post findPostById(UUID id) {
+        return postRepository.findPostByID(id).orElseThrow(() -> new UsernameNotFoundException("Post not found"));
+    }
+
+    public Post updatePost(UUID postId, String title, String description, String link) {
+        Optional<Post> postOptional = postRepository.findPostByID(postId);
+        if (postOptional.isPresent()) {
+            Post post = postOptional.get();
+            post.setTitle(title);
+            post.setDescription(description);
+            post.setLink(link);
+            post.setDate(LocalDate.now());
+            post = postRepository.save(post);
+            return post;
+        }
+        return null;
     }
 }

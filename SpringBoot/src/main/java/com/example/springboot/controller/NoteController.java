@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("api/note")
 public class NoteController {
@@ -32,7 +34,7 @@ public class NoteController {
 
     @DeleteMapping("/{noteId}")
     @ResponseBody
-    public ApiResponse deleteNote(@PathVariable long noteId){
+    public ApiResponse deleteNote(@PathVariable UUID noteId){
         if(noteDao.deleteNote(noteId)){
             return new ApiResponse(HttpStatus.ACCEPTED, "Note with ID " + noteId + " has been deleted");
         }

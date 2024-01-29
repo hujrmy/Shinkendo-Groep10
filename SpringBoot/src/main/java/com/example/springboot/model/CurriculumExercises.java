@@ -1,13 +1,20 @@
 package com.example.springboot.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.util.UUID;
 
 @Entity
+@Getter
+@Setter
 @Table(name="curriculumexercises")
 public class CurriculumExercises {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long ID;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(nullable = false, updatable = false)
+    private UUID ID;
 
     @ManyToOne
     @JoinColumn(name = "exercise_id")
@@ -19,35 +26,13 @@ public class CurriculumExercises {
     public CurriculumExercises() {
     }
 
-    public CurriculumExercises(long ID, Exercise exercise, Curriculum curriculum) {
+    public CurriculumExercises(UUID ID, Exercise exercise, Curriculum curriculum) {
         this.ID = ID;
         this.exercise = exercise;
         this.curriculum = curriculum;
     }
 
-    public long getID() {
-        return ID;
-    }
 
-    public void setID(long ID) {
-        this.ID = ID;
-    }
-
-    public Exercise getExercise() {
-        return exercise;
-    }
-
-    public void setExercise(Exercise exercise) {
-        this.exercise = exercise;
-    }
-
-    public Curriculum getCurriculum() {
-        return curriculum;
-    }
-
-    public void setCurriculum(Curriculum curriculum) {
-        this.curriculum = curriculum;
-    }
 
     @Override
     public String toString() {

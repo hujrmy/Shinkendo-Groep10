@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("api/curriculumExercises")
 public class CurriculumExercisesController {
@@ -32,7 +34,7 @@ public class CurriculumExercisesController {
 
     @DeleteMapping("/{curriculumExercisesId}")
     @ResponseBody
-    public ApiResponse deleteUserExercises(@PathVariable long curriculumExercisesId) {
+    public ApiResponse deleteUserExercises(@PathVariable UUID curriculumExercisesId) {
         if (curriculumExercisesDao.deleteCurriculumExercisesByExerciseId(curriculumExercisesId)) {
             return new ApiResponse(HttpStatus.ACCEPTED, "Exercise with ID " + curriculumExercisesId + "has been deleted.");
         } else {

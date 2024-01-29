@@ -1,11 +1,15 @@
 package com.example.springboot.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
+@Getter
+@Setter
 @Table(name="lesson")
 public class Lesson {
 
@@ -37,7 +41,7 @@ public class Lesson {
     public void setDate(LocalDate date) {
         this.date = date;
     }
-
+  
     @Override
     public String toString() {
         return "Lesson{" +

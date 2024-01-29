@@ -1,10 +1,16 @@
 package com.example.springboot.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.util.UUID;
 
 import java.util.UUID;
 
 @Entity
+@Getter
+@Setter
 @Table(name="exercise")
 public class Exercise {
 
@@ -47,7 +53,6 @@ public class Exercise {
     public void setMedia(String media) {
         this.media = media;
     }
-
 
     @Override
     public String toString() {

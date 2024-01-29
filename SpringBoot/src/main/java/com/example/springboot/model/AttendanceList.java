@@ -2,14 +2,21 @@ package com.example.springboot.model;
 
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.util.UUID;
 
 import java.util.UUID;
 
 @Entity
+@Getter
+@Setter
 @Table(name="attendance_list")
 public class AttendanceList {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+
     private UUID ID;
 
     @ManyToOne
@@ -30,7 +37,6 @@ public class AttendanceList {
     public AttendanceList() {
 
     }
-
 
     public UUID getID() {
         return ID;

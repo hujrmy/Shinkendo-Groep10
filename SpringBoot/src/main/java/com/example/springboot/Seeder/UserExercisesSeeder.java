@@ -20,7 +20,6 @@ public class UserExercisesSeeder {
         for (int j = 0; j < 10; j++) {
             Date date = faker.date().birthday(0,1);
             UserExercises userExercises = new UserExercises();
-            userExercises.setUser(user);
             userExercises.setExerciseToDo(10);
             userExercises.setExerciseDone(0);
             userExercises.setLastDone(date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());

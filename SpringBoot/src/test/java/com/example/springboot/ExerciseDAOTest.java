@@ -13,6 +13,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
@@ -34,6 +35,7 @@ public class ExerciseDAOTest {
     void should_add_exercise_to_repository() {
         Exercise exerciseToAdd = new Exercise();
 //        exerciseToAdd.setID(1L);
+
         exerciseToAdd.setName("Sample Exercise");
         exerciseToAdd.setMedia("www.youtube.com");
 
@@ -47,9 +49,9 @@ public class ExerciseDAOTest {
 
     @Test
     public void testGetExerciseById_ExerciseFound() {
-        long exerciseId = 1L;
+        UUID exerciseId = UUID.randomUUID();
         Exercise mockExercise = new Exercise();
-        when(exerciseRepository.findById((int) exerciseId)).thenReturn(Optional.of(mockExercise));
+        when(exerciseRepository.findById(exerciseId)).thenReturn(Optional.of(mockExercise));
 
         Exercise result = SUT.getExerciseById(exerciseId);
 
@@ -59,8 +61,8 @@ public class ExerciseDAOTest {
 
     @Test
     public void testGetExerciseById_ExerciseNotFound() {
-        long exerciseId = 1L;
-        when(exerciseRepository.findById((int) exerciseId)).thenReturn(Optional.empty());
+        UUID exerciseId = UUID.randomUUID();
+        when(exerciseRepository.findById(exerciseId)).thenReturn(Optional.empty());
 
         assertThrows(ExercisesNotFoundException.class, () -> SUT.getExerciseById(exerciseId));
     }
@@ -74,6 +76,7 @@ public class ExerciseDAOTest {
 
         Exercise exercise2 = new Exercise();
 //        exercise2.setID(2L);
+
         exercise2.setName("Exercise 2");
 
         expectedExercises.add(exercise1);

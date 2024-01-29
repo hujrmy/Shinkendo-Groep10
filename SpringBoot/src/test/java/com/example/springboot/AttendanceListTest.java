@@ -45,6 +45,11 @@ public class AttendanceListTest {
 
     @Test
     void should_add_attendance_to_repository(){
+        AttendanceList attendanceToAdd = new AttendanceList();
+        attendanceToAdd.setID(UUID.randomUUID());
+        attendanceToAdd.setUser(user);
+        attendanceToAdd.setExercise(exercise);
+
         Lesson lesson = new Lesson();
 
 //        lesson.setID(1);
@@ -67,6 +72,11 @@ public class AttendanceListTest {
     @Test
     void should_get_all_attendance_from_repository(){
         List<AttendanceList> expectedAttendance = new ArrayList<>();
+        AttendanceList attendance1 = new AttendanceList();
+        attendance1.setID(UUID.randomUUID());
+        attendance1.setExercise(exercise);
+        attendance1.setUser(user);
+
         Exercise exercise = new Exercise();
 
         exercise.setName("TestExercise");

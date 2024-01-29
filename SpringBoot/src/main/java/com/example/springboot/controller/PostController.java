@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.*;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/api/post")
 public class PostController {
@@ -31,7 +33,7 @@ public class PostController {
 
     @DeleteMapping("/{postId}")
     @ResponseBody
-    public ApiResponse deletePost(@PathVariable long postId){
+    public ApiResponse deletePost(@PathVariable UUID postId){
         if (postDao.deletePost(postId)) {
             return new ApiResponse(HttpStatus.ACCEPTED, "Post with ID "+ postId + "has been deleted.");
         }else{
@@ -43,5 +45,25 @@ public class PostController {
     @ResponseBody
     public ApiResponse getHighestId(){
         return new ApiResponse(HttpStatus.ACCEPTED, this.postDao.getHighestId());
+    }
+
+    @GetMapping("/find/{id}")
+    public ResponseEntity<Post> getProductById (@PathVariable("id") UUID id){
+        Post post = postDao.findPostById(id);
+        return new ResponseEntity<>(post, HttpStatus.OK);
+    }
+
+    @PutMapping("/{postId}")
+    @ResponseBody
+    public ApiResponse<Post> updatePost(
+            @PathVariable UUID postId,
+            @RequestBody Post updatedPost
+    ){
+        Post result = postDao.updatePost(postId, updatedPost.getTitle(), updatedPost.getDescription(), updatedPost.getLink());
+        if (result != null) {
+            return new ApiResponse(HttpStatus.ACCEPTED, result);
+        } else {
+            return new ApiResponse(HttpStatus.NOT_FOUND, "User with ID " + postId + " not found.");
+        }
     }
 }

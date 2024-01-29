@@ -35,7 +35,7 @@ public class UserExercisesController {
 
     @DeleteMapping("/{userExercisesId}")
     @ResponseBody
-    public ApiResponse deleteUserExercises(@PathVariable long userExercisesId) {
+    public ApiResponse deleteUserExercises(@PathVariable UUID userExercisesId) {
         if (userExercisesDao.deleteUserExercises(userExercisesId)) {
             return new ApiResponse(HttpStatus.ACCEPTED, "Post with ID " + userExercisesId + "has been deleted.");
         } else {
@@ -43,18 +43,18 @@ public class UserExercisesController {
         }
     }
 
-    @GetMapping("/findExercises/{username}")
+    @GetMapping("/findExercises/{userId}")
     @ResponseBody
-    public ApiResponse getUserExercises(@PathVariable String username) {
-        List<Object[]> userExercises = userExercisesDao.findUserExercisesByUsername(username);
+    public ApiResponse getUserExercises(@PathVariable UUID userId) {
+        List<Object[]> userExercises = userExercisesDao.findUserExercisesByUsername(userId);
         return new ApiResponse(HttpStatus.ACCEPTED, userExercises);
     }
 
 
-    @RequestMapping(value = "/updateToDo/{username}/{exercise_id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/updateToDo/{userId}/{exercise_id}", method = RequestMethod.POST)
     @ResponseBody
-    public ApiResponse udpateToDoList(@PathVariable String username, @PathVariable int exercise_id) {
-        return new ApiResponse(HttpStatus.ACCEPTED, userExercisesDao.updateToDo(username, exercise_id));
+    public ApiResponse udpateToDoList(@PathVariable UUID userId, @PathVariable UUID exercise_id) {
+        return new ApiResponse(HttpStatus.ACCEPTED, userExercisesDao.updateToDo(userId, exercise_id));
     }
 
 }
