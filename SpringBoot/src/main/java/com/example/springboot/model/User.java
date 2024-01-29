@@ -48,7 +48,7 @@ public class User implements UserDetails {
     @NotNull(message = "Dojo has to contain a value")
     private Dojo dojo;
 
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     @NotNull(message = "Rank has to contain a value")
     private Rank rank;
 

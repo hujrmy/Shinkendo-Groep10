@@ -48,7 +48,7 @@ public class PostController {
     }
 
     @GetMapping("/find/{id}")
-    public ResponseEntity<Post> getProductById (@PathVariable("id") Long id){
+    public ResponseEntity<Post> getProductById (@PathVariable("id") UUID id){
         Post post = postDao.findPostById(id);
         return new ResponseEntity<>(post, HttpStatus.OK);
     }
@@ -56,7 +56,7 @@ public class PostController {
     @PutMapping("/{postId}")
     @ResponseBody
     public ApiResponse<Post> updatePost(
-            @PathVariable long postId,
+            @PathVariable UUID postId,
             @RequestBody Post updatedPost
     ){
         Post result = postDao.updatePost(postId, updatedPost.getTitle(), updatedPost.getDescription(), updatedPost.getLink());
