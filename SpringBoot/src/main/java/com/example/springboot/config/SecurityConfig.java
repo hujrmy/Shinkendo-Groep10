@@ -64,6 +64,7 @@ public class SecurityConfig {
                                 .requestMatchers(GET, "/api/users/names").hasAnyAuthority("SENSEI", "STUDENT")
                                 .requestMatchers(GET, "/api/users/rights").hasAnyAuthority("SENSEI", "STUDENT")
                                 .requestMatchers(GET, "/api/users").hasAuthority("SENSEI")
+                                .requestMatchers(GET, "/api/users").hasAnyAuthority("SENSEI", "STUDENT")
                                 .requestMatchers(POST, "/api/users").hasAuthority("SENSEI")
                                 .requestMatchers(DELETE, "/api/users/**").hasAuthority("SENSEI")
                                 .requestMatchers(PUT, "/api/users/**").hasAuthority("SENSEI")
