@@ -28,7 +28,7 @@ public class User implements UserDetails {
     @Column(nullable = false, updatable = false)
     private UUID ID;
 
-    @Pattern(regexp = "^[A-Za-z.-_]+$", message = "Names can contain [A-Z], [a-z], [.], [_] and [-]")
+    @Pattern(regexp = "^[A-Za-z0-9.-_]+$", message = "Names can contain [A-Z], [a-z], [0-9], [.], [_], and [-]")
     @NotBlank(message = "Username has to contain a value")
     private String username;
 
@@ -37,7 +37,7 @@ public class User implements UserDetails {
     private String password;
 
     @Enumerated(EnumType.STRING)
-    @NotBlank(message = "Rights has to contain a value")
+    @NotNull(message = "Rights has to contain a value")
     private Rights rights;
 
     @Pattern(regexp = "^[A-Za-z.-]+$", message = "Names can contain [A-Z], [a-z], [.] and [-]")
@@ -45,11 +45,11 @@ public class User implements UserDetails {
     private String name;
 
     @ManyToOne
-    @NotBlank(message = "Dojo has to contain a value")
+    @NotNull(message = "Dojo has to contain a value")
     private Dojo dojo;
 
     @Enumerated
-    @NotBlank(message = "Rank has to contain a value")
+    @NotNull(message = "Rank has to contain a value")
     private Rank rank;
 
     public User(Rights rights, String name, Dojo dojo, Rank rank) {
