@@ -45,11 +45,11 @@ public class User implements UserDetails {
     private String name;
 
     @ManyToOne
-    @NotBlank(message = "Dojo has to contain a value")
+    @NotNull(message = "Dojo has to contain a value")
     private Dojo dojo;
 
     @Enumerated
-    @NotBlank(message = "Rank has to contain a value")
+    @NotNull(message = "Rank has to contain a value")
     private Rank rank;
 
     public User(Rights rights, String name, Dojo dojo, Rank rank) {
