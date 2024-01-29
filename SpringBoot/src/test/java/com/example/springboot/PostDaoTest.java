@@ -28,13 +28,13 @@ class PostDaoTest {
     @Test
     void shouldAddPostToRepository() {
         Post post = new Post();
-        post.setID(1L);
+        post.setID(UUID.randomUUID());
         post.setTitle("Test Post");
         post.setDescription("Dit is een test description");
         post.setLink("www.google.com");
 
         User user = new User();
-        user.setID(1L);
+        user.setID(UUID.randomUUID());
 
         post.setUser(user);
 

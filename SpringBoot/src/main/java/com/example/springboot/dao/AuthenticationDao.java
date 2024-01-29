@@ -3,7 +3,6 @@ package com.example.springboot.dao;
 import com.example.springboot.Exception.UsernameAlreadyExistsException;
 import com.example.springboot.model.AuthenticationRequest;
 import com.example.springboot.model.AuthenticationResponse;
-import com.example.springboot.model.RegisterRequest;
 import com.example.springboot.config.JwtService;
 import com.example.springboot.model.User;
 import com.example.springboot.repository.UserRepository;
@@ -19,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 
 import java.io.IOException;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -73,30 +73,24 @@ public class AuthenticationDao {
                 .build();
     }
 
-    public void  refreshToken(
-            HttpServletRequest request,
-            HttpServletResponse response
-    ) throws IOException {
+    public void refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
         final String authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
-        final String refreshToken;
-        final String userName;
         if (authHeader == null || !authHeader.startsWith("Bearer")) {
             return;
         }
-        refreshToken = authHeader.substring(7);
-        userName = jwtService.extractUsername(refreshToken);
-        if (userName != null) {
-            var user  = this.repository.findByUsername(userName).
-                    orElseThrow();
+        final String refreshToken = authHeader.substring(7);
+        final UUID userId = jwtService.extractUserId(refreshToken);
+        if (userId != null) {
+            var user = this.repository.findById(userId)
+                    .orElseThrow();
             if (jwtService.isTokenValid(refreshToken, user)) {
                 var accesToken = jwtService.generateToken(user);
                 var authResponse = AuthenticationResponse.builder()
                         .token(accesToken)
                         .refreshToken(refreshToken)
-                         .build();
+                        .build();
                 new ObjectMapper().writeValue(response.getOutputStream(), authResponse);
             }
         }
-
     }
 }

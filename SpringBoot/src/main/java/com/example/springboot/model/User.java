@@ -1,16 +1,20 @@
 package com.example.springboot.model;
 
+import com.example.springboot.model.Enums.Rank;
+import com.example.springboot.model.Enums.Rights;
+import com.example.springboot.validation.Password;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.validation.constraints.Pattern;
+import jakarta.validation.constraints.*;
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
-@Getter
 @Data
 @Builder
 @NoArgsConstructor
@@ -18,20 +22,34 @@ import java.util.List;
 @Entity
 @Table(name = "users")
 public class User implements UserDetails {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long ID;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(nullable = false, updatable = false)
+    private UUID ID;
+
+    @Pattern(regexp = "^[A-Za-z0-9.-_]+$", message = "Names can contain [A-Z], [a-z], [0-9], [.], [_], and [-]")
+    @NotBlank(message = "Username has to contain a value")
     private String username;
-    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,}$", message = "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one digit.")
+
+    @Password
+    @NotBlank(message = "Password has to contain a value")
     private String password;
+
     @Enumerated(EnumType.STRING)
+    @NotNull(message = "Rights has to contain a value")
     private Rights rights;
+
+    @Pattern(regexp = "^[A-Za-z.-]+$", message = "Names can contain [A-Z], [a-z], [.] and [-]")
+    @NotBlank(message = "Name has to contain a value")
     private String name;
 
     @ManyToOne
+    @NotNull(message = "Dojo has to contain a value")
     private Dojo dojo;
+
     @Enumerated
+    @NotNull(message = "Rank has to contain a value")
     private Rank rank;
 
     public User(Rights rights, String name, Dojo dojo, Rank rank) {
@@ -42,6 +60,7 @@ public class User implements UserDetails {
     }
 
     @Override
+    @JsonIgnore
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(rights.name()));
     }
@@ -57,21 +76,25 @@ public class User implements UserDetails {
     }
 
     @Override
+    @JsonIgnore
     public boolean isAccountNonExpired() {
         return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isAccountNonLocked() {
         return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isCredentialsNonExpired() {
         return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isEnabled() {
         return true;
     }
@@ -85,7 +108,7 @@ public class User implements UserDetails {
     }
 
 
-    public void setID(long ID) {
+    public void setID(UUID ID) {
         this.ID = ID;
     }
 
@@ -105,7 +128,9 @@ public class User implements UserDetails {
         this.rank = rank;
     }
 
-
+    public UUID getID() {
+        return ID;
+    }
 
     @Override
     public String toString() {

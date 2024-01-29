@@ -2,17 +2,15 @@ package com.example.springboot.controller;
 
 import com.example.springboot.dao.UserDao;
 import com.example.springboot.model.ApiResponse;
-import com.example.springboot.model.Curriculum;
-import com.example.springboot.model.Rights;
+import com.example.springboot.model.Enums.Rights;
 import com.example.springboot.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/users")
@@ -59,7 +57,7 @@ public class UserController {
 
     @DeleteMapping("/{userId}")
     @ResponseBody
-    public ApiResponse deleteUser(@PathVariable long userId) {
+    public ApiResponse deleteUser(@PathVariable UUID userId) {
         if (userDao.deleteUser(userId)) {
             return new ApiResponse(HttpStatus.ACCEPTED, "Curriculum with ID " + userId + " has been deleted.");
         } else {
@@ -70,7 +68,7 @@ public class UserController {
     @PutMapping("/{userId}")
     @ResponseBody
     public ApiResponse<User> updateUser(
-            @PathVariable long userId,
+            @PathVariable UUID userId,
             @RequestBody User updatedUser
     ){
         User result = userDao.updateUser(userId, updatedUser.getRights(), updatedUser.getName(), updatedUser.getUsername(), updatedUser.getPassword(),
@@ -83,7 +81,7 @@ public class UserController {
     }
 
     @GetMapping("/find/{id}")
-    public ResponseEntity<User> getProductById (@PathVariable("id") Long id){
+    public ResponseEntity<User> getProductById (@PathVariable("id") UUID id){
         User user = userDao.findUserById(id);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }

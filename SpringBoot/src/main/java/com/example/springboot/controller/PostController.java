@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.*;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/api/post")
 public class PostController {
@@ -31,7 +33,7 @@ public class PostController {
 
     @DeleteMapping("/{postId}")
     @ResponseBody
-    public ApiResponse deletePost(@PathVariable long postId){
+    public ApiResponse deletePost(@PathVariable UUID postId){
         if (postDao.deletePost(postId)) {
             return new ApiResponse(HttpStatus.ACCEPTED, "Post with ID "+ postId + "has been deleted.");
         }else{

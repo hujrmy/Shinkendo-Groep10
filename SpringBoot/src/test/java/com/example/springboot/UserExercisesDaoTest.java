@@ -33,23 +33,23 @@ class UserExercisesDaoTest {
         LocalDate localDate = LocalDate.now();
 
         Exercise exercise = new Exercise();
-        exercise.setID(1);
+        exercise.setID(UUID.randomUUID());
         exercise.setName("Exercise1");
 
         User user = new User();
-        user.setID(1L);
+        user.setID(UUID.randomUUID());
 
         UserExercises userExercises = new UserExercises();
-        userExercises.setID(1L);
+        userExercises.setID(UUID.randomUUID());
         userExercises.setExerciseDone(4);
         userExercises.setExerciseToDo(0);
         userExercises.setLastDone(localDate);
         userExercises.setExercise(exercise);
         userExercises.setUser(user);
 
-        when(userExercisesRepository.updateToDoList(username, 1)).thenReturn(1);
+        when(userExercisesRepository.updateToDoList(username, UUID.randomUUID())).thenReturn(1);
 
-        int result = SUT.updateToDo(username, 1);
+        int result = SUT.updateToDo(username, UUID.randomUUID());
         assertEquals(1, result);
     }
 
@@ -60,14 +60,14 @@ class UserExercisesDaoTest {
         LocalDate localDate = LocalDate.now();
 
         Exercise exercise = new Exercise();
-        exercise.setID(1L);
+        exercise.setID(UUID.randomUUID());
         exercise.setName("Exercise1");
 
         User user = new User();
-        user.setID(1L);
+        user.setID(UUID.randomUUID());
 
         UserExercises userExercises = new UserExercises();
-        userExercises.setID(1L);
+        userExercises.setID(UUID.randomUUID());
         userExercises.setExerciseDone(4);
         userExercises.setExerciseToDo(0);
         userExercises.setLastDone(localDate);

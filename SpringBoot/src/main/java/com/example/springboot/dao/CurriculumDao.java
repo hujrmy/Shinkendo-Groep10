@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Component
 public class CurriculumDao {
@@ -30,16 +31,16 @@ public class CurriculumDao {
         return orderedCurriculums;
     }
 
-    public boolean deleteCurriculum(long curriculumId) {
-        if (curriculumRepository.existsById((int) curriculumId)) {
-            curriculumRepository.deleteById((int) curriculumId);
+    public boolean deleteCurriculum(UUID curriculumId) {
+        if (curriculumRepository.existsById(curriculumId)) {
+            curriculumRepository.deleteById(curriculumId);
             return true;
         }
         return false;
     }
 
-    public Curriculum updateCurriculum(long curriculumId, String newName, String newDescription) {
-        Optional<Curriculum> curriculumOptional = curriculumRepository.findById((int) curriculumId);
+    public Curriculum updateCurriculum(UUID curriculumId, String newName, String newDescription) {
+        Optional<Curriculum> curriculumOptional = curriculumRepository.findById(curriculumId);
         if (curriculumOptional.isPresent()) {
             Curriculum curriculum = curriculumOptional.get();
             curriculum.setName(newName);

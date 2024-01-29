@@ -2,11 +2,11 @@ package com.example.springboot.controller;
 
 import com.example.springboot.model.AuthenticationRequest;
 import com.example.springboot.model.AuthenticationResponse;
-import com.example.springboot.model.RegisterRequest;
 import com.example.springboot.dao.AuthenticationDao;
 import com.example.springboot.model.User;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,7 +24,7 @@ public class AuthenticationController {
     private final AuthenticationDao service;
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(
-            @RequestBody User request
+            @Valid @RequestBody User request
     ){
         return ResponseEntity.ok(service.register(request));
     }

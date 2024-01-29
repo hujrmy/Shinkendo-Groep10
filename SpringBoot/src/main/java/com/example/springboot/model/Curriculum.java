@@ -2,14 +2,21 @@ package com.example.springboot.model;
 
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.util.UUID;
 
 @Entity
+@Getter
+@Setter
 @Table (name="curriculum")
 public class Curriculum {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long ID;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(nullable = false, updatable = false)
+    private UUID ID;
     private String name;
     private String description;
 
@@ -18,30 +25,6 @@ public class Curriculum {
 
     public Curriculum(String name, String description) {
         this.name = name;
-        this.description = description;
-    }
-
-    public long getID() {
-        return ID;
-    }
-
-    public void setID(long ID) {
-        this.ID = ID;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
         this.description = description;
     }
 
