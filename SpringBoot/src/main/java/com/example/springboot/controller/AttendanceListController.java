@@ -58,7 +58,7 @@ public class AttendanceListController {
     @PutMapping("/{attendanceId}")
     @ResponseBody
     public ApiResponse<AttendanceList> updateAttendance(
-            @PathVariable long attendanceId,
+            @PathVariable UUID attendanceId,
             @RequestBody AttendanceList updatedAttendance
     ){
         System.out.println("test");
