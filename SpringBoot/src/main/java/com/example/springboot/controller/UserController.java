@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/users")
@@ -83,7 +84,7 @@ public class UserController {
     }
 
     @GetMapping("/find/{id}")
-    public ResponseEntity<User> getProductById (@PathVariable("id") Long id){
+    public ResponseEntity<User> getProductById (@PathVariable("id") UUID id){
         User user = userDao.findUserById(id);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }

@@ -3,6 +3,7 @@ package com.example.springboot.model;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Entity
 @Table(name="lesson")
@@ -10,7 +11,7 @@ public class Lesson {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long ID;
+    private UUID ID;
     private LocalDate date;
 
     public Lesson(LocalDate date) {
@@ -21,11 +22,11 @@ public class Lesson {
 
     }
 
-    public long getID() {
+    public UUID getID() {
         return ID;
     }
 
-    public void setID(long ID) {
+    public void setID(UUID ID) {
         this.ID = ID;
     }
 

@@ -33,7 +33,7 @@ public class ExerciseDAOTest {
     @Test
     void should_add_exercise_to_repository() {
         Exercise exerciseToAdd = new Exercise();
-        exerciseToAdd.setID(1L);
+//        exerciseToAdd.setID(1L);
         exerciseToAdd.setName("Sample Exercise");
         exerciseToAdd.setMedia("www.youtube.com");
 
@@ -69,11 +69,11 @@ public class ExerciseDAOTest {
     void should_get_all_exercises_from_repository() {
         List<Exercise> expectedExercises = new ArrayList<>();
         Exercise exercise1 = new Exercise();
-        exercise1.setID(1L);
+//        exercise1.setID(1L);
         exercise1.setName("Exercise 1");
 
         Exercise exercise2 = new Exercise();
-        exercise2.setID(2L);
+//        exercise2.setID(2L);
         exercise2.setName("Exercise 2");
 
         expectedExercises.add(exercise1);

@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:postgresql://db-shinkendo-do-user-15503084-0.c.db.ondigitalocean.com:25060/defaultdb
-    username: doadmin
-    password: AVNS_-F-yN3DfjJQkVA8PyGP
+    url: jdbc:postgresql://localhost:5432/shinkendo
+    username: postgres
+    password: postgres
   jpa:
     hibernate:
       ddl-auto: update
@@ -20,11 +20,11 @@ application:
       refresh-token:
         expiration: 604800000 # 7 days
 
-server:
-  port: 8080
-  address: 164.92.150.243
-  ssl:
-    key-store: /etc/ssl/keystore.p12
-    key-store-password: password
-    key-store-type: PKCS12
-    key-alias: fuujokan-amsterdam.online
+#server:
+#  port: 8080
+#  address: 164.92.150.243
+#  ssl:
+#    key-store: /etc/ssl/keystore.p12
+#    key-store-password: password
+#    key-store-type: PKCS12
+#    key-alias: fuujokan-amsterdam.online

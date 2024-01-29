@@ -34,7 +34,7 @@ class PostDaoTest {
         post.setLink("www.google.com");
 
         User user = new User();
-        user.setID(1L);
+        user.setID(UUID.randomUUID());
 
         post.setUser(user);
 

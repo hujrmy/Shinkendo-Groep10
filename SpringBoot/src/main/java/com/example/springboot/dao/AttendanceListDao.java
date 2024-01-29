@@ -9,10 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 @Component
 public class AttendanceListDao {
@@ -30,7 +27,7 @@ public class AttendanceListDao {
         return attendanceLists;
     }
 
-    public List<AttendanceList> getAttendancesByLessonId(long lessonId) {
+    public List<AttendanceList> getAttendancesByLessonId(UUID lessonId) {
         ArrayList<AttendanceList> attendanceLists = new ArrayList<>();
         List<AttendanceList> attendances = this.attendanceListRepository.findAll();
 
@@ -61,8 +58,8 @@ public class AttendanceListDao {
         }
 
         for (AttendanceList attendance : attendancesToDelete) {
-            if (attendanceListRepository.existsById((int) attendance.getID())) {
-                attendanceListRepository.deleteById((int) attendance.getID());
+            if (attendanceListRepository.existsById(attendance.getID())) {
+                attendanceListRepository.deleteById(attendance.getID());
                 System.out.println("testing: " + attendance);
             }
         }

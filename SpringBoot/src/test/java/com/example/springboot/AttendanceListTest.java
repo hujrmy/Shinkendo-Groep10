@@ -17,6 +17,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
@@ -37,7 +38,7 @@ public class AttendanceListTest {
         this.attendanceList = new AttendanceList();
         this.user = new User();
 
-        user.setID(1);
+        user.setID(UUID.randomUUID());
         user.setName("TestUser");
         user.setUsername("TestUsername");
     }
@@ -46,9 +47,9 @@ public class AttendanceListTest {
     void should_add_attendance_to_repository(){
         Lesson lesson = new Lesson();
 
-        lesson.setID(1);
+//        lesson.setID(1);
 
-        attendanceList.setID(1);
+//        attendanceList.setID(1);
         attendanceList.setLesson(lesson);
         attendanceList.setUser(user);
 
@@ -70,7 +71,7 @@ public class AttendanceListTest {
 
         exercise.setName("TestExercise");
 
-        attendanceList.setID(1);
+//        attendanceList.setID(1);
         attendanceList.setExercise(exercise);
         attendanceList.setUser(user);
 

@@ -2,13 +2,15 @@ package com.example.springboot.model;
 
 import jakarta.persistence.*;
 
+import java.util.UUID;
+
 @Entity
 @Table(name="exercise")
 public class Exercise {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long ID;
+    private UUID ID;
     private String name;
 
     private String media;
@@ -22,11 +24,11 @@ public class Exercise {
 
     }
 
-    public long getID() {
+    public UUID getID() {
         return ID;
     }
 
-    public void setID(long ID) {
+    public void setID(UUID ID) {
         this.ID = ID;
     }
 

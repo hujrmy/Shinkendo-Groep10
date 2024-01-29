@@ -3,12 +3,14 @@ package com.example.springboot.model;
 
 import jakarta.persistence.*;
 
+import java.util.UUID;
+
 @Entity
 @Table(name="attendance_list")
 public class AttendanceList {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long ID;
+    private UUID ID;
 
     @ManyToOne
     private User user;
@@ -30,11 +32,11 @@ public class AttendanceList {
     }
 
 
-    public long getID() {
+    public UUID getID() {
         return ID;
     }
 
-    public void setID(long ID) {
+    public void setID(UUID ID) {
         this.ID = ID;
     }
 

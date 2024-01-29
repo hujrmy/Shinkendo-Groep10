@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 @Component
 public class UserDao {
@@ -84,7 +81,7 @@ public class UserDao {
         return false;
     }
 
-    public User findUserById(Long id){
+    public User findUserById(UUID id){
         return userRepository.findUserByID(id)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
