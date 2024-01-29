@@ -2,20 +2,19 @@ package com.example.springboot.model;
 
 import com.example.springboot.model.Enums.Rank;
 import com.example.springboot.model.Enums.Rights;
+import com.example.springboot.validation.Password;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.validation.constraints.Pattern;
+import jakarta.validation.constraints.*;
 import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
-@Getter
 @Data
 @Builder
 @NoArgsConstructor
@@ -30,9 +29,11 @@ public class User implements UserDetails {
     private UUID ID;
 
     private String username;
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,}$", message = "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one digit.")
+
+    @Password
+    @NotBlank(message = "Password has to contain a value")
     private String password;
+
     @Enumerated(EnumType.STRING)
     private Rights rights;
     private String name;
