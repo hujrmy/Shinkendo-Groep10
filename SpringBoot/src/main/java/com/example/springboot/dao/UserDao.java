@@ -112,8 +112,13 @@ public class UserDao {
             user.setDojo(newDojo);
             user.setRank(newRank);
 
-            String encodedPassword = passwordEncoder.encode(newPassword);
-            user.setPassword(encodedPassword);
+            if (!newPassword.equals(user.getPassword())) {
+                String encodedPassword = passwordEncoder.encode(newPassword);
+                user.setPassword(encodedPassword);
+            }
+            else {
+                user.setPassword(user.getPassword());
+            }
 
             user = userRepository.save(user);
             return user;
