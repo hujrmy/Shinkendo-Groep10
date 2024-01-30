@@ -24,8 +24,7 @@ import java.util.UUID;
 public class User implements UserDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(nullable = false, updatable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID ID;
 
     @Pattern(regexp = "^[A-Za-z0-9.-_]+$", message = "Names can contain [A-Z], [a-z], [0-9], [.], [_], and [-]")
@@ -48,7 +47,7 @@ public class User implements UserDetails {
     @NotNull(message = "Dojo has to contain a value")
     private Dojo dojo;
 
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     @NotNull(message = "Rank has to contain a value")
     private Rank rank;
 

@@ -42,13 +42,12 @@ public class PostDao {
         return postRepository.getHighestId();
     }
 
-    public Post findPostById(Long id) {
-        return postRepository.findPostByID(id)
-                .orElseThrow(() -> new UsernameNotFoundException("Post not found"));
+    public Post findPostById(UUID id) {
+        return postRepository.findPostByID(id).orElseThrow(() -> new UsernameNotFoundException("Post not found"));
     }
 
-    public Post updatePost(long postId, String title, String description, String link) {
-        Optional<Post> postOptional = postRepository.findPostByID((long) postId);
+    public Post updatePost(UUID postId, String title, String description, String link) {
+        Optional<Post> postOptional = postRepository.findPostByID(postId);
         if (postOptional.isPresent()) {
             Post post = postOptional.get();
             post.setTitle(title);

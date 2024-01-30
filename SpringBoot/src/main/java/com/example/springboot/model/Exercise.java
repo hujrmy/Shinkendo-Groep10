@@ -6,6 +6,8 @@ import lombok.Setter;
 
 import java.util.UUID;
 
+import java.util.UUID;
+
 @Entity
 @Getter
 @Setter
@@ -13,8 +15,7 @@ import java.util.UUID;
 public class Exercise {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(nullable = false, updatable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID ID;
     private String name;
 
@@ -28,6 +29,31 @@ public class Exercise {
     public Exercise() {
 
     }
+
+    public UUID getID() {
+        return ID;
+    }
+
+    public void setID(UUID ID) {
+        this.ID = ID;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getMedia() {
+        return media;
+    }
+
+    public void setMedia(String media) {
+        this.media = media;
+    }
+
     @Override
     public String toString() {
         return "Exercise{" +

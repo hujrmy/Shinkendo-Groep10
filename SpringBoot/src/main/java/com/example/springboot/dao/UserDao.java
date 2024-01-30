@@ -9,7 +9,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-
 import java.util.*;
 
 @Component
@@ -67,6 +66,13 @@ public class UserDao {
         return usersList;
     }
 
+    public Rights findUserRightsById(UUID id) {
+        return userRepository.findUserByID(id)
+                .map(User::getRights)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+    }
+
+
     public List<String> getAllUserData(){
         List<String> userData = new ArrayList<>();
         List<User> users = this.userRepository.findAll();
@@ -106,8 +112,13 @@ public class UserDao {
             user.setDojo(newDojo);
             user.setRank(newRank);
 
-            String encodedPassword = passwordEncoder.encode(newPassword);
-            user.setPassword(encodedPassword);
+            if (!newPassword.equals(user.getPassword())) {
+                String encodedPassword = passwordEncoder.encode(newPassword);
+                user.setPassword(encodedPassword);
+            }
+            else {
+                user.setPassword(user.getPassword());
+            }
 
             user = userRepository.save(user);
             return user;

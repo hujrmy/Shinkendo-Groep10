@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @RestController
@@ -64,6 +65,12 @@ public class UserController {
             return new ApiResponse(HttpStatus.NOT_FOUND, "Curriculum with ID " + userId + " not found.");
         }
     }
+    @GetMapping("/rights/{id}")
+    public ResponseEntity<Rights> getUserRightsById(@PathVariable("id") UUID id) {
+        Rights rights = userDao.findUserRightsById(id);
+        return new ResponseEntity<>(rights, HttpStatus.OK);
+    }
+
 
     @PutMapping("/{userId}")
     @ResponseBody

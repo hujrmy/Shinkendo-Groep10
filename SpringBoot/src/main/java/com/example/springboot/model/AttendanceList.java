@@ -7,14 +7,16 @@ import lombok.Setter;
 
 import java.util.UUID;
 
+import java.util.UUID;
+
 @Entity
 @Getter
 @Setter
 @Table(name="attendance_list")
 public class AttendanceList {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(nullable = false, updatable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+
     private UUID ID;
 
     @ManyToOne
@@ -34,6 +36,38 @@ public class AttendanceList {
 
     public AttendanceList() {
 
+    }
+
+    public UUID getID() {
+        return ID;
+    }
+
+    public void setID(UUID ID) {
+        this.ID = ID;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User username) {
+        this.user = username;
+    }
+
+    public Exercise getExercise() {
+        return exercise;
+    }
+
+    public void setExercise(Exercise exercise) {
+        this.exercise = exercise;
+    }
+
+    public void setLesson(Lesson lesson) {
+        this.lesson = lesson;
+    }
+
+    public Lesson getLesson() {
+        return lesson;
     }
 
     @Override

@@ -33,7 +33,7 @@ class UserExercisesDaoTest {
         LocalDate localDate = LocalDate.now();
 
         Exercise exercise = new Exercise();
-        exercise.setID(UUID.randomUUID());
+//        exercise.setID(1);
         exercise.setName("Exercise1");
 
         User user = new User();
@@ -60,7 +60,8 @@ class UserExercisesDaoTest {
         LocalDate localDate = LocalDate.now();
 
         Exercise exercise = new Exercise();
-        exercise.setID(UUID.randomUUID());
+//        exercise.setID(1L);
+
         exercise.setName("Exercise1");
 
         User user = new User();
