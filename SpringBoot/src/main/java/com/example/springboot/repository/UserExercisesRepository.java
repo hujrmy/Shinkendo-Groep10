@@ -27,8 +27,8 @@ public interface UserExercisesRepository extends JpaRepository<UserExercises, UU
     @Modifying
     @Transactional
     @Query("UPDATE UserExercises ue " +
-            "SET ue.exerciseToDo = ue.exerciseToDo - 1, ue.exerciseDone = ue.exerciseDone + 1 " +
-            "WHERE ue.user.ID = (SELECT u.ID FROM User u WHERE u.username = :userId) " +
+            "SET ue.exerciseDone = ue.exerciseDone + 1 " +
+            "WHERE ue.user.ID = :userId " +
             "AND ue.exercise.ID = :exercise_id"
             )
     int updateToDoList(@Param("userId") UUID userId, @Param("exercise_id") UUID exercise_id);
