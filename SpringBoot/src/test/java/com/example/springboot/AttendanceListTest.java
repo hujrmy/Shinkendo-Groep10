@@ -48,7 +48,7 @@ public class AttendanceListTest {
         AttendanceList attendanceToAdd = new AttendanceList();
         attendanceToAdd.setID(UUID.randomUUID());
         attendanceToAdd.setUser(user);
-        attendanceToAdd.setExercise(exercise);
+//        attendanceToAdd.setExercise(exercise);
 
         Lesson lesson = new Lesson();
 
@@ -74,7 +74,7 @@ public class AttendanceListTest {
         List<AttendanceList> expectedAttendance = new ArrayList<>();
         AttendanceList attendance1 = new AttendanceList();
         attendance1.setID(UUID.randomUUID());
-        attendance1.setExercise(exercise);
+//        attendance1.setExercise(exercise);
         attendance1.setUser(user);
 
         Exercise exercise = new Exercise();
