@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -43,7 +43,6 @@ public class CurriculumDAOTest {
 
         Curriculum addedCurriculum = SUT.addCurriculum(newCurriculum);
 
-        assertEquals(1, addedCurriculum.getID());
         assertEquals("newCurriculum", addedCurriculum.getName());
         assertEquals("new curriculum", addedCurriculum.getDescription());
     }
@@ -57,9 +56,9 @@ public class CurriculumDAOTest {
         curriculum1.setDescription("new curriculum 1");
 
         Curriculum curriculum2 = new Curriculum();
-        curriculum1.setID(UUID.randomUUID());
-        curriculum1.setName("newCurriculum2");
-        curriculum1.setDescription("new curriculum 2");
+        curriculum2.setID(UUID.randomUUID());
+        curriculum2.setName("newCurriculum2");
+        curriculum2.setDescription("new curriculum 2");
 
         curriculums.add(curriculum1);
         curriculums.add(curriculum2);

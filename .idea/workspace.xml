@@ -6,10 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a61a8f8a-f634-45df-a848-97aa64d403b1" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SpringBoot/src/main/java/com/example/springboot/Seeder/DatabaseSeeder.java" beforeDir="false" afterPath="$PROJECT_DIR$/SpringBoot/src/main/java/com/example/springboot/Seeder/DatabaseSeeder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SpringBoot/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/SpringBoot/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SpringBoot/src/test/java/com/example/springboot/AttendanceListTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/SpringBoot/src/test/java/com/example/springboot/AttendanceListTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SpringBoot/src/test/java/com/example/springboot/UserExercisesDaoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/SpringBoot/src/test/java/com/example/springboot/UserExercisesDaoTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpringBoot/src/test/java/com/example/springboot/CurriculumDAOTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/SpringBoot/src/test/java/com/example/springboot/CurriculumDAOTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +50,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="JUnit.AttendanceListTest.should_add_attendance_to_repository">
+  <component name="RunManager" selected="JUnit.CurriculumDAOTest.should_add_curriculum_to_repository">
     <configuration name="AttendanceListTest.should_add_attendance_to_repository" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="SpringBoot" />
       <extension name="coverage">
@@ -86,6 +83,38 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="CurriculumDAOTest.should_add_curriculum_to_repository" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="SpringBoot" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.springboot.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.springboot" />
+      <option name="MAIN_CLASS_NAME" value="com.example.springboot.CurriculumDAOTest" />
+      <option name="METHOD_NAME" value="should_add_curriculum_to_repository" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CurriculumDAOTest.should_get_all_curriculums_by_id_from_repository" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="SpringBoot" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.springboot.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.springboot" />
+      <option name="MAIN_CLASS_NAME" value="com.example.springboot.CurriculumDAOTest" />
+      <option name="METHOD_NAME" value="should_get_all_curriculums_by_id_from_repository" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <method v="2">
         <option name="Make" enabled="true" />
@@ -107,6 +136,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.CurriculumDAOTest.should_add_curriculum_to_repository" />
+        <item itemvalue="JUnit.CurriculumDAOTest.should_get_all_curriculums_by_id_from_repository" />
         <item itemvalue="JUnit.AttendanceListTest.should_add_attendance_to_repository" />
         <item itemvalue="JUnit.AttendanceListTest.should_get_all_attendance_from_repository" />
       </list>
