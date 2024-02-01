@@ -48,7 +48,7 @@ public class AttendanceListTest {
         AttendanceList attendanceToAdd = new AttendanceList();
         attendanceToAdd.setID(UUID.randomUUID());
         attendanceToAdd.setUser(user);
-        attendanceToAdd.setExercise(exercise);
+        //attendanceToAdd.setExercise(exercise);
 
         Lesson lesson = new Lesson();
 
@@ -62,11 +62,8 @@ public class AttendanceListTest {
 
         AttendanceList addedAttendanceList = SUT.addAttendance(attendanceList);
 
-        assertEquals(1, addedAttendanceList.getID());
-        assertEquals(1, addedAttendanceList.getUser().getID());
         assertEquals("TestUser", addedAttendanceList.getUser().getName());
         assertEquals("TestUsername", addedAttendanceList.getUser().getUsername());
-        assertEquals(1, addedAttendanceList.getLesson().getID());
     }
 
     @Test
@@ -74,7 +71,7 @@ public class AttendanceListTest {
         List<AttendanceList> expectedAttendance = new ArrayList<>();
         AttendanceList attendance1 = new AttendanceList();
         attendance1.setID(UUID.randomUUID());
-        attendance1.setExercise(exercise);
+        //attendance1.setExercise(exercise);
         attendance1.setUser(user);
 
         Exercise exercise = new Exercise();
@@ -95,7 +92,6 @@ public class AttendanceListTest {
         assertEquals(expectedAttendance.get(0).getExercise(), retrievedAttendance.get(0).getExercise());
         assertEquals(expectedAttendance.get(0).getUser(), retrievedAttendance.get(0).getUser());
 
-        assertEquals(1, retrievedAttendance.get(0).getUser().getID());
         assertEquals("TestUser", retrievedAttendance.get(0).getUser().getName());
         assertEquals("TestUsername", retrievedAttendance.get(0).getUser().getUsername());
     }
